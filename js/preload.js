@@ -3,4 +3,5 @@ window.addEventListener('DOMContentLoaded', () => {
       const element = document.getElementById(selector)
       if (element) element.innerText = text
     }
+
 })

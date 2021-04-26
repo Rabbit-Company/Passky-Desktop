@@ -11,8 +11,11 @@ function createWindow () {
   })
 
   win.setMenuBarVisibility(false)
+  win.setTitle("Passky")
 
-  win.loadFile('login.html')
+  win.loadFile('html/login.html')
+
+  win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {
@@ -23,6 +26,7 @@ app.whenReady().then(() => {
       createWindow()
     }
   })
+
 })
 
 app.on('window-all-closed', () => {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "Rabbit Company",
   "description": "Desktop application for Passky (password manager)",
-  "main": "main.js",
+  "main": "js/main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
