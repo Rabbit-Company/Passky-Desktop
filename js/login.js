@@ -23,7 +23,7 @@ function onBtnClick(){
         show('error-dialog');
         return;
     }
-    
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url + "/?action=getPasswords");
 
@@ -47,13 +47,13 @@ function onBtnClick(){
                 return;
             }
 
-            if(json['error'] != 0){
+            if(json['error'] != 0 && json['error'] != 8){
                 setText('error-dialog-modal-text', errors[json['error']]);
                 show('error-dialog');
                 return;
             }
 
-            //TODO: Fetch user passwords from json 
+            console.log(xhr.responseText);
         }
 
     };

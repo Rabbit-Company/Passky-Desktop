@@ -31,4 +31,39 @@ function onBtnClick(){
         return;
     }
 
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url + "/?action=createAccount");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+
+        if(xhr.readyState === 4){
+            if(xhr.status != 200){
+                setText('error-dialog-modal-text', "Server is unreachable!");
+                show('error-dialog');
+                return;
+            }
+
+            var json = JSON.parse(xhr.responseText);
+
+            if(typeof json['error'] === 'undefined'){
+                setText('error-dialog-modal-text', "Server is unreachable!");
+                show('error-dialog');
+                return;
+            }
+
+            if(json['error'] != 0){
+                setText('error-dialog-modal-text', errors[json['error']]);
+                show('error-dialog');
+                return;
+            }
+
+            window.location="login.html";
+        }
+
+    };
+    xhr.send("email=" + email);
 }
