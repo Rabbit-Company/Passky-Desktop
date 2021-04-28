@@ -5,6 +5,8 @@ function createWindow () {
   const win = new BrowserWindow({
     width: 500,
     height: 400,
+    minWidth: 500,
+    minHeight: 400,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -14,8 +16,8 @@ function createWindow () {
   win.setTitle("Passky")
 
   win.loadFile('html/login.html')
-
-  win.webContents.openDevTools()
+  //win.loadFile('html/passwords.html')
+  //win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {

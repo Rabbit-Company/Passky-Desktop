@@ -53,7 +53,7 @@ function onBtnClick(){
                 return;
             }
 
-            console.log("Login successfully!");
+            window.location.href = 'passwords.html';
         }
 
     };
