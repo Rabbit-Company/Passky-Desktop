@@ -53,7 +53,7 @@ function onBtnClick(){
                 return;
             }
 
-            console.log(xhr.responseText);
+            console.log("Login successfully!");
         }
 
     };
