@@ -23,7 +23,6 @@ function onBtnClick(){
         show('error-dialog');
         return;
     }
-
     
     var xhr = new XMLHttpRequest();
     xhr.open("POST", url + "/?action=getPasswords");
