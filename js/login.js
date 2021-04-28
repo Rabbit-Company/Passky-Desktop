@@ -24,21 +24,40 @@ function onBtnClick(){
         return;
     }
 
-    /*
+    
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", url);
+    xhr.open("POST", url + "/?action=getPasswords");
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-        console.log(xhr.status);
-        console.log(xhr.responseText);
-    }};
 
-    xhr.send("action=getPasswords");
+        if(xhr.readyState === 4){
+            if(xhr.status != 200){
+                setText('error-dialog-modal-text', "Server is unreachable!");
+                show('error-dialog');
+                return;
+            }
+            var json = JSON.parse(xhr.responseText);
 
-    */
+            if(typeof json['error'] === 'undefined'){
+                setText('error-dialog-modal-text', "Server is unreachable!");
+                show('error-dialog');
+                return;
+            }
+
+            if(json['error'] != 0){
+                setText('error-dialog-modal-text', errors[json['error']]);
+                show('error-dialog');
+                return;
+            }
+
+            //TODO: Fetch user passwords from json 
+        }
+
+    };
+    xhr.send("");
+
 }
