@@ -18,6 +18,29 @@ function validEmail(mail){
     return new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/).test(mail);
 }
 
+function copyToClipboard(text){
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+    
+    textArea.style.top = 0;
+    textArea.style.left = 0;
+    textArea.style.position = "fixed";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Fallback: Copying text command was ' + msg);
+    } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
+}
+
 var errors = {
     "0": "Successful",
     "1": "Username is invalid!",
