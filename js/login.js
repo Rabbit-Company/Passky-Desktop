@@ -53,6 +53,10 @@ function onBtnClick(){
                 return;
             }
 
+            if(json['error'] == 0){
+                sessionStorage.passwords = JSON.stringify(json['passwords']);
+            }
+            
             window.location.href = 'passwords.html';
         }
 

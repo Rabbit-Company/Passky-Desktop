@@ -16,7 +16,6 @@ function createWindow () {
   win.setTitle("Passky")
 
   win.loadFile('html/login.html')
-  //win.loadFile('html/passwords.html')
   //win.webContents.openDevTools()
 }
 
