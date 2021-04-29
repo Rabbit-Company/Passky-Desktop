@@ -41,7 +41,7 @@ function changeDialog(style, text){
                 document.getElementById('dialog-button').className = "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm";
                 document.getElementById('dialog-button').innerText = "Okay";
                 document.getElementById('dialog-button').onclick = function(){
-                    hide('dialog');
+                    refreshPasswords();
                 }
             }
         break;
@@ -124,4 +124,33 @@ function addPassword(){
 
     };
     xhr.send("website=" + website + "&username=" + username + "&password=" + password);
+}
+
+function refreshPasswords(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", sessionStorage.url + "/?action=getPasswords");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password));
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+
+        if(xhr.readyState === 4){
+            if(xhr.status != 200) return;
+            
+            var json = JSON.parse(xhr.responseText);
+
+            if(typeof json['error'] === 'undefined') return;
+            if(json['error'] != 0 && json['error'] != 8) return;
+            
+            if(json['error'] == 0){
+                sessionStorage.passwords = JSON.stringify(json['passwords']);
+            }
+
+            window.location.href = 'passwords.html';
+        }
+
+    };
+    xhr.send("");
 }
