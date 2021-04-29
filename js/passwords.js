@@ -1,4 +1,4 @@
-function changeDialog(style){
+function changeDialog(style, text){
     switch(style){
         case 1:
             //Delete account dialog
@@ -13,6 +13,38 @@ function changeDialog(style){
                 document.getElementById('dialog-button').innerText = "Delete";
             }
         break;
+        case 2:
+            //Add password error
+            if(document.getElementById('dialog-title').innerText != "ERROR"){
+                document.getElementById('dialog-icon').className = "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10";
+                document.getElementById('dialog-icon').innerHTML = "<svg class='h-6 w-6 text-red-600' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' /></svg>";
+    
+                document.getElementById('dialog-title').innerText = "ERROR";
+                document.getElementById('dialog-text').innerText = text;
+    
+                document.getElementById('dialog-button').className = "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto sm:text-sm";
+                document.getElementById('dialog-button').innerText = "Try again";
+                document.getElementById('dialog-button').onclick = function(){
+                    changeDialog(0);
+                }
+            }
+        break;
+        case 3:
+            //Password added successfully
+            if(document.getElementById('dialog-title').innerText != "SUCCESS"){
+                document.getElementById('dialog-icon').className = "mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100";
+                document.getElementById('dialog-icon').innerHTML = "<svg class='h-6 w-6 text-green-600' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7' /></svg>";
+    
+                document.getElementById('dialog-title').innerText = "SUCCESS";
+                document.getElementById('dialog-text').innerText = "Password has been added successfully";
+    
+                document.getElementById('dialog-button').className = "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:w-auto sm:text-sm";
+                document.getElementById('dialog-button').innerText = "Okay";
+                document.getElementById('dialog-button').onclick = function(){
+                    hide('dialog');
+                }
+            }
+        break;
         default:
             //Add password dialog
             if(document.getElementById('dialog-title').innerText != "Add password"){
@@ -25,8 +57,71 @@ function changeDialog(style){
     
                 document.getElementById('dialog-button').className = "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:text-sm";
                 document.getElementById('dialog-button').innerText = "Add";
+                document.getElementById('dialog-button').onclick = function(){
+                    addPassword();
+                }
             }
         break;
     }
+}
 
+function addPassword(){
+    var website = document.getElementById("website").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if(website.length == 0 || username.length == 0 || password.length == 0) return;
+
+    if(!(username.length >= 6 && username.length <= 30)){
+        changeDialog(2, "Username must be between 6 and 30 character long!");
+        return;
+    }
+
+    if(!(password.length >= 8 && password.length <= 255)){
+        changeDialog(2, "Password must be between 8 and 255 character long!");
+        return;
+    }
+
+    if(!(website.length >= 6 && website.length <= 255)){
+        changeDialog(2, "Website much be between 6 and 255 character long!");
+        return;
+    }
+
+    if(sessionStorage.url === null || typeof(sessionStorage.url) === 'undefined' || sessionStorage.username === null || typeof(sessionStorage.username) === 'undefined' || sessionStorage.password === null || typeof(sessionStorage.password) === 'undefined'){
+        changeDialog(2, "Session has expired please sign in again!");
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", sessionStorage.url + "/?action=savePassword");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password));
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+
+        if(xhr.readyState === 4){
+            if(xhr.status != 200){
+                changeDialog(2, "Server is unreachable!");
+                return;
+            }
+
+            var json = JSON.parse(xhr.responseText);
+
+            if(typeof json['error'] === 'undefined'){
+                changeDialog(2, "Server is unreachable!");
+                return;
+            }
+
+            if(json['error'] != 0){
+                changeDialog(2, errors[json['error']]);
+                return;
+            }
+
+            changeDialog(3);
+        }
+
+    };
+    xhr.send("website=" + website + "&username=" + username + "&password=" + password);
 }

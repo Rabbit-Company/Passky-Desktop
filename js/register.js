@@ -1,3 +1,5 @@
+if(localStorage.url !== null && typeof(localStorage.url) !== 'undefined') document.getElementById('passky-server').value = localStorage.url;
+
 function onBtnClick(){
 
     var url = document.getElementById("passky-server").value;
@@ -60,6 +62,9 @@ function onBtnClick(){
                 show('error-dialog');
                 return;
             }
+
+            localStorage.url = url;
+            localStorage.username = username;
 
             setText('error-dialog-modal-title', "SUCCESS");
             setText('error-dialog-modal-text', "Registration is completed!");

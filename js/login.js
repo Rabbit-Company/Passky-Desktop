@@ -1,3 +1,6 @@
+if(localStorage.url !== null && typeof(localStorage.url) !== 'undefined') document.getElementById('passky-server').value = localStorage.url;
+if(localStorage.username !== null && typeof(localStorage.username) !== 'undefined') document.getElementById('username').value = localStorage.username;
+
 function onBtnClick(){
 
     var url = document.getElementById("passky-server").value;
@@ -57,6 +60,13 @@ function onBtnClick(){
                 sessionStorage.passwords = JSON.stringify(json['passwords']);
             }
             
+            sessionStorage.url = url;
+            sessionStorage.username = username;
+            sessionStorage.password = password;
+
+            localStorage.url = url;
+            localStorage.username = username;
+
             window.location.href = 'passwords.html';
         }
 
