@@ -11,6 +11,9 @@ function changeDialog(style, text){
     
                 document.getElementById('dialog-button').className = "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto sm:text-sm";
                 document.getElementById('dialog-button').innerText = "Delete";
+                document.getElementById('dialog-button').onclick = function(){
+                    deleteAccount();
+                }
             }
         break;
         case 2:
@@ -149,6 +152,31 @@ function refreshPasswords(){
             }
 
             window.location.href = 'passwords.html';
+        }
+
+    };
+    xhr.send("");
+}
+
+function deleteAccount(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", sessionStorage.url + "/?action=deleteAccount");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password));
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+
+        if(xhr.readyState === 4){
+            if(xhr.status != 200) return;
+            
+            var json = JSON.parse(xhr.responseText);
+
+            if(typeof json['error'] === 'undefined') return;
+            if(json['error'] != 0) return;
+  
+            window.location.href = 'login.html';
         }
 
     };
