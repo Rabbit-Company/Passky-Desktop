@@ -69,9 +69,9 @@ function changeDialog(style, text){
 }
 
 function addPassword(){
-    var website = document.getElementById("website").value;
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    let website = document.getElementById("website").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
     if(website.length == 0 || username.length == 0 || password.length == 0) return;
 
@@ -97,9 +97,9 @@ function addPassword(){
 
     //Encrypt password
     password = CryptoJS.AES.encrypt(password, sessionStorage.password).toString();
+    console.log(password);
 
-    console.log("Encrypted password:" + password);
-
+    /*
     const url = sessionStorage.url + "/?action=savePassword";
 
     const body = new FormData();
@@ -137,7 +137,9 @@ function addPassword(){
             changeDialog(2, "Server is unreachable!" + error);
         });
 
-    /*
+    */
+
+    
     var xhr = new XMLHttpRequest();
     xhr.open("POST", sessionStorage.url + "/?action=savePassword");
 
@@ -169,9 +171,7 @@ function addPassword(){
         }
 
     };
-    xhr.send("website=" + website + "&username=" + username + "&password=" + password);
-
-    */
+    xhr.send("website=" + website + "&username=" + username + "&password=" + encodeURIComponent(password));
 }
 
 function refreshPasswords(){
