@@ -95,50 +95,7 @@ function addPassword(){
         return;
     }
 
-    //Encrypt password
     password = CryptoJS.AES.encrypt(password, sessionStorage.password).toString();
-    console.log(password);
-
-    /*
-    const url = sessionStorage.url + "/?action=savePassword";
-
-    const body = new FormData();
-    body.append('website', website);
-    body.append('username', username);
-    body.append('password', password);
-
-    const request = new Request(url, {
-        method: 'POST',
-        body: body,
-        headers: new Headers({
-            "Content-type": "application/x-www-form-urlencoded",
-            "Authorization": "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password),
-            "Accept": "application/json"
-        })
-    });
-
-    fetch(request)
-        .then(response => response.json())
-        .then(response => {
-
-            if(typeof response['error'] === 'undefined'){
-                changeDialog(2, "Server is unreachable!");
-                return;
-            }
-
-            if(response['error'] != 0){
-                changeDialog(2, errors[response['error']]);
-                return;
-            }
-
-            changeDialog(3);
-        })
-        .catch((error) => {
-            changeDialog(2, "Server is unreachable!" + error);
-        });
-
-    */
-
     
     var xhr = new XMLHttpRequest();
     xhr.open("POST", sessionStorage.url + "/?action=savePassword");
@@ -226,4 +183,25 @@ function deleteAccount(){
 
     };
     xhr.send("");
+}
+
+function filterPasswords(){
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("search");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table-passwords");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
 }
