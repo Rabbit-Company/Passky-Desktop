@@ -19,7 +19,7 @@ function validEmail(mail){
 }
 
 function copyToClipboard(text){
-    var textArea = document.createElement("textarea");
+    let textArea = document.createElement("textarea");
     textArea.value = text;
     
     textArea.style.top = 0;
@@ -35,7 +35,7 @@ function copyToClipboard(text){
     document.body.removeChild(textArea);
 }
 
-var errors = {
+const errors = {
     "0": "Successful",
     "1": "Username is invalid!",
     "2": "Password is incorrect!",

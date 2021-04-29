@@ -69,8 +69,8 @@ function changeDialog(style, text){
 }
 
 function addPassword(){
-    let website = document.getElementById("website").value;
-    let username = document.getElementById("username").value;
+    const website = document.getElementById("website").value;
+    const username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
     if(website.length == 0 || username.length == 0 || password.length == 0) return;
@@ -112,7 +112,7 @@ function addPassword(){
                 return;
             }
 
-            var json = JSON.parse(xhr.responseText);
+            const json = JSON.parse(xhr.responseText);
 
             if(typeof json['error'] === 'undefined'){
                 changeDialog(2, "Server is unreachable!");
@@ -144,7 +144,7 @@ function refreshPasswords(){
         if(xhr.readyState === 4){
             if(xhr.status != 200) return;
             
-            var json = JSON.parse(xhr.responseText);
+            const json = JSON.parse(xhr.responseText);
 
             if(typeof json['error'] === 'undefined') return;
             if(json['error'] != 0 && json['error'] != 8) return;
@@ -173,7 +173,7 @@ function deleteAccount(){
         if(xhr.readyState === 4){
             if(xhr.status != 200) return;
             
-            var json = JSON.parse(xhr.responseText);
+            const json = JSON.parse(xhr.responseText);
 
             if(typeof json['error'] === 'undefined') return;
             if(json['error'] != 0) return;
@@ -191,8 +191,7 @@ function filterPasswords(){
     filter = input.value.toUpperCase();
     table = document.getElementById("table-passwords");
     tr = table.getElementsByTagName("tr");
-  
-    // Loop through all table rows, and hide those who don't match the search query
+
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[0];
       if (td) {

@@ -2,10 +2,10 @@ if(localStorage.url !== null && typeof(localStorage.url) !== 'undefined') docume
 
 function onBtnClick(){
 
-    var url = document.getElementById("passky-server").value;
-    var username = document.getElementById("username").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
+    const url = document.getElementById("passky-server").value;
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     if(url.length == 0 || username.length == 0 || email.length == 0 || password.length == 0) return;
 
