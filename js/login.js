@@ -9,14 +9,14 @@ function onBtnClick(){
 
     if(url.length == 0 || username.length == 0 || password.length == 0) return;
 
-    if(!(username.length >= 6 && username.length <= 30)){
-        setText('error-dialog-modal-text', "Username must be between 6 and 30 character long!");
+    if(!/^[a-z0-9.]{6,30}$/i.test(username)){
+        setText('error-dialog-modal-text', "Username must be between 6 and 30 characters long and can only contains letters, numbers and dots!");
         show('error-dialog');
         return;
     }
 
-    if(!(password.length >= 8 && password.length <= 255)){
-        setText('error-dialog-modal-text', "Password must be between 8 and 255 character long!");
+    if(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,255}$/i.test(password)){
+        setText('error-dialog-modal-text', "Password must be between 8 and 255 characters long and have at least one letter, one number and one special character!");
         show('error-dialog');
         return;
     }
