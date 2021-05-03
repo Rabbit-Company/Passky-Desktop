@@ -1,6 +1,6 @@
 function displayPassword(id, website, username, password){
     const decrypted_password = CryptoJS.AES.decrypt(password, sessionStorage.password).toString(CryptoJS.enc.Utf8);
-    const data = id + ";;" + website + ";;" + username + ";;" + decrypted_password;
+    const data = id + " " + website + " " + username + " " + decrypted_password;
 
     document.write("<tr><td class='px-8 py-4 whitespace-nowrap'><div class='flex items-center'><div class='flex-shrink-0 h-10 w-10'>");
     //Icon
