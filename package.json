@@ -1,6 +1,6 @@
 {
   "name": "passky-desktop",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "author": "Rabbit Company",
   "description": "Desktop application for Passky (password manager)",
   "main": "js/main.js",

@@ -4,9 +4,9 @@ const path = require('path')
 function createWindow () {
   const win = new BrowserWindow({
     width: 500,
-    height: 400,
+    height: 450,
     minWidth: 500,
-    minHeight: 400,
+    minHeight: 450,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -14,6 +14,7 @@ function createWindow () {
 
   win.setMenuBarVisibility(false)
   win.setTitle("Passky")
+  win.setIcon("images/logo.png")
 
   win.loadFile('html/login.html')
   //win.webContents.openDevTools()
