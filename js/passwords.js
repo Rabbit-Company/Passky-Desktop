@@ -114,33 +114,57 @@ function changeDialog(style, text){
     
                 document.getElementById('dialog-title').innerText = "Password Generator";
 
-                document.getElementById('dialog-text').innerHTML = "<div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>A-Z</span></span><button type='button' id='btn-upper' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' role='switch' aria-checked='false'><span aria-hidden='true' class='pointer-events-none absolute bg-white w-full h-full rounded-md'></span><span aria-hidden='true' class='bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'></span><span aria-hidden='true' class='translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200'></span></button></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>0-9</span></span><button type='button' id='btn-numbers' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' role='switch' aria-checked='false'><span aria-hidden='true' class='pointer-events-none absolute bg-white w-full h-full rounded-md'></span><span aria-hidden='true' class='bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'></span><span aria-hidden='true' class='translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200'></span></button></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>!@#$%?&*</span></span><button type='button' id='btn-special' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' role='switch' aria-checked='false'><span aria-hidden='true' class='pointer-events-none absolute bg-white w-full h-full rounded-md'></span><span aria-hidden='true' class='bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'></span><span aria-hidden='true' class='translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200'></span></button></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>Length</span></span><input type='range' id='btn-length' min='8' max='30' value='10' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col' id='generated-password'></span></div>";
+                document.getElementById('dialog-text').innerHTML = "<div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>A-Z</span></span><button type='button' id='btn-upper' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none' role='switch' aria-checked='false'><span aria-hidden='true' class='pointer-events-none absolute bg-white w-full h-full rounded-md'></span><span id='btn-upper-color' aria-hidden='true' class='bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'></span><span id='btn-upper-animation' aria-hidden='true' class='translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200'></span></button></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>0-9</span></span><button type='button' id='btn-numbers' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none' role='switch' aria-checked='false'><span aria-hidden='true' class='pointer-events-none absolute bg-white w-full h-full rounded-md'></span><span id='btn-numbers-color' aria-hidden='true' class='bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'></span><span id='btn-numbers-animation' aria-hidden='true' class='translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200'></span></button></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>!@#$%?&*</span></span><button type='button' id='btn-special' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none' role='switch' aria-checked='false'><span aria-hidden='true' class='pointer-events-none absolute bg-white w-full h-full rounded-md'></span><span id='btn-special-color' aria-hidden='true' class='bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'></span><span id='btn-special-animation' aria-hidden='true' class='translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200'></span></button></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col'><span class='text-sm font-medium text-gray-900'>Length</span></span><input type='range' id='btn-length' min='8' max='30' value='10' class='flex-shrink-0 group relative rounded-full inline-flex items-center justify-center h-5 w-10 cursor-pointer focus:outline-none'></div><div class='flex items-center justify-between'><span class='flex-grow flex flex-col' id='generated-password'></span></div>";
     
                 document.getElementById('dialog-button').className = "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:text-sm";
                 
                 updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
 
-                document.getElementById('btn-upper').onclick = () => updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
-                document.getElementById('btn-numbers').onclick = () => updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
-                document.getElementById('btn-special').onclick = () => updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
-                document.getElementById('btn-length').onchange = () => updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
+                document.getElementById('btn-upper').onclick = () => {
+                    btn_upper_enabled = !btn_upper_enabled;
+                    animateButton('btn-upper', btn_upper_enabled);
+                    updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
+                }
+                document.getElementById('btn-numbers').onclick = () =>{
+                    btn_numbers_enabled = !btn_numbers_enabled;
+                    animateButton('btn-numbers', btn_numbers_enabled);
+                    updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
+                }
+                document.getElementById('btn-special').onclick = () => {
+                    btn_special_enabled = !btn_special_enabled;
+                    animateButton('btn-special', btn_special_enabled);
+                    updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
+                }
+                document.getElementById('btn-length').onchange = () => {
+                    updateGeneratedPassword(btn_upper_enabled, btn_numbers_enabled, btn_special_enabled);
+                }
 
-
-                if(data[0] != null){
+                if(data[0] == null){
+                    document.getElementById('dialog-button').innerText = "Copy";
+                    document.getElementById('dialog-button').onclick = () => copyToClipboard(document.getElementById('generated-password').innerText);
+                }else if(data[0] == "-1"){
+                    document.getElementById('dialog-button').innerText = "Use";
+                    document.getElementById('dialog-button').onclick = () => {
+                        text = data[0] + " " + data[1] + " " + data[2] + " " + document.getElementById('generated-password').innerText;
+                        changeDialog(0, text);
+                    }
+                }else{
                     document.getElementById('dialog-button').innerText = "Use";
                     document.getElementById('dialog-button').onclick = () => {
                         text = data[0] + " " + data[1] + " " + data[2] + " " + document.getElementById('generated-password').innerText;
                         changeDialog(4, text);
                     }
-                }else{
-                    document.getElementById('dialog-button').innerText = "Copy";
-                    document.getElementById('dialog-button').onclick = () => copyToClipboard(document.getElementById('generated-password').innerText);
                 }
+
+                animateButton('btn-upper', btn_upper_enabled);
+                animateButton('btn-numbers', btn_numbers_enabled);
+                animateButton('btn-special', btn_special_enabled);
             }
         break;
         default:
             //Add password dialog
             if(document.getElementById('dialog-title').innerText != "Add password"){
+
                 document.getElementById('dialog-icon').className = "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10";
                 document.getElementById('dialog-icon').innerHTML = "<svg class='h-6 w-6 text-blue-600' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' aria-hidden='true'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='8' cy='15' r='4' /><line x1='10.85' y1='12.15' x2='19' y2='4' /><line x1='18' y1='5' x2='20' y2='7' /><line x1='15' y1='8' x2='17' y2='10' /></svg>";
     
@@ -152,7 +176,14 @@ function changeDialog(style, text){
                 document.getElementById('dialog-button').innerText = "Add";
                 document.getElementById('dialog-button').onclick = () => addPassword();
 
-                //document.getElementById('btn-password-generator').onclick = () => changeDialog(5, text);
+                if(text != null){
+                    const data = text.split(" ");
+                    document.getElementById("website").value = data[1];
+                    document.getElementById("username").value = data[2];
+                    document.getElementById("password").value = data[3];
+                }
+
+                document.getElementById('btn-password-generator').onclick = () => changeDialog(5, "-1" + " " + document.getElementById("website").value + " " + document.getElementById("username").value + " " + document.getElementById("password").value);
             }
         break;
     }

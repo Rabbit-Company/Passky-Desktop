@@ -18,6 +18,16 @@ function validEmail(mail){
     return new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/).test(mail);
 }
 
+function animateButton(id, enabled){
+    if(enabled){
+        document.getElementById(id + "-color").className = "bg-indigo-600 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200";
+        document.getElementById(id + "-animation").className = "translate-x-5 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200";
+    }else{
+        document.getElementById(id + "-color").className = "bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200";
+        document.getElementById(id + "-animation").className = "translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200";
+    }
+}
+
 function copyToClipboard(text){
     let textArea = document.createElement("textarea");
     textArea.value = text;
