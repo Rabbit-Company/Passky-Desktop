@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "author": "Rabbit Company",
   "description": "Desktop application for Passky (password manager)",
-  "main": "js/main.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -17,7 +17,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "^12.0.5"
+    "electron": "^12.0.7"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"
@@ -40,11 +40,23 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "options": {
+              "maintainer": "Rabbit Company",
+              "homepage": "https://rabbit-company.com",
+              "description": "Desktop application for Passky (password manager)"
+            }
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
-          "config": {}
+          "config": {
+            "options": {
+              "maintainer": "Rabbit Company",
+              "homepage": "https://rabbit-company.com",
+              "description": "Desktop application for Passky (password manager)"
+            }
+          }
         }
       ]
     }
