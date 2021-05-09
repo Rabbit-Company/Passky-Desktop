@@ -31,7 +31,7 @@ function onBtnClick(){
     xhr.open("POST", url + "/?action=getPasswords");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + sha512(password)));
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {

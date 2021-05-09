@@ -37,7 +37,7 @@ function onBtnClick(){
     xhr.open("POST", url + "/?action=createAccount");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + password));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + sha512(password)));
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {

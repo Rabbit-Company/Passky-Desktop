@@ -237,7 +237,7 @@ function addPassword(){
     xhr.open("POST", sessionStorage.url + "/?action=savePassword");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sha512(sessionStorage.password)));
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -315,7 +315,7 @@ function editPassword(password_id){
     xhr.open("POST", sessionStorage.url + "/?action=editPassword");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sha512(sessionStorage.password)));
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -350,7 +350,7 @@ function refreshPasswords(){
     xhr.open("POST", sessionStorage.url + "/?action=getPasswords");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sha512(sessionStorage.password)));
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
@@ -379,7 +379,7 @@ function deleteAccount(){
     xhr.open("POST", sessionStorage.url + "/?action=deleteAccount");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sessionStorage.password));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sha512(sessionStorage.password)));
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
