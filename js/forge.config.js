@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
     "packagerConfig": {},
     "makers": [
@@ -11,7 +9,7 @@ module.exports = {
           "exe": "Passky.exe",
           "description": "Simple and secure password manager",
           "iconUrl": "https://raw.githubusercontent.com/Rabbit-Company/Passky-Desktop/main/images/logo.ico",
-          "setupIcon": path.join(__dirname, "images/logo.ico")
+          "setupIcon": "images/logo.ico"
         }
       },
       {
