@@ -375,6 +375,8 @@ function refreshPasswords(){
             
             if(json['error'] == 0){
                 sessionStorage.passwords = JSON.stringify(json['passwords']);
+            }else{
+                sessionStorage.passwords = "{}";
             }
 
             window.location.href = 'passwords.html';
