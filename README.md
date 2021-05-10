@@ -16,7 +16,7 @@ Please be aware that this project is still work in progress.
 3. Passky desktop application is now installed
 ##### Command Line
 1. `wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky_0.0.1_amd64.deb`
-2. `sudo apt install -f passky_0.0.1_amd64.deb`
+2. `sudo dpkg -i passky_0.0.1_amd64.deb`
 3. Passky desktop application is now installed
 ### Red Hat based distros
 ##### Graphical Interface
