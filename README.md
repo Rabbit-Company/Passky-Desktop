@@ -6,16 +6,16 @@ Please be aware that this project is still work in progress.
 
 ## Installation
 ### Windows
-1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/Passky-0.0.1.Setup.exe)
+1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.0/passky-0.0.1.Setup.exe)
 2. Run installer
 3. Passky desktop application is now installed
 ### Debian based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky_0.0.1_amd64.deb
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.0/passky_0.0.1_amd64.deb
 sudo dpkg -i passky_0.0.1_amd64.deb
 ```
 ### Red Hat based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky-0.0.1.x86_64.rpm
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.0/passky-0.0.1.x86_64.rpm
 sudo rpm -i passky-0.0.1.x86_64.rpm
 ```
