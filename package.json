@@ -29,7 +29,10 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "passky_desktop"
+            "name": "passky_desktop",
+            "description": "Desktop application for Passky (password manager)",
+            "iconUrl": "https://raw.githubusercontent.com/Rabbit-Company/Passky-Desktop/main/images/logo.ico",
+            "setupIcon": "https://raw.githubusercontent.com/Rabbit-Company/Passky-Desktop/main/images/logo.ico"
           }
         },
         {
