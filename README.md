@@ -25,5 +25,5 @@ Please be aware that this project is still work in progress.
 3. Passky desktop application is now installed
 ##### Command Line
 1. `wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky-0.0.1.x86_64.rpm`
-2. `rpm -i passky-0.0.1.x86_64.rpm`
+2. `sudo rpm -i passky-0.0.1.x86_64.rpm`
 3. Passky desktop application is now installed
