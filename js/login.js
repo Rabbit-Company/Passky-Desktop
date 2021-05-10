@@ -58,6 +58,8 @@ function onBtnClick(){
 
             if(json['error'] == 0){
                 sessionStorage.passwords = JSON.stringify(json['passwords']);
+            }else{
+                sessionStorage.passwords = "{}";
             }
 
             sessionStorage.url = url;
