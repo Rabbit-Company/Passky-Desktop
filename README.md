@@ -10,20 +10,12 @@ Please be aware that this project is still work in progress.
 2. Run installer
 3. Passky desktop application is now installed
 ### Debian based distros
-##### Graphical Interface
-1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky_0.0.1_amd64.deb)
-2. Open `passky_0.0.1_amd64.deb` and click install
-3. Passky desktop application is now installed
-##### Command Line
-1. `wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky_0.0.1_amd64.deb`
-2. `sudo dpkg -i passky_0.0.1_amd64.deb`
-3. Passky desktop application is now installed
+```bash
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky_0.0.1_amd64.deb
+sudo dpkg -i passky_0.0.1_amd64.deb
+```
 ### Red Hat based distros
-##### Graphical Interface
-1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky-0.0.1.x86_64.rpm)
-2. Open `passky-0.0.1.x86_64.rpm` and click install
-3. Passky desktop application is now installed
-##### Command Line
-1. `wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky-0.0.1.x86_64.rpm`
-2. `sudo rpm -i passky-0.0.1.x86_64.rpm`
-3. Passky desktop application is now installed
+```bash
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v0.0.1/passky-0.0.1.x86_64.rpm
+sudo rpm -i passky-0.0.1.x86_64.rpm
+```
