@@ -31,8 +31,9 @@
           "config": {
             "name": "Passky",
             "title": "Passky",
+            "exe": "Passky.exe",
             "description": "Simple and secure password manager",
-            "iconUrl": "https://github.com/Rabbit-Company/Passky-Desktop/blob/main/images/logo.ico",
+            "iconUrl": "https://raw.githubusercontent.com/Rabbit-Company/Passky-Desktop/main/images/logo.ico",
             "setupIcon": "images/logo.ico"
           }
         },
