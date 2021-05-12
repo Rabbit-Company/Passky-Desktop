@@ -19,3 +19,16 @@ sudo dpkg -i passky-0.0.1.deb
 wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.0/passky-0.0.1.rpm
 sudo rpm -i passky-0.0.1.rpm
 ```
+## Uninstall
+### Windows
+1. In the search box on the taskbar, type **Control Panel** and select it from the results.
+2. Select **Programs > Programs and Features**.
+3. Right click on the Passky and select **Uninstall or Uninstall/Change**.
+### Debian based distros
+```yaml
+sudo dpkg -r passky
+```
+### Red Hat based distros
+```yaml
+sudo rpm -e passky
+```
