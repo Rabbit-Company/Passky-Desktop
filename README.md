@@ -24,6 +24,10 @@ sudo rpm -i Passky-1.0.0-1.x86_64.rpm
 ```yaml
 sudo snap install passky
 ```
+### AppImage
+1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.0/passky-1.0.0.AppImage)
+2. Start passky-1.0.0.AppImage
+3. Passky desktop application is now installed
 ## Uninstall
 ### Windows
 1. In the search box on the taskbar, type **Control Panel** and select it from the results.
@@ -41,3 +45,6 @@ sudo rpm -e passky
 ```yaml
 sudo snap remove passky
 ```
+### AppImage
+1. Move passky-1.0.0.AppImage to the trash
+2. Empty your trash
