@@ -6,6 +6,10 @@ function show(element){
     document.getElementById(element).style.visibility = 'visible';
 }
 
+function isHidden(element){
+    return (document.getElementById(element).style.visibility == 'hidden');
+}
+
 function setText(element, text){
     document.getElementById(element).innerText = text;
 }
