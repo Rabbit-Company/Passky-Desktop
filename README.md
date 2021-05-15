@@ -20,6 +20,7 @@ wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.0/P
 sudo rpm -i Passky-1.0.0-1.x86_64.rpm
 ```
 ### Snap
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/passky)
 ```yaml
 sudo snap install passky
 ```
