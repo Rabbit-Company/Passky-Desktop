@@ -19,6 +19,10 @@ sudo dpkg -i passky_1.0.0_amd64.deb
 wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.0/Passky-1.0.0-1.x86_64.rpm
 sudo rpm -i Passky-1.0.0-1.x86_64.rpm
 ```
+### Snap
+```yaml
+sudo snap install passky
+```
 ## Uninstall
 ### Windows
 1. In the search box on the taskbar, type **Control Panel** and select it from the results.
@@ -31,4 +35,8 @@ sudo dpkg -r passky
 ### Red Hat based distros
 ```yaml
 sudo rpm -e passky
+```
+### Snap
+```yaml
+sudo snap remove passky
 ```
