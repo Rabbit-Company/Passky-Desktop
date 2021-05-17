@@ -67,6 +67,7 @@ const errors = {
     "401": "Action is invalid!",
     "403": "You didn't provide all required values in POST.",
     "404": "Can't connect into API.",
+    "429": "You are sending too many requests! Please wait some time before executing this action.",
     "505": "Something went wrong while connecting to database!",
     "999": "You don't have permission to use this endpoint."
 }
