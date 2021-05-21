@@ -19,7 +19,10 @@
           <div class="rounded-md shadow-sm -space-y-px">
             <div>
               <label for="passky-server" class="sr-only">Server</label>
-              <input id="passky-server" name="server" type="text" autocomplete="server" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Server">
+              <input id="passky-server" list="servers" name="server" type="text" autocomplete="server" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Server">
+              <datalist id="servers">
+                <option>https://eu1.passky.org</option>
+              </datalist>
             </div>
             <div>
               <label for="username" class="sr-only">Username</label>
