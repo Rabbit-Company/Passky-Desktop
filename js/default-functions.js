@@ -107,3 +107,10 @@ function getDate(date) {
     local.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     return local.toJSON().slice(0, 10);
 }
+
+function logout(){
+    sessionStorage.url = null;
+    sessionStorage.username = null;
+    sessionStorage.password = null;
+    window.location.href = 'login.html';
+}
