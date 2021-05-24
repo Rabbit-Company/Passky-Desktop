@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" href="../css/tailwind.min.css">
+    <title>Passky</title>
+    <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+    <link rel="stylesheet" href="css/tailwind.min.css">
   </head>
+
   <body style="min-width: 300px;">
     <div class="min-h-screen flex items-center justify-center bg-gray-50 py-6 px-4 sm:px-3 lg:px-8">
       <div class="max-w-md w-full space-y-6">
         <div>
-          <img class="mx-auto h-20 w-auto" src="../images/logo.png" alt="Passky">
+          <img class="mx-auto h-20 w-auto" src="images/logo.png" alt="Passky">
         </div>
         <form class="mt-8 space-y-6" action="javascript:onBtnClick()">
           <input type="hidden" name="remember" value="true">
@@ -28,10 +31,6 @@
               <input id="username" name="username" type="text" autocomplete="username" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username">
             </div>
             <div>
-                <label for="email" class="sr-only">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email">
-              </div>
-            <div>
               <label for="password" class="sr-only">Password</label>
               <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
             </div>
@@ -41,9 +40,10 @@
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
               <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
               <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
                 <div>
-                  <div id="dialog-icon" class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+                  <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
                     <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
-                  <button id="btn-dialog" type="button" onclick="hide('error-dialog')" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
+                  <button type="button" onclick="hide('error-dialog')" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
                     Okay
                   </button>
                 </div>
@@ -68,18 +68,18 @@
           </div>
 
           <div style="text-align: center;">
-            <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Sign up
+            <button id="btn_signin" type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Sign in
             </button>
-            <a href="login.html" class="text-center text-indigo-900">
-              Already have account? Sign in here.
+            <a href="register.html" class="text-center text-indigo-900">
+              Don't have account yet? Sign up here.
             </a>
           </div>
-        </form>
+       </form>
       </div>
     </div>
-    <script src="../js/default-functions.js"></script>
-    <script src="../js/sha512.js"></script>
-    <script src="../js/register.js"></script>
+    <script src="js/default-functions.js"></script>
+    <script src="js/sha512.js"></script>
+    <script src="js/login.js"></script>
   </body>
 </html>

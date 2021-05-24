@@ -355,37 +355,6 @@ function editPassword(password_id){
     xhr.send("password_id=" + password_id + "&website=" + website + "&username=" + username + "&password=" + encodeURIComponent(password));
 }
 
-function refreshPasswords(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", sessionStorage.url + "/?action=getPasswords");
-
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sha512(sessionStorage.password)));
-    xhr.setRequestHeader("Content-Type", "application/json");
-
-    xhr.onreadystatechange = function () {
-
-        if(xhr.readyState === 4){
-            if(xhr.status != 200) return;
-            
-            const json = JSON.parse(xhr.responseText);
-
-            if(typeof json['error'] === 'undefined') return;
-            if(json['error'] != 0 && json['error'] != 8) return;
-            
-            if(json['error'] == 0){
-                sessionStorage.passwords = JSON.stringify(json['passwords']);
-            }else{
-                sessionStorage.passwords = "{}";
-            }
-
-            window.location.href = 'passwords.html';
-        }
-
-    };
-    xhr.send("");
-}
-
 function deletePassword(password_id){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", sessionStorage.url + "/?action=deletePassword");
@@ -439,7 +408,7 @@ function deleteAccount(){
             if(typeof json['error'] === 'undefined') return;
             if(json['error'] != 0) return;
   
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         }
 
     };

@@ -1,6 +1,6 @@
-if(sessionStorage.url == null && typeof(sessionStorage.url) == 'undefined') window.location.href = 'login.html';
-if(sessionStorage.username == null && typeof(sessionStorage.username) == 'undefined') window.location.href = 'login.html';
-if(sessionStorage.password == null && typeof(sessionStorage.password) == 'undefined') window.location.href = 'login.html';
+if(sessionStorage.url == null && typeof(sessionStorage.url) == 'undefined') window.location.href = 'index.html';
+if(sessionStorage.username == null && typeof(sessionStorage.username) == 'undefined') window.location.href = 'index.html';
+if(sessionStorage.password == null && typeof(sessionStorage.password) == 'undefined') window.location.href = 'index.html';
 
 function displayPassword(id, website, username, password){
     const decrypted_password = CryptoJS.AES.decrypt(password, sessionStorage.password).toString(CryptoJS.enc.Utf8);
