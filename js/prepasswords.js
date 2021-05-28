@@ -9,7 +9,7 @@ function displayPassword(id, website, username, password){
     document.write("<tr><td class='px-8 py-4 whitespace-nowrap'><div class='flex items-center'><div class='flex-shrink-0 h-10 w-10'>");
     //Icon
     document.write("<img class='h-10 w-10 rounded-full' src='https://www.google.com/s2/favicons?domain=" + website + "' alt=''>");
-    document.write("</div><div class='ml-4'><div class='text-sm font-medium text-gray-900'>");
+    document.write("</div><div class='ml-4'><div class='wesbite-url text-sm font-medium text-gray-900'>");
     //Url
     document.write(website);
     document.write("</div><div class='text-sm text-gray-500'>");

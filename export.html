@@ -8,313 +8,315 @@
     <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
     <link rel="stylesheet" href="css/tailwind.min.css">
     <link rel="stylesheet" href="css/passwords.css">
+    <link rel="stylesheet" href="css/themes/dark.css">
     <script src="js/aes.js"></script>
   </head>
 
-  <nav class="bg-white shadow">
-    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex px-2 lg:px-0">
-          <div class="flex-shrink-0 flex items-center">
-            <img class="block lg:hidden h-8 w-auto" src="images/logo.png" alt="Passky">
-            <img class="hidden lg:block h-8 w-auto" src="images/logo.png" alt="Passky">
+  <body>
+    <nav class="bg-white shadow">
+      <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex px-2 lg:px-0">
+            <div class="flex-shrink-0 flex items-center">
+              <img class="block lg:hidden h-8 w-auto" src="images/logo.png" alt="Passky">
+              <img class="hidden lg:block h-8 w-auto" src="images/logo.png" alt="Passky">
+            </div>
+            <div id="desktop-menu" class="hidden lg:ml-6 lg:flex lg:space-x-8">
+              <a href="passwords.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Passwords
+              </a>
+              <a href="#" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Import & Export
+              </a>
+              <a href="javascript:logout()" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Sign out
+              </a>
+            </div>
           </div>
-          <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
-            <a href="passwords.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Passwords
-            </a>
-            <a href="#" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Import & Export
-            </a>
-            <a href="javascript:logout()" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Sign out
-            </a>
+          <div class="flex items-center lg:hidden">
+            <button id="toggle-menu-btn" type="button" onclick="toggleMenu();" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+              <span class="sr-only">Open main menu</span>
+              <svg id="mobile-menu-icon" xmlns="http://www.w3.org/2000/svg" class="block h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <line x1="4" y1="6" x2="20" y2="6" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="18" x2="20" y2="18" />
+              </svg>
+            </button>
           </div>
         </div>
-        <div class="flex items-center lg:hidden">
-          <button type="button" onclick="toggleMenu();" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg id="mobile-menu-icon" xmlns="http://www.w3.org/2000/svg" class="block h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <line x1="4" y1="6" x2="20" y2="6" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="18" x2="20" y2="18" />
-            </svg>
-          </button>
+      </div>
+    
+      <div class="lg:hidden">
+        <div id="mobile-menu" class="hidden pt-2 pb-3 space-y-1">
+          <a href="passwords.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Passwords</a>
+          <a href="#" class="selected bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Import & Export</a>
+          <a href="javascript:logout()" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sign out</a>
         </div>
       </div>
-    </div>
-  
-    <div class="lg:hidden">
-      <div id="mobile-menu" class="hidden pt-2 pb-3 space-y-1">
-        <a href="passwords.html" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Passwords</a>
-        <a href="#" class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Import & Export</a>
-        <a href="javascript:logout()" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sign out</a>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
-  <div class="flex flex-col m-8">
-    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-            <div class="flex-1 flex flex-col p-8">
-                <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #e6f5ff;" src="images/logo.png" alt="Passky">
-                <h3 class="mt-6 text-gray-900 text-lg font-medium">Passky</h3>
-            </div>
-            <div>
-                <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="w-0 flex-1 flex">
-                    <a href="javascript:changeDialog(1); show('dialog');" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Import</span>
-                    </a>
-                </div>
-                <div class="w-0 flex-1 flex">
-                  <a href="javascript:backup_passky()" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
-                        <circle cx="12" cy="14" r="2" />
-                        <polyline points="14 4 14 8 8 8 8 4" />
-                      </svg>
-                      <span class="ml-3">Backup</span>
-                  </a>
+    <div class="flex flex-col m-8">
+      <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <li class="export-list col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+              <div class="flex-1 flex flex-col p-8">
+                  <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #e6f5ff;" src="images/logo.png" alt="Passky">
+                  <h3 class="mt-6 text-gray-900 text-lg font-medium">Passky</h3>
               </div>
-                <div class="-ml-px w-0 flex-1 flex">
-                    <a href="javascript:export_passky()" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
+              <div>
+                  <div class="-mt-px flex divide-x divide-gray-200">
+                  <div class="w-0 flex-1 flex">
+                      <a href="javascript:changeDialog(1); show('dialog');" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Import</span>
+                      </a>
+                  </div>
+                  <div class="w-0 flex-1 flex">
+                    <a href="javascript:backup_passky()" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                          <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                          <circle cx="12" cy="14" r="2" />
+                          <polyline points="14 4 14 8 8 8 8 4" />
                         </svg>
-                        <span class="ml-3">Export</span>
+                        <span class="ml-3">Backup</span>
                     </a>
                 </div>
-                </div>
-            </div>
+                  <div class="w-0 flex-1 flex">
+                      <a href="javascript:export_passky()" class="export-list-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Export</span>
+                      </a>
+                  </div>
+                  </div>
+              </div>
+            </li>
+          <li class="export-list col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+              <div class="flex-1 flex flex-col p-8">
+                  <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #3c8dbc;" src="images/bitwarden.png" alt="Bitwarden">
+                  <h3 class="mt-6 text-gray-900 text-lg font-medium">Bitwarden</h3>
+              </div>
+              <div>
+                  <div class="-mt-px flex divide-x divide-gray-200">
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Import</span>
+                      </a>
+                  </div>
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Export</span>
+                      </a>
+                  </div>
+                  </div>
+              </div>
           </li>
-        <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-            <div class="flex-1 flex flex-col p-8">
-                <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #3c8dbc;" src="images/bitwarden.png" alt="Bitwarden">
-                <h3 class="mt-6 text-gray-900 text-lg font-medium">Bitwarden</h3>
-            </div>
-            <div>
-                <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="w-0 flex-1 flex">
-                    <a href="#" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Import</span>
-                    </a>
-                </div>
-                <div class="-ml-px w-0 flex-1 flex">
-                    <a href="#" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Export</span>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </li>
-        <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-            <div class="flex-1 flex flex-col p-8">
-                <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #d12f2e;" src="images/lastpass.png" alt="Lastpass">
-                <h3 class="mt-6 text-gray-900 text-lg font-medium">Lastpass</h3>
-            </div>
-            <div>
-                <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="w-0 flex-1 flex">
-                    <a href="#" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Import</span>
-                    </a>
-                </div>
-                <div class="-ml-px w-0 flex-1 flex">
-                    <a href="javascript:export_lastpass()" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Export</span>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </li>
-        <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-            <div class="flex-1 flex flex-col p-8">
-                <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #0e353d;" src="images/dashline.png" alt="Dashline">
-                <h3 class="mt-6 text-gray-900 text-lg font-medium">Dashline</h3>
-            </div>
-            <div>
-                <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="w-0 flex-1 flex">
-                    <a href="#" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Import</span>
-                    </a>
-                </div>
-                <div class="-ml-px w-0 flex-1 flex">
-                    <a href="#" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Export</span>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </li>
-        <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-            <div class="flex-1 flex flex-col p-8">
-                <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #fff;" src="images/1password.svg" alt="1Password">
-                <h3 class="mt-6 text-gray-900 text-lg font-medium">1Password</h3>
-            </div>
-            <div>
-                <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="w-0 flex-1 flex">
-                    <a href="#" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Import</span>
-                    </a>
-                </div>
-                <div class="-ml-px w-0 flex-1 flex">
-                    <a href="#" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Export</span>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </li>
-        <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-            <div class="flex-1 flex flex-col p-8">
-                <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #fff;" src="images/keeper.png" alt="Keeper">
-                <h3 class="mt-6 text-gray-900 text-lg font-medium">Keeper</h3>
-            </div>
-            <div>
-                <div class="-mt-px flex divide-x divide-gray-200">
-                <div class="w-0 flex-1 flex">
-                    <a href="#" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Import</span>
-                    </a>
-                </div>
-                <div class="-ml-px w-0 flex-1 flex">
-                    <a href="#" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span class="ml-3">Export</span>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </li>
-        <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-          <div class="flex-1 flex flex-col p-8">
-              <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #d3f8f7;" src="images/nordpass.png" alt="Nordpass">
-              <h3 class="mt-6 text-gray-900 text-lg font-medium">Nordpass</h3>
-          </div>
-          <div>
-              <div class="-mt-px flex divide-x divide-gray-200">
-              <div class="w-0 flex-1 flex">
-                  <a href="#" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                          <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                          <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                      </svg>
-                      <span class="ml-3">Import</span>
-                  </a>
+          <li class="export-list col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+              <div class="flex-1 flex flex-col p-8">
+                  <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #d12f2e;" src="images/lastpass.png" alt="Lastpass">
+                  <h3 class="mt-6 text-gray-900 text-lg font-medium">Lastpass</h3>
               </div>
-              <div class="-ml-px w-0 flex-1 flex">
-                  <a href="#" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                          <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                          <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                      </svg>
-                      <span class="ml-3">Export</span>
-                  </a>
+              <div>
+                  <div class="-mt-px flex divide-x divide-gray-200">
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Import</span>
+                      </a>
+                  </div>
+                  <div class="w-0 flex-1 flex">
+                      <a href="javascript:export_lastpass()" class="export-list-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Export</span>
+                      </a>
+                  </div>
+                  </div>
               </div>
+          </li>
+          <li class="export-list col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+              <div class="flex-1 flex flex-col p-8">
+                  <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #0e353d;" src="images/dashline.png" alt="Dashline">
+                  <h3 class="mt-6 text-gray-900 text-lg font-medium">Dashline</h3>
               </div>
-          </div>
-      </li>
-      </ul>
-  </div>
+              <div>
+                  <div class="-mt-px flex divide-x divide-gray-200">
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Import</span>
+                      </a>
+                  </div>
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Export</span>
+                      </a>
+                  </div>
+                  </div>
+              </div>
+          </li>
+          <li class="export-list col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+              <div class="flex-1 flex flex-col p-8">
+                  <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #fff;" src="images/1password.svg" alt="1Password">
+                  <h3 class="mt-6 text-gray-900 text-lg font-medium">1Password</h3>
+              </div>
+              <div>
+                  <div class="-mt-px flex divide-x divide-gray-200">
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Import</span>
+                      </a>
+                  </div>
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Export</span>
+                      </a>
+                  </div>
+                  </div>
+              </div>
+          </li>
+          <li class="export-list col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+              <div class="flex-1 flex flex-col p-8">
+                  <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #fff;" src="images/keeper.png" alt="Keeper">
+                  <h3 class="mt-6 text-gray-900 text-lg font-medium">Keeper</h3>
+              </div>
+              <div>
+                  <div class="-mt-px flex divide-x divide-gray-200">
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Import</span>
+                      </a>
+                  </div>
+                  <div class="w-0 flex-1 flex">
+                      <a href="#" class="export-list-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                          </svg>
+                          <span class="ml-3">Export</span>
+                      </a>
+                  </div>
+                  </div>
+              </div>
+          </li>
+          <li class="export-list col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
+            <div class="flex-1 flex flex-col p-8">
+                <img class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" style="background-color: #d3f8f7;" src="images/nordpass.png" alt="Nordpass">
+                <h3 class="mt-6 text-gray-900 text-lg font-medium">Nordpass</h3>
+            </div>
+            <div>
+                <div class="-mt-px flex divide-x divide-gray-200">
+                <div class="w-0 flex-1 flex">
+                    <a href="#" class="export-list-btn relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
+                        </svg>
+                        <span class="ml-3">Import</span>
+                    </a>
+                </div>
+                <div class="w-0 flex-1 flex">
+                    <a href="#" class="export-list-btn relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent hover:text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
+                        </svg>
+                        <span class="ml-3">Export</span>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </li>
+        </ul>
+    </div>
 
-  <div id="dialog" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="dialog-title" role="dialog" aria-modal="true" style="visibility: hidden;">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-      <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
-        <div class="sm:flex sm:items-start">
-          <div id="dialog-icon" class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-            <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-          </div>
-          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="dialog-title">
-              Delete account
-            </h3>
-            <div class="mt-2">
-              <p class="text-sm text-gray-500" id="dialog-text">
-                Are you sure you want to delete your account? All of your data will be permanently removed from server forever. This action cannot be undone.
-              </p>
+    <div id="dialog" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="dialog-title" role="dialog" aria-modal="true" style="visibility: hidden;">
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+          <div class="sm:flex sm:items-start">
+            <div id="dialog-icon" class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="dialog-title">
+                Delete account
+              </h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500" id="dialog-text">
+                  Are you sure you want to delete your account? All of your data will be permanently removed from server forever. This action cannot be undone.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
-          <button id="dialog-button" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto sm:text-sm">
-            Delete
-          </button>
-          <button id="dialog-button-cancel" type="button" onclick="hide('dialog');" class="mt-2 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-            Cancel
-          </button>
+          <div class="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
+            <button id="dialog-button" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto sm:text-sm">
+              Delete
+            </button>
+            <button id="dialog-button-cancel" type="button" onclick="hide('dialog');" class="mt-2 w-full inline-flex justify-center rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <script src="js/default-functions.js"></script>
-  <script src="js/sha512.js"></script>
-  <script src="js/export.js"></script>
+    <script src="js/default-functions.js"></script>
+    <script src="js/sha512.js"></script>
+    <script src="js/export.js"></script>
   </body>
 </html>

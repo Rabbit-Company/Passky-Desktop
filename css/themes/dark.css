@@ -1,0 +1,109 @@
+/*
+    Dark Theme
+*/
+
+/*
+    Global colors (Apply to every page)
+*/
+
+body{
+    background-color: #0D1117 !important;
+}
+
+nav{
+    background-color: #161B22 !important;
+}
+
+input{
+    background-color: #21262D !important;
+    color: #DFE5EB !important;
+    border-color: #16191d !important;
+}
+
+#desktop-menu a{
+    color: #DFE5EB !important;
+}
+
+#mobile-menu a:hover{
+    background-color: #21262D !important;
+    color: #DFE5EB !important;
+}
+
+#mobile-menu .selected{
+    background-color: #21262D !important;
+}
+
+#toggle-menu-btn:hover{
+    background-color: #21262D !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #161B22;
+}
+
+/*
+    Login page
+*/
+
+#login-elements{
+    background-color: #0D1117 !important;
+}
+
+/*
+    Register page
+*/
+
+#register-elements{
+    background-color: #0D1117 !important;
+}
+
+/*
+    Passwords page
+*/
+
+#table-passwords tbody{
+    background-color: #0D1117 !important;
+}
+
+#table-passwords tbody tr{
+    border-color: #111827 !important;
+}
+
+#delete-account{
+    background-color: #0D1117 !important;
+}
+
+#delete-account h3{
+    color: #DFE5EB !important;
+}
+
+.table-border{
+    border-color: #111827 !important;
+}
+
+.wesbite-url{
+    color: #DFE5EB !important;
+}
+
+/*
+    Import & Export page
+*/
+.export-list{
+    background-color: #161B22 !important;
+}
+
+.export-list h3{
+    color: #DFE5EB !important;
+}
+
+.export-list a{
+    color: #b1bfce !important;
+}
+
+.export-list a:hover{
+    color: #91a6ba !important;
+}
+
+.export-list-btn{
+    border-color: #0D1117 !important;
+}
