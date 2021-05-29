@@ -20,6 +20,12 @@ input{
     border-color: #16191d !important;
 }
 
+textarea{
+    background-color: #21262D !important;
+    color: #DFE5EB !important;
+    border-color: #16191d !important;
+}
+
 #desktop-menu a{
     color: #DFE5EB !important;
 }
@@ -39,6 +45,18 @@ input{
 
 ::-webkit-scrollbar-track {
     background: #161B22;
+}
+
+.dialog-background{
+    background-color: #161B22 !important;
+}
+
+#dialog-title{
+    color: #DFE5EB !important;
+}
+
+#error-dialog-modal-title{
+    color: #DFE5EB !important;
 }
 
 /*
@@ -85,9 +103,23 @@ input{
     color: #DFE5EB !important;
 }
 
+#btn-password-generator{
+    background-color: #21262D !important;
+    border-color: #16191d !important;
+}
+
+#btn-password-generator svg{
+    stroke: #DFE5EB !important;
+}
+
+#dialog-text span{
+    color: #DFE5EB !important;
+}
+
 /*
     Import & Export page
 */
+
 .export-list{
     background-color: #161B22 !important;
 }
