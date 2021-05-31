@@ -1,6 +1,6 @@
 {
   "name": "passky",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Rabbit Company",
   "description": "Simple and secure password manager",
   "main": "main.js",

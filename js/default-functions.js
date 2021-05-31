@@ -23,19 +23,19 @@ function validEmail(mail){
 }
 
 function check_login(){
-    if(sessionStorage.url == null && typeof(sessionStorage.url) == 'undefined') window.location.href = 'index.html';
-    if(sessionStorage.username == null && typeof(sessionStorage.username) == 'undefined') window.location.href = 'index.html';
-    if(sessionStorage.password == null && typeof(sessionStorage.password) == 'undefined') window.location.href = 'index.html';
-    if(sessionStorage.passwords == null && typeof(sessionStorage.passwords) == 'undefined') window.location.href = 'index.html';
+    if(localStorage.url == null || typeof(localStorage.url) == 'undefined') window.location.href = 'index.html';
+    if(localStorage.username == null || typeof(localStorage.username) == 'undefined') window.location.href = 'index.html';
+    if(localStorage.password == null || typeof(localStorage.password) == 'undefined') window.location.href = 'index.html';
+    if(localStorage.passwords == null || typeof(localStorage.passwords) == 'undefined') window.location.href = 'index.html';
 }
 
 function animateButton(id, enabled){
     if(enabled){
-        document.getElementById(id + "-color").className = "bg-indigo-600 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200";
-        document.getElementById(id + "-animation").className = "translate-x-5 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200";
+        document.getElementById(id + "-color").className = "quaternaryBackgroundColor pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200";
+        document.getElementById(id + "-animation").className = "translate-x-5 pointer-events-none absolute left-0 inline-block h-5 w-5 rounded-full tertiaryBackgroundColor shadow transform ring-0 transition-transform ease-in-out duration-200";
     }else{
-        document.getElementById(id + "-color").className = "bg-gray-200 pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200";
-        document.getElementById(id + "-animation").className = "translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200";
+        document.getElementById(id + "-color").className = "primaryBackgroundColor pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200";
+        document.getElementById(id + "-animation").className = "translate-x-0 pointer-events-none absolute left-0 inline-block h-5 w-5 rounded-full tertiaryBackgroundColor shadow transform ring-0 transition-transform ease-in-out duration-200";
     }
 }
 
@@ -46,6 +46,20 @@ function toggleMenu(){
     }else{
         document.getElementById('mobile-menu').className = 'hidden pt-2 pb-3 space-y-1';
         document.getElementById('mobile-menu-icon').innerHTML = "<path stroke='none' d='M0 0h24v24H0z' fill='none'/><line x1='4' y1='6' x2='20' y2='6' /><line x1='4' y1='12' x2='20' y2='12' /><line x1='4' y1='18' x2='20' y2='18' />";
+    }
+}
+
+function changeTheme(){
+    if(localStorage.theme == 0){
+        document.getElementById("css-theme").href = "css/themes/light.css";
+        document.getElementById("theme-link").innerText = "Theme (Light)";
+        document.getElementById("theme-link-mobile").innerText = "Theme (Light)";
+        localStorage.theme = 1;
+    }else{
+        document.getElementById("css-theme").href = "css/themes/dark.css";
+        document.getElementById("theme-link").innerText = "Theme (Dark)";
+        document.getElementById("theme-link-mobile").innerText = "Theme (Dark)";
+        localStorage.theme = 0;
     }
 }
 
@@ -164,10 +178,10 @@ function isPasswordPasswordValid(password){
 
 function refreshPasswords(){
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", sessionStorage.url + "/?action=getPasswords");
+    xhr.open("POST", localStorage.url + "/?action=getPasswords");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(sessionStorage.username + ":" + sha512(sessionStorage.password)));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(localStorage.username + ":" + sha512(localStorage.password)));
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {
@@ -181,9 +195,9 @@ function refreshPasswords(){
             if(json['error'] != 0 && json['error'] != 8) return;
 
             if(json['error'] == 0){
-                sessionStorage.passwords = JSON.stringify(json['passwords']);
+                localStorage.passwords = JSON.stringify(json['passwords']);
             }else{
-                sessionStorage.passwords = "{}";
+                localStorage.passwords = "{}";
             }
 
             window.location.href = 'passwords.html';
@@ -194,8 +208,7 @@ function refreshPasswords(){
 }
 
 function logout(){
-    sessionStorage.url = null;
-    sessionStorage.username = null;
-    sessionStorage.password = null;
+    delete localStorage.password;
+    delete localStorage.passwords;
     window.location.href = 'index.html';
 }

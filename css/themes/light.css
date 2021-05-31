@@ -1,6 +1,6 @@
 /*
 
-    Dark theme
+    Light theme
 
 */
 
@@ -17,7 +17,7 @@
 }
 
 .tertiaryColor{
-    color: #DFE5EB !important;
+    color: #111827 !important;
 }
 
 /*
@@ -25,15 +25,15 @@
 */
 
 .primaryBackgroundColor{
-    background-color: #0D1117 !important;
+    background-color: #F9FAFB !important;
 }
 
 .secondaryBackgroundColor{
-    background-color: #161B22 !important;
+    background-color: #FFFFFF !important;
 }
 
 .tertiaryBackgroundColor{
-    background-color: #21262D !important;
+    background-color: #FFFFFF !important;
 }
 
 .quaternaryBackgroundColor{
@@ -72,13 +72,13 @@
 }
 
 .cancelButton{
-    background-color: #21262D !important;
-    border-color: #161B22 !important;
-    color: #DFE5EB !important;
+    background-color: #FFFFFF !important;
+    border-color: #D1D5DB !important;
+    color: #374151 !important;
 }
 
 .cancelButton:hover{
-    background-color: #2b323b !important;
+    background-color: #F9FAFB !important;
 }
 
 /*
@@ -86,15 +86,15 @@
 */
 
 input{
-    background-color: #21262D !important;
-    color: #DFE5EB !important;
-    border-color: #16191d !important;
+    background-color: #FFFFFF !important;
+    color: #111827 !important;
+    border-color: #D1D5DB !important;
 }
 
 textarea{
-    background-color: #21262D !important;
-    color: #DFE5EB !important;
-    border-color: #16191d !important;
+    background-color: #F3F4F6 !important;
+    color: #111827 !important;
+    border-color: #D1D5DB !important;
 }
 
 /*
@@ -102,32 +102,33 @@ textarea{
 */
 
 .mainMenuLink{
-    color: #6B7280 !important;
+    color: #4B5563 !important;
 }
 
 .mainMenuLink:hover{
-    color: #DFE5EB !important;
+    color: #1F2937 !important;
     border-color: #D1D5DB !important;
 }
 
 .mainMenuLinkSelected{
-    color: #DFE5EB !important;
+    color: #1F2937 !important;
     border-color: #6366F1 !important;
 }
 
 .mainMenuMobileLink{
-    color: #DFE5EB !important;
+    color: #4B5563 !important;
 }
 
 .mainMenuMobileLink:hover{
-    background-color: #21262D !important;
-    border-color: #6B7280 !important;
+    color: #1F2937 !important;
+    background-color: #F9FAFB !important;
+    border-color: #D1D5DB !important;
 }
 
 .mainMenuMobileLinkSelected{
-    background-color: #21262D !important;
+    background-color: #EEF2FF !important;
     border-color: #6366F1 !important;
-    color: #6366F1 !important;
+    color: #4338CA !important;
 }
 
 #main-menu-toggle-btn{
@@ -136,7 +137,7 @@ textarea{
 
 #main-menu-toggle-btn:hover{
     color: #6B7280 !important;
-    background-color: #21262D !important;
+    background-color: #F3F4F6 !important;
 }
 
 /*
@@ -144,7 +145,7 @@ textarea{
 */
 
 .primaryBorderColor{
-    border-color: #16191d !important;
+    border-color: #D1D1DB !important;
 }
 
 /*
@@ -166,7 +167,7 @@ textarea{
 */
 
 .primaryStrokeColor{
-    stroke: #DFE5EB !important;
+    stroke: #111827 !important;
 }
 
 /*
@@ -174,11 +175,11 @@ textarea{
 */
 
 .passwordsBackgroundColor{
-    background-color: #0D1117 !important;
+    background-color: #FFFFFF !important;
 }
 
 .passwordsBorderColor{
-    border-color: #111827 !important;
+    border-color: #e5e7eb !important;
 }
 
 /*
@@ -186,12 +187,11 @@ textarea{
 */
 
 .importExportButtons{
-    color: #b1bfce !important;
-    border-color: #0D1117 !important;
+    color: #374151 !important;
 }
 
 .importExportButtons:hover{
-    color: #91a6ba !important;
+    color: #6B7280 !important;
 }
 
 /*
@@ -199,7 +199,7 @@ textarea{
 */
 
 ::-webkit-scrollbar-track {
-    background: #161B22;
+    background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
