@@ -6,18 +6,18 @@ Please be aware that this project is still work in progress.
 
 ## Installation
 ### Windows
-1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.2/passky-1.0.2.Setup.exe)
+1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.3/passky-1.0.3.Setup.exe)
 2. Run installer
 3. Passky desktop application is now installed
 ### Debian based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.2/passky_1.0.2_amd64.deb
-sudo dpkg -i passky_1.0.2_amd64.deb
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.3/passky_1.0.3_amd64.deb
+sudo dpkg -i passky_1.0.3_amd64.deb
 ```
 ### Red Hat based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.2/Passky-1.0.2-1.x86_64.rpm
-sudo rpm -i Passky-1.0.2-1.x86_64.rpm
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.3/Passky-1.0.3-1.x86_64.rpm
+sudo rpm -i Passky-1.0.3-1.x86_64.rpm
 ```
 ### Snap
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/passky)
@@ -25,8 +25,8 @@ sudo rpm -i Passky-1.0.2-1.x86_64.rpm
 sudo snap install passky
 ```
 ### AppImage
-1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.2/passky-1.0.2.AppImage)
-2. Start passky-1.0.2.AppImage
+1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v1.0.3/passky-1.0.3.AppImage)
+2. Start passky-1.0.3.AppImage
 3. Passky desktop application is now installed
 ## Uninstall
 ### Windows
@@ -46,5 +46,5 @@ sudo rpm -e passky
 sudo snap remove passky
 ```
 ### AppImage
-1. Move passky-1.0.2.AppImage to the trash
+1. Move passky-1.0.3.AppImage to the trash
 2. Empty your trash
