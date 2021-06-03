@@ -1,7 +1,10 @@
-if(localStorage.theme == null || typeof(localStorage.theme) == 'undefined') localStorage.theme = 0;
+if(localStorage.theme == null || typeof(localStorage.theme) == 'undefined') localStorage.theme = "dark";
+if(localStorage.lang == null || typeof(localStorage.lang) == 'undefined') localStorage.lang = "en";
 
-if(localStorage.theme == 0){
-    document.getElementById("css-theme").href = "css/themes/dark.css";
-}else{
-    document.getElementById("css-theme").href = "css/themes/light.css";
+if(!(localStorage.theme == "dark" || localStorage.theme == "light")) localStorage.theme = "dark";
+
+switch(localStorage.theme){
+    case "light":
+        document.getElementById("css-theme").href = "css/themes/light.css";
+    break;
 }

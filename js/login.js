@@ -1,7 +1,16 @@
-if(localStorage.url !== null && typeof(localStorage.url) !== 'undefined' && localStorage.username !== null && typeof(localStorage.username) !== 'undefined' && localStorage.password !== null && typeof(localStorage.password) !== 'undefined' && localStorage.passwords !== null && typeof(localStorage.passwords) !== 'undefined') window.location.href = 'passwords.html';
+if(isSessionValid()) window.location.href = 'passwords.html';
 
 if(localStorage.url !== null && typeof(localStorage.url) !== 'undefined') document.getElementById('passky-server').value = localStorage.url;
 if(localStorage.username !== null && typeof(localStorage.username) !== 'undefined') document.getElementById('username').value = localStorage.username;
+
+//Languages
+document.getElementById("passky-server").placeholder = lang[localStorage.lang]["server"];
+document.getElementById("username").placeholder = lang[localStorage.lang]["username"];
+document.getElementById("password").placeholder = lang[localStorage.lang]["password"];
+document.getElementById("btn_signin").innerText = lang[localStorage.lang]["signin"];
+document.getElementById("error-dialog-modal-title").innerText = lang[localStorage.lang]["error"];
+document.getElementById("dont_have_account_link").innerText = lang[localStorage.lang]["dont_have_account_link"];
+document.getElementById("error-dialog-okay").innerText = lang[localStorage.lang]["okay"];
 
 document.getElementById("login_form").addEventListener("submit", e => {
     e.preventDefault();
@@ -21,19 +30,19 @@ function onBtnClick(){
     if(url.length == 0 || username.length == 0 || password.length == 0) return;
 
     if(!/^[a-z0-9.]{6,30}$/i.test(username)){
-        setText('error-dialog-modal-text', "Username must be between 6 and 30 characters long and can only contains letters, numbers and dots!");
+        setText('error-dialog-modal-text', errors[localStorage.lang]["12"]);
         show('error-dialog');
         return;
     }
 
     if(!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,255}$/i.test(password)){
-        setText('error-dialog-modal-text', "Password must be between 8 and 255 characters long and have at least one letter, one number and one special character!");
+        setText('error-dialog-modal-text', errors[localStorage.lang]["5"]);
         show('error-dialog');
         return;
     }
 
     if(!validURL(url)){
-        setText('error-dialog-modal-text', "Server url is invalid!");
+        setText('error-dialog-modal-text', lang[localStorage.lang]["url_invalid"]);
         show('error-dialog');
         return;
     }
@@ -49,26 +58,28 @@ function onBtnClick(){
 
         if(xhr.readyState === 4){
             if(xhr.status != 200){
-                setText('error-dialog-modal-text', "Server is unreachable!");
+                setText('error-dialog-modal-text', lang[localStorage.lang]["server_unreachable"]);
                 show('error-dialog');
                 return;
             }
             var json = JSON.parse(xhr.responseText);
 
             if(typeof json['error'] === 'undefined'){
-                setText('error-dialog-modal-text', "Server is unreachable!");
+                setText('error-dialog-modal-text', lang[localStorage.lang]["server_unreachable"]);
                 show('error-dialog');
                 return;
             }
 
             if(json['error'] != 0 && json['error'] != 8){
-                setText('error-dialog-modal-text', errors[json['error']]);
+                setText('error-dialog-modal-text', errors[localStorage.lang][json['error']]);
                 show('error-dialog');
                 return;
             }
 
             if(json['error'] == 0){
-                localStorage.passwords = JSON.stringify(json['passwords']);
+                let passwords = json['passwords'];
+                for(let i = 0; i < passwords.length; i++) passwords[i].password = CryptoJS.AES.decrypt(passwords[i].password, password).toString(CryptoJS.enc.Utf8);
+                localStorage.passwords = JSON.stringify(passwords);
             }else{
                 localStorage.passwords = "{}";
             }
@@ -76,6 +87,7 @@ function onBtnClick(){
             localStorage.url = url;
             localStorage.username = username;
             localStorage.password = password;
+            localStorage.loginTime = new Date().getTime();
 
             window.location.href = 'passwords.html';
         }

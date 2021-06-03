@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/tailwind.min.css">
     <link rel="stylesheet" href="css/export.css">
     <link id="css-theme" type="text/css" rel="stylesheet" href="css/themes/dark.css">
+    <script src="js/lang.js"></script>
     <script src="js/header.js"></script>
     <script src="js/aes.js"></script>
   </head>
@@ -22,14 +23,17 @@
               <img class="hidden lg:block h-8 w-auto" src="images/logo.png" alt="Passky">
             </div>
             <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
-              <a href="passwords.html" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              <a id="passwords-link" href="passwords.html" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Passwords
               </a>
-              <a href="#" class="mainMenuLinkSelected inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              <a id="import-export-link" href="#" class="mainMenuLinkSelected inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Import & Export
               </a>
               <a id="theme-link" href="#" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Theme
+              </a>
+              <a id="lang-link" href="#" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Language
               </a>
               <a id="signout-link" href="#" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Sign out
@@ -52,9 +56,10 @@
     
       <div class="lg:hidden">
         <div id="mobile-menu" class="hidden pt-2 pb-3 space-y-1">
-          <a href="passwords.html" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Passwords</a>
-          <a href="#" class="mainMenuMobileLinkSelected block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Import & Export</a>
+          <a id="passwords-link-mobile" href="passwords.html" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Passwords</a>
+          <a id="import-export-link-mobile" href="#" class="mainMenuMobileLinkSelected block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Import & Export</a>
           <a id="theme-link-mobile" href="#" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Theme</a>
+          <a id="lang-link-mobile" href="#" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Language</a>
           <a id="signout-link-mobile" href="#" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sign out</a>
         </div>
       </div>
@@ -76,7 +81,7 @@
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Import</span>
+                          <span id="passky-import-btn-text" class="ml-3">Import</span>
                       </a>
                   </div>
                   <div class="w-0 flex-1 flex">
@@ -87,7 +92,7 @@
                           <circle cx="12" cy="14" r="2" />
                           <polyline points="14 4 14 8 8 8 8 4" />
                         </svg>
-                        <span class="ml-3">Backup</span>
+                        <span id="passky-backup-btn-text" class="ml-3">Backup</span>
                     </a>
                 </div>
                   <div class="w-0 flex-1 flex">
@@ -97,7 +102,7 @@
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Export</span>
+                          <span id="passky-export-btn-text" class="ml-3">Export</span>
                       </a>
                   </div>
                   </div>
@@ -117,7 +122,7 @@
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Import</span>
+                          <span id="lastpass-import-btn-text" class="ml-3">Import</span>
                       </a>
                   </div>
                   <div class="w-0 flex-1 flex">
@@ -127,7 +132,7 @@
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Export</span>
+                          <span id="lastpass-export-btn-text" class="ml-3">Export</span>
                       </a>
                   </div>
                   </div>
@@ -147,7 +152,7 @@
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Import</span>
+                          <span id="bitwarden-import-btn-text" class="ml-3">Import</span>
                       </a>
                   </div>
                   </div>
@@ -161,23 +166,23 @@
               <div>
                   <div class="-mt-px flex divide-x divide-gray-200">
                   <div class="w-0 flex-1 flex">
-                      <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="dashline-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Import</span>
+                          <span id="dashline-import-btn-text" class="ml-3">Import</span>
                       </a>
                   </div>
                   <div class="w-0 flex-1 flex">
-                      <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="dashline-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Export</span>
+                          <span id="dashline-export-btn-text" class="ml-3">Export</span>
                       </a>
                   </div>
                   </div>
@@ -191,23 +196,23 @@
               <div>
                   <div class="-mt-px flex divide-x divide-gray-200">
                   <div class="w-0 flex-1 flex">
-                      <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="onepassword-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Import</span>
+                          <span id="onepassword-import-btn-text" class="ml-3">Import</span>
                       </a>
                   </div>
                   <div class="w-0 flex-1 flex">
-                      <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="onepassword-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Export</span>
+                          <span id="onepassword-export-btn-text" class="ml-3">Export</span>
                       </a>
                   </div>
                   </div>
@@ -221,23 +226,23 @@
               <div>
                   <div class="-mt-px flex divide-x divide-gray-200">
                   <div class="w-0 flex-1 flex">
-                      <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="keeper-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Import</span>
+                          <span id="keeper-import-btn-text" class="ml-3">Import</span>
                       </a>
                   </div>
                   <div class="w-0 flex-1 flex">
-                      <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="keeper-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span class="ml-3">Export</span>
+                          <span id="keeper-export-btn-text" class="ml-3">Export</span>
                       </a>
                   </div>
                   </div>
@@ -251,23 +256,23 @@
             <div>
                 <div class="-mt-px flex divide-x divide-gray-200">
                 <div class="w-0 flex-1 flex">
-                    <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                    <a id="nordpass-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                             <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                         </svg>
-                        <span class="ml-3">Import</span>
+                        <span id="nordpass-import-btn-text" class="ml-3">Import</span>
                     </a>
                 </div>
                 <div class="w-0 flex-1 flex">
-                    <a href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                    <a id="nordpass-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                             <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
                         </svg>
-                        <span class="ml-3">Export</span>
+                        <span id="nordpass-export-btn-text" class="ml-3">Export</span>
                     </a>
                 </div>
                 </div>
@@ -288,20 +293,14 @@
               </svg>
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 class="tertiaryColor text-lg leading-6 font-medium" id="dialog-title">
-                Delete account
-              </h3>
+              <h3 class="tertiaryColor text-lg leading-6 font-medium" id="dialog-title"></h3>
               <div class="mt-2">
-                <p class="secondaryColor text-sm" id="dialog-text">
-                  Are you sure you want to delete your account? All of your data will be permanently removed from server forever. This action cannot be undone.
-                </p>
+                <p class="secondaryColor text-sm" id="dialog-text"></p>
               </div>
             </div>
           </div>
           <div class="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
-            <button id="dialog-button" type="button" class="dangerButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium sm:w-auto sm:text-sm">
-              Delete
-            </button>
+            <button id="dialog-button" type="button" class="dangerButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium sm:w-auto sm:text-sm"></button>
             <button id="dialog-button-cancel" type="button" class="cancelButton mt-2 w-full inline-flex justify-center rounded-md border px-4 py-2 text-base font-medium shadow-sm focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
               Cancel
             </button>

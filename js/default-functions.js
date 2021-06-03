@@ -22,13 +22,6 @@ function validEmail(mail){
     return new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/).test(mail);
 }
 
-function check_login(){
-    if(localStorage.url == null || typeof(localStorage.url) == 'undefined') window.location.href = 'index.html';
-    if(localStorage.username == null || typeof(localStorage.username) == 'undefined') window.location.href = 'index.html';
-    if(localStorage.password == null || typeof(localStorage.password) == 'undefined') window.location.href = 'index.html';
-    if(localStorage.passwords == null || typeof(localStorage.passwords) == 'undefined') window.location.href = 'index.html';
-}
-
 function animateButton(id, enabled){
     if(enabled){
         document.getElementById(id + "-color").className = "quaternaryBackgroundColor pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200";
@@ -50,17 +43,35 @@ function toggleMenu(){
 }
 
 function changeTheme(){
-    if(localStorage.theme == 0){
-        document.getElementById("css-theme").href = "css/themes/light.css";
-        document.getElementById("theme-link").innerText = "Theme (Light)";
-        document.getElementById("theme-link-mobile").innerText = "Theme (Light)";
-        localStorage.theme = 1;
-    }else{
-        document.getElementById("css-theme").href = "css/themes/dark.css";
-        document.getElementById("theme-link").innerText = "Theme (Dark)";
-        document.getElementById("theme-link-mobile").innerText = "Theme (Dark)";
-        localStorage.theme = 0;
+    switch(localStorage.theme){
+        case "dark":
+            document.getElementById("css-theme").href = "css/themes/light.css";
+            document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Light)";
+            document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Light)";
+            localStorage.theme = "light";
+        break;
+        default:
+            document.getElementById("css-theme").href = "css/themes/dark.css";
+            document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
+            document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
+            localStorage.theme = "dark";
+        break;
     }
+}
+
+function changeLanguage(){
+    switch(localStorage.lang){
+        case "en":
+            localStorage.lang = "nl";
+        break;
+        case "nl":
+            localStorage.lang = "sl";
+        break;
+        default:
+            localStorage.lang = "en";
+        break;
+    }
+    location.reload();
 }
 
 function copyToClipboard(text){
@@ -78,33 +89,6 @@ function copyToClipboard(text){
     document.execCommand('copy');
 
     document.body.removeChild(textArea);
-}
-
-const errors = {
-    "0": "Successful",
-    "1": "Username is invalid!",
-    "2": "Password is incorrect!",
-    "3": "Something went wrong while inserting data to database!",
-    "4": "Username is already registered!",
-    "5": "Password must be between 8 and 255 characters long and have at least one letter, one number and one special character!",
-    "6": "Email is invalid!",
-    "7": "Username doesn't exist!",
-    "8": "You don't have any saved password.",
-    "9": "Domain is invalid!",
-    "10": "User does not own this password!",
-    "11": "Something went wrong while deleting data from database!",
-    "12": "Username must be between 6 and 30 characters long and can only contains letters, numbers and dots!",
-    "13": "Something went wrong while updating data in database!",
-    "14": "Json is invalid!",
-    "15": "This server can't accept more users!",
-    "16": "You have reached maximum amount of stored passwords!",
-    "400": "Action was not provided in POST!",
-    "401": "Action is invalid!",
-    "403": "You didn't provide all required values in POST.",
-    "404": "Can't connect into API.",
-    "429": "You are sending too many requests! Please wait some time before executing this action.",
-    "505": "Something went wrong while connecting to database!",
-    "999": "You don't have permission to use this endpoint."
 }
 
 function downloadTxt(exportTxt, exportName){
@@ -176,6 +160,22 @@ function isPasswordPasswordValid(password){
     return true;
 }
 
+function randRange(min, max) {
+    var range = max - min;
+    var requestBytes = Math.ceil(Math.log2(range) / 8);
+    if (!requestBytes) return min;
+    
+    var maxNum = Math.pow(256, requestBytes);
+    var ar = new Uint8Array(requestBytes);
+
+    while (true) {
+        window.crypto.getRandomValues(ar);
+        var val = 0;
+        for (var i = 0;i < requestBytes;i++) val = (val << 8) + ar[i];
+        if (val < maxNum - maxNum % range) return min + (val % range);
+    }
+}
+
 function refreshPasswords(){
     var xhr = new XMLHttpRequest();
     xhr.open("POST", localStorage.url + "/?action=getPasswords");
@@ -195,7 +195,9 @@ function refreshPasswords(){
             if(json['error'] != 0 && json['error'] != 8) return;
 
             if(json['error'] == 0){
-                localStorage.passwords = JSON.stringify(json['passwords']);
+                let passwords = json['passwords'];
+                for(let i = 0; i < passwords.length; i++) passwords[i].password = CryptoJS.AES.decrypt(passwords[i].password, localStorage.password).toString(CryptoJS.enc.Utf8);
+                localStorage.passwords = JSON.stringify(passwords);
             }else{
                 localStorage.passwords = "{}";
             }
@@ -207,8 +209,21 @@ function refreshPasswords(){
     xhr.send("");
 }
 
-function logout(){
+function clearStorage(){
     delete localStorage.password;
     delete localStorage.passwords;
+    delete localStorage.loginTime;
+}
+
+function isSessionValid(){
+    if(localStorage.url == null || typeof(localStorage.url) == 'undefined' || localStorage.username == null || typeof(localStorage.username) == 'undefined' || localStorage.password == null || typeof(localStorage.password) == 'undefined' || localStorage.passwords == null || typeof(localStorage.passwords) == 'undefined' || localStorage.loginTime == null || typeof(localStorage.loginTime) == 'undefined' || ((parseFloat(localStorage.loginTime) + 1200000)) < new Date().getTime()){
+        clearStorage();
+        return false;
+    }
+    return true;
+}
+
+function logout(){
+    clearStorage();
     window.location.href = 'index.html';
 }

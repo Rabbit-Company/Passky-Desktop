@@ -5,10 +5,10 @@ if (require('electron-squirrel-startup')) return app.quit();
 
 function createWindow () {
   const win = new BrowserWindow({
-    width: 500,
-    height: 500,
-    minWidth: 500,
-    minHeight: 500
+    width: 550,
+    height: 550,
+    minWidth: 550,
+    minHeight: 550
   });
 
   win.setMenuBarVisibility(false);
