@@ -60,16 +60,10 @@ function changeTheme(){
 }
 
 function changeLanguage(){
-    switch(localStorage.lang){
-        case "en":
-            localStorage.lang = "nl";
-        break;
-        case "nl":
-            localStorage.lang = "sl";
-        break;
-        default:
-            localStorage.lang = "en";
-        break;
+    if(document.getElementById('mobile-menu').className == 'hidden pt-2 pb-3 space-y-1'){
+        localStorage.lang = document.getElementById("lang-link").value;
+    }else{
+        localStorage.lang = document.getElementById("lang-link-mobile").value;
     }
     location.reload();
 }

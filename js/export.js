@@ -19,20 +19,8 @@ switch(localStorage.theme){
     break;
 }
 
-switch(localStorage.lang){
-    case "nl":
-        document.getElementById("lang-link").innerText = "Language (Dutch)";
-        document.getElementById("lang-link-mobile").innerText = "Language (Dutch)";
-    break;
-    case "sl":
-        document.getElementById("lang-link").innerText = "Language (Slovenian)";
-        document.getElementById("lang-link-mobile").innerText = "Language (Slovenian)";
-    break;
-    default:
-        document.getElementById("lang-link").innerText = "Language (English)";
-        document.getElementById("lang-link-mobile").innerText = "Language (English)";
-    break;
-}
+document.getElementById("lang-link").value = localStorage.lang;
+document.getElementById("lang-link-mobile").value = localStorage.lang;
 
 document.getElementById("passky-backup-btn-text").innerText = lang[localStorage.lang]["backup"];
 

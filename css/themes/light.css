@@ -102,6 +102,7 @@ textarea{
 */
 
 .mainMenuLink{
+    background-color: #FFFFFF;
     color: #4B5563 !important;
 }
 
@@ -116,6 +117,7 @@ textarea{
 }
 
 .mainMenuMobileLink{
+    background-color: #FFFFFF;
     color: #4B5563 !important;
 }
 
