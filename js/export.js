@@ -353,11 +353,11 @@ document.getElementById("theme-link-mobile").addEventListener("click", () => {
     changeTheme();
 });
 
-document.getElementById("lang-link").addEventListener("click", () => {
+document.getElementById("lang-link").addEventListener("change", () => {
     changeLanguage();
 });
 
-document.getElementById("lang-link-mobile").addEventListener("click", () => {
+document.getElementById("lang-link-mobile").addEventListener("change", () => {
     changeLanguage();
 });
 
