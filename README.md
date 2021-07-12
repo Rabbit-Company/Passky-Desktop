@@ -2,7 +2,7 @@
 ## What is Passky?
 Passky is simple password manager, which works on a zero trust architecture. That means only user will be able to decrypt his passwords. So users can safely store their passwords on any server. That means if a server on where all passwords are stored get hacked, hacker won't be able to decrypt passwords and data on this server will be useless for him.
 
-[![Passky Desktop Installation](https://yt-embed.herokuapp.com/embed?v=efi1GXv52iI)](https://www.youtube.com/watch?v=efi1GXv52iI "Click to watch!")
+[![Passky Desktop Installation](https://img.youtube.com/vi/efi1GXv52iI/0.jpg)](https://www.youtube.com/watch?v=efi1GXv52iI "Click to watch!")
 
 ## Installation
 ### Windows
