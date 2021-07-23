@@ -25,9 +25,12 @@
             final.pkgs.mkYarnPackage rec {
               src = self;
 
+              packageJSON = "${src}/package.json";
+              yarnLock = "${src}/yarn.lock";
+
               nativeBuildInputs = [ final.makeWrapper ];
-              
-              yarnFlags = [ "--offline" "--production" ];
+
+              yarnFlags = [ "--frozen-lockfile" "--offline" "--production" ];
 
               installPhase = ''
                 runHook preInstall
@@ -65,12 +68,16 @@
           };
         };
 
-      defaultPackage = forAllSystems ( system: ( import nixpkgs {
+      defaultPackage = forAllSystems (system: (import nixpkgs {
         inherit system;
         overlays = [ self.overlay ];
       }).passky);
 
-      devShell = forAllSystems ( system:
+      checks = forAllSystems (system: {
+        build = self.defaultPackage.${system};
+      });
+
+      devShell = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; };
         in 
