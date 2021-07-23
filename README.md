@@ -39,7 +39,7 @@ sudo dpkg -r passky
 ```
 ### Red Hat based distros
 ```yaml
-sudo rpm -e passky
+sudo rpm -e Passky
 ```
 ### Snap
 ```yaml
