@@ -27,6 +27,7 @@
               <input id="passky-server" list="servers" name="server" type="text" autocomplete="server" required class="tertiaryBackgroundColor tertiaryColor primaryBorderColor appearance-none rounded-none relative block w-full px-3 py-2 border rounded-t-md focus:outline-none focus:z-10 sm:text-sm" placeholder="Server">
               <datalist id="servers">
                 <option>https://eu1.passky.org</option>
+                <option>https://eu2.passky.org</option>
               </datalist>
             </div>
             <div>
@@ -43,6 +44,18 @@
             </div>
           </div>
     
+          <fieldset>
+            <legend class="sr-only">Terms of Service</legend>
+            <div class="relative flex items-start">
+              <div class="flex items-center h-5">
+                <input type="checkbox" class="tertiaryBackgroundColor primaryColor h-4 w-4 primaryBorderColor rounded" required>
+              </div>
+              <div class="ml-3 text-sm">
+                <a href="https://passky.org/ToS.pdf" target="_blank" class="primaryColor">Terms of Service</a>
+              </div>
+            </div>
+          </fieldset>
+
           <div id="error-dialog" class="fixed z-10 inset-0 overflow-y-auto invisible" aria-labelledby="error-dialog-modal-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
