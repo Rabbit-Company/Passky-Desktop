@@ -4,7 +4,9 @@ module.exports = {
       {
         "name": '@electron-forge/maker-appx',
         "config": {
-          "publisher": 'CN=52198C2F-725A-42E5-855A-FB2F0CA67875'
+          "publisher": 'CN=52198C2F-725A-42E5-855A-FB2F0CA67875',
+          "publisherDisplayName": "Rabbit Company LLC",
+          "identityName": "57225RabbitCompanyLLC.Passky"
         }
       },
       {
