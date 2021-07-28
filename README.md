@@ -80,7 +80,7 @@ Add the overlay to home.nix (Home Manager) or configuration.nix (NixOS):
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/Rabbit-Company/Passky-Desktop/archive/refs/tags/v2.0.3.tar.gz;
+      url = https://github.com/Rabbit-Company/Passky-Desktop/archive/main.tar.gz;
     }))
   ];
 
@@ -104,24 +104,25 @@ With flakes:
       passky-overlay = inputs.passky-desktop.overlay;
     in
     {
-    
-    # Home Manager
-    homeConfigurations = {
-      someHostname = inputs.home-manager.lib.homeManagerConfiguration {
-        configuration = { pkgs, ... }: {
-          nixpkgs.overlays = [ passky-overlay ];
+
+      # Home Manager
+      homeConfigurations = {
+        someHostname = inputs.home-manager.lib.homeManagerConfiguration {
+          configuration = { pkgs, ... }: {
+            imports = [
+              passky-dekstop.homeManagerModule
+            ];
+          };
         };
       };
-    };
 
-    # NixOS
-    nixosConfigurations = {
-      someOtherHostname = nixpkgs.lib.nixosSystem {
-        modules = [
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ passky-overlay ];
-          })
-        ];
+      # NixOS
+      nixosConfigurations = {
+        someOtherHostname = nixpkgs.lib.nixosSystem {
+          modules = [
+            passky-desktop.nixosModule
+          ];
+        };
       };
    };
 }
