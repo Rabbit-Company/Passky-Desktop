@@ -45,6 +45,12 @@ function toggleMenu(){
 function changeTheme(){
     switch(localStorage.theme){
         case "dark":
+            document.getElementById("css-theme").href = "css/themes/blue.css";
+            document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
+            document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
+            localStorage.theme = "blue";
+        break;
+        case "blue":
             document.getElementById("css-theme").href = "css/themes/light.css";
             document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Light)";
             document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Light)";
