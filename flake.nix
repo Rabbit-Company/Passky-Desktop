@@ -21,51 +21,52 @@
           passky =
             let
               electron = final.electron_13;
+              packageJSON = final.lib.importJSON ./package.json;
             in
-            final.pkgs.mkYarnPackage rec {
-              src = self;
+            final.stdenv.mkDerivation rec {
+              pname = packageJSON.name;
+              version = packageJSON.version;
 
-              packageJSON = "${src}/package.json";
-              yarnLock = "${src}/yarn.lock";
+              src = builtins.fetchurl {
+                url = "https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v${version}/${pname}-${version}.AppImage";
+                name = "${pname}-${version}.AppImage";
+              };
+
+              appimageContents = final.appimageTools.extractType2 {
+                name = "${pname}-${version}";
+                inherit src;
+              };
+
+              dontUnpack = true;
+              dontConfigure = true;
+              dontBuild = true;
 
               nativeBuildInputs = [ final.makeWrapper ];
 
-              yarnFlags = [ "--frozen-lockfile" "--offline" "--production" ];
-
               installPhase = ''
                 runHook preInstall
-
-                mkdir -p $out/share/passky
-                cp -r ./deps/passky $out/share/passky/deps
-                cp -r ./node_modules $out/share/passky
-
-                for icon in $out/share/passky/deps/images/logo*.png; do
-                  mkdir -p "$out/share/icons/hicolor/$(basename $icon .png)/apps"
-                  ln -s "$icon" "$out/share/icons/hicolor/$(basename $icon .png)/apps/passky.png"
-                done
-
-                mkdir $out/share/applications
-                ls -s ${desktopItem}/share/applications $out/share/applications
-
-                makeWrapper ${electron}/bin/electron $out/bin/passky \
-                  --add-flags $out/share/passky/deps/main.js
-
-                  runHook postInstall
+                mkdir -p $out/bin $out/share/${pname} $out/share/applications
+                cp -a ${appimageContents}/{locales,resources} $out/share/${pname}
+                cp -a ${appimageContents}/${pname}.desktop $out/share/applications/${pname}.desktop
+                cp -a ${appimageContents}/usr/share/icons $out/share
+                substituteInPlace $out/share/applications/${pname}.desktop \
+                  --replace 'Exec=AppRun' 'Exec=${pname}'
+                runHook postInstall
               '';
 
-              distPhase = ":";
+              postFixup = ''
+                makeWrapper ${electron}/bin/electron $out/bin/${pname} \
+                  --add-flags $out/share/${pname}/resources/app.asar \
+                  --prefix LD_LIBRARY_PATH : "${final.lib.makeLibraryPath [ final.stdenv.cc.cc ]}"
+              '';
 
-              desktopItem = final.pkgs.makeDesktopItem {
-                name = "Passky";
-                comment = "Simple and secure password manager";
-                genericName = "Password Manager";
-                exec = "passky %U";
-                icon = "passky";
-                type = "Application";
-                desktopName = "Passky";
-                categories = "GNOME;GTK;Utility;";
+              meta = with final.lib; {
+                description = "Simple and secure password manager.";
+                homepage = "https://passky.org";
+                platforms = supportedSystems;
+                license = licenses.gpl3;
               };
-          };
+            };
         };
 
       defaultPackage = forAllSystems (system: (import nixpkgs {
@@ -76,6 +77,18 @@
       checks = forAllSystems (system: {
         build = self.defaultPackage.${system};
       });
+
+      nixosModules.passky = { pkgs, ... }: {
+        nixpkgs.overlays = [ self.overlay ];
+        environment.systemPackages = [ pkgs.passky ];
+      };
+      nixosModule = self.nixosModulesModules.passky;
+
+      homeManagerModules.passky = { pkgs, ... }: {
+        nixpkgs.overlays = [ self.overlay ];
+        home.packages = [ pkgs.passky ];
+      };
+      homeManagerModule = self.homeManagerModules.passky;
 
       devShell = forAllSystems (system:
         let
