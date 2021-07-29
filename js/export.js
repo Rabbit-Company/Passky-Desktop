@@ -13,6 +13,10 @@ switch(localStorage.theme){
         document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Light)";
         document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Light)";
     break;
+    case "blue":
+        document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
+        document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
+    break;
     default:
         document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
         document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
