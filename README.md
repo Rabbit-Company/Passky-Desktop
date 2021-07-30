@@ -51,6 +51,11 @@ If you’re ready to try Passky out at no cost, you can get started by visiting 
 
 ## Installation
 ### Windows
+#### Microsoft Store
+1. Open Microsoft Store
+2. Search for Passky (https://www.microsoft.com/store/apps/9NRCP6HPPB82)
+3. Click on install
+#### Manually
 1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v2.0.5/passky-2.0.5.Setup.exe)
 2. Run installer
 3. Passky desktop application is now installed
