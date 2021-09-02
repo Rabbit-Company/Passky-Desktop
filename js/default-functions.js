@@ -165,7 +165,11 @@ function refreshPasswords(){
                 let passwords = json['passwords'];
                 for(let i = 0; i < passwords.length; i++){
                     passwords[i].password = CryptoJS.AES.decrypt(passwords[i].password, localStorage.password).toString(CryptoJS.enc.Utf8);
-                    passwords[i].message = CryptoJS.AES.decrypt(passwords[i].message, localStorage.password).toString(CryptoJS.enc.Utf8);
+                    if(passwords[i].message == null || typeof(passwords[i].message) == 'undefined'){
+                        passwords[i].message = "";
+                    }else{
+                        passwords[i].message = CryptoJS.AES.decrypt(passwords[i].message, localStorage.password).toString(CryptoJS.enc.Utf8);
+                    }
                 }
                 localStorage.passwords = JSON.stringify(passwords);
             }else{
