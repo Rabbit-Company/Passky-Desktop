@@ -36,45 +36,53 @@
             </div>
             <div>
               <label for="password" class="sr-only">Password</label>
-              <input id="password" name="password" type="password" autocomplete="current-password" required class="tertiaryBackgroundColor tertiaryColor primaryBorderColor appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md focus:outline-none focus:z-10 sm:text-sm" placeholder="Password">
+              <input id="password" name="password" type="password" autocomplete="current-password" required class="tertiaryBackgroundColor tertiaryColor primaryBorderColor appearance-none rounded-none relative block w-full px-3 py-2 border focus:outline-none focus:z-10 sm:text-sm" placeholder="Password">
+            </div>
+            <div>
+              <label for="otp" class="sr-only">OTP</label>
+              <input id="otp" name="otp" type="number" autocomplete="off" class="tertiaryBackgroundColor tertiaryColor primaryBorderColor appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md focus:outline-none focus:z-10 sm:text-sm" placeholder="OTP">
             </div>
           </div>
 
-          <div id="error-dialog" class="fixed z-10 inset-0 overflow-y-auto invisible" aria-labelledby="error-dialog-modal-title" role="dialog" aria-modal="true">
+          <div id="dialog" class="fixed z-10 inset-0 overflow-y-auto invisible" aria-labelledby="dialog-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
               <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
               <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-              <div class="secondaryBackgroundColor inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
-                <div>
-                  <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+              <div class="secondaryBackgroundColor inline-block align-bottom rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                <div class="sm:flex sm:items-start">
+                  <div id="dialog-icon" class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                     <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                   </div>
-                  <div class="mt-3 text-center sm:mt-5">
-                    <h3 class="tertiaryColor text-lg leading-6 font-medium" id="error-dialog-modal-title">
-                      ERROR
-                    </h3>
+                  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 class="tertiaryColor text-lg leading-6 font-medium" id="dialog-title"></h3>
                     <div class="mt-2">
-                      <p id="error-dialog-modal-text" class="secondaryColor text-sm">
-                      </p>
+                      <p class="secondaryColor text-sm" id="dialog-text"></p>
                     </div>
                   </div>
                 </div>
-                <div class="mt-5 sm:mt-6">
-                  <button type="button" id="error-dialog-okay" class="dangerButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base focus:outline-none font-medium sm:text-sm">
+                <div class="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">
+                  <button id="dialog-button" type="button" class="dangerButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm">
                     Okay
+                  </button>
+                  <button id="dialog-button-cancel" type="button" class="cancelButton mt-2 w-full inline-flex justify-center rounded-md border px-4 py-2 text-base font-medium shadow-sm focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
                   </button>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="text-center">
             <button id="btn_signin" type="submit" class="primaryButton group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white">
               Sign in
             </button>
-            <a id="dont_have_account_link" href="register.html" class="primaryColor">
-              Don't have account yet? Sign up here.
+            <button id="btn_signup" type="button" class="cancelButton group relative w-full flex justify-center my-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white">
+              Sign up
+            </button>
+            <a href="#" id="forgot_username" class="primaryColor">
+              Forgot username?
             </a>
           </div>
        </form>

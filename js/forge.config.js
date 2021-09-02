@@ -36,7 +36,7 @@ module.exports = {
             "maintainer": "Rabbit Company",
             "homepage": "https://rabbit-company.com",
             "description": "Simple and secure password manager",
-            "productDescription": "Passky is simple password manager, which works on a zero trust architecture. That means only user will be able to decrypt his passwords. So users can safely store their passwords on any server. That means if a server on where all passwords are stored get hacked, hacker won't be able to decrypt passwords and data on this server will be useless for him.",
+            "productDescription": "Simple and secure password manager",
             "genericName": "Password Manager",
             "icon": "images/logo.png"
           }
@@ -51,7 +51,7 @@ module.exports = {
             "maintainer": "Rabbit Company",
             "homepage": "https://rabbit-company.com",
             "description": "Simple and secure password manager",
-            "productDescription": "Passky is simple password manager, which works on a zero trust architecture. That means only user will be able to decrypt his passwords. So users can safely store their passwords on any server. That means if a server on where all passwords are stored get hacked, hacker won't be able to decrypt passwords and data on this server will be useless for him.",
+            "productDescription": "Simple and secure password manager",
             "genericName": "Password Manager",
             "icon": "images/logo.png"
           }

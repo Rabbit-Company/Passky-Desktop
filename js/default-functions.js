@@ -42,38 +42,6 @@ function toggleMenu(){
     }
 }
 
-function changeTheme(){
-    switch(localStorage.theme){
-        case "dark":
-            document.getElementById("css-theme").href = "css/themes/blue.css";
-            document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
-            document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
-            localStorage.theme = "blue";
-        break;
-        case "blue":
-            document.getElementById("css-theme").href = "css/themes/light.css";
-            document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Light)";
-            document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Light)";
-            localStorage.theme = "light";
-        break;
-        default:
-            document.getElementById("css-theme").href = "css/themes/dark.css";
-            document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
-            document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
-            localStorage.theme = "dark";
-        break;
-    }
-}
-
-function changeLanguage(){
-    if(document.getElementById('mobile-menu').className == 'hidden pt-2 pb-3 space-y-1'){
-        localStorage.lang = document.getElementById("lang-link").value;
-    }else{
-        localStorage.lang = document.getElementById("lang-link-mobile").value;
-    }
-    location.reload();
-}
-
 function copyToClipboard(text){
     let textArea = document.createElement("textarea");
     textArea.value = text;
@@ -138,25 +106,24 @@ function getDate(date){
 
 function isPasswordWebsiteValid(website){
     if(website == null || typeof(website) == 'undefined') return false;
-    if(website.length == 0) return false;
     if(!(website.length >= 5 && website.length <= 255) || website.includes(" ")) return false;
-    if(website.includes("'") || website.includes('"') || website.includes("\\")) return false;
     return true;
 }
 
 function isPasswordUsernameValid(username){
     if(username == null || typeof(username) == 'undefined') return false;
-    if(username.length == 0) return false;
-    if(!(username.length >= 3 && username.length <= 255) || username.includes(" ")) return false;
-    if(username.includes("'") || username.includes('"') || username.includes("\\")) return false;
+    if(!(username.length >= 3 && username.length <= 255)) return false;
     return true;
 }
 
 function isPasswordPasswordValid(password){
     if(password == null || typeof(password) == 'undefined') return false;
-    if(password.length == 0) return false;
-    if(!(password.length >= 8 && password.length <= 255) || password.includes(" ")) return false;
-    if(password.includes("'") || password.includes('"') || password.includes("\\")) return false;
+    if(!(password.length >= 5 && password.length <= 255)) return false;
+    return true;
+}
+
+function isPasswordMessageValid(message){
+    if(message.length > 10000) return false;
     return true;
 }
 
@@ -182,7 +149,7 @@ function refreshPasswords(){
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Authorization", "Basic " + btoa(localStorage.username + ":" + sha512(localStorage.password)));
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
 
@@ -196,7 +163,10 @@ function refreshPasswords(){
 
             if(json['error'] == 0){
                 let passwords = json['passwords'];
-                for(let i = 0; i < passwords.length; i++) passwords[i].password = CryptoJS.AES.decrypt(passwords[i].password, localStorage.password).toString(CryptoJS.enc.Utf8);
+                for(let i = 0; i < passwords.length; i++){
+                    passwords[i].password = CryptoJS.AES.decrypt(passwords[i].password, localStorage.password).toString(CryptoJS.enc.Utf8);
+                    passwords[i].message = CryptoJS.AES.decrypt(passwords[i].message, localStorage.password).toString(CryptoJS.enc.Utf8);
+                }
                 localStorage.passwords = JSON.stringify(passwords);
             }else{
                 localStorage.passwords = "{}";
@@ -206,17 +176,18 @@ function refreshPasswords(){
         }
 
     };
-    xhr.send("");
+    xhr.send("otp=" + encodeURIComponent(localStorage.secret));
 }
 
 function clearStorage(){
     delete localStorage.password;
     delete localStorage.passwords;
+    delete localStorage.secret;
     delete localStorage.loginTime;
 }
 
 function isSessionValid(){
-    if(localStorage.url == null || typeof(localStorage.url) == 'undefined' || localStorage.username == null || typeof(localStorage.username) == 'undefined' || localStorage.password == null || typeof(localStorage.password) == 'undefined' || localStorage.passwords == null || typeof(localStorage.passwords) == 'undefined' || localStorage.loginTime == null || typeof(localStorage.loginTime) == 'undefined' || ((parseFloat(localStorage.loginTime) + 1200000)) < new Date().getTime()){
+    if(localStorage.url == null || typeof(localStorage.url) == 'undefined' || localStorage.username == null || typeof(localStorage.username) == 'undefined' || localStorage.password == null || typeof(localStorage.password) == 'undefined' || localStorage.passwords == null || typeof(localStorage.passwords) == 'undefined' || localStorage.loginTime == null || typeof(localStorage.loginTime) == 'undefined' || localStorage.sessionDuration == null || typeof(localStorage.sessionDuration) == 'undefined' || ((parseFloat(localStorage.loginTime) + (localStorage.sessionDuration * 60000))) < new Date().getTime()){
         clearStorage();
         return false;
     }

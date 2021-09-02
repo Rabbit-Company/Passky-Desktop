@@ -29,25 +29,9 @@
               <a id="import-export-link" href="#" class="mainMenuLinkSelected inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Import & Export
               </a>
-              <a id="theme-link" href="#" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Theme
+              <a id="settings-link" href="settings.html" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Settings
               </a>
-              <select id="lang-link" class="mainMenuLink border-transparent block pl-3 pr-4 py-2 border-b-4 text-base focus:outline-none font-medium">
-                <option value="en">English</option>
-                <option value="zh-CN">Chinese (Simplified)</option>
-                <option value="hi">Hindi</option>
-                <option value="fr">French</option>
-                <option value="ru">Russian</option>
-                <option value="de">German</option>
-                <option value="it">Italian</option>
-                <option value="pl">Polish</option>
-                <option value="cs">Czech</option>
-                <option value="sv-SE">Swedish</option>
-                <option value="nl">Dutch</option>
-                <option value="sl">Slovenian</option>
-                <option value="bs">Bosnian</option>
-                <option value="ro">Romanian</option>
-              </select>
               <a id="signout-link" href="#" class="mainMenuLink border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                 Sign out
               </a>
@@ -71,23 +55,7 @@
         <div id="mobile-menu" class="hidden pt-2 pb-3 space-y-1">
           <a id="passwords-link-mobile" href="passwords.html" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Passwords</a>
           <a id="import-export-link-mobile" href="#" class="mainMenuMobileLinkSelected block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Import & Export</a>
-          <a id="theme-link-mobile" href="#" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Theme</a>
-          <select id="lang-link-mobile" class="mainMenuMobileLink border-transparent w-full block pl-3 pr-4 py-2 border-l-4 text-base focus:outline-none font-medium">
-            <option value="en">English</option>
-            <option value="zh-CN">Chinese (Simplified)</option>
-            <option value="hi">Hindi</option>
-            <option value="fr">French</option>
-            <option value="ru">Russian</option>
-            <option value="de">German</option>
-            <option value="it">Italian</option>
-            <option value="pl">Polish</option>
-            <option value="cs">Czech</option>
-            <option value="sv-SE">Swedish</option>
-            <option value="nl">Dutch</option>
-            <option value="sl">Slovenian</option>
-            <option value="bs">Bosnian</option>
-            <option value="ro">Romanian</option>
-          </select>
+          <a id="settings-link-mobile" href="settings.html" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Settings</a>
           <a id="signout-link-mobile" href="#" class="mainMenuMobileLink border-transparent block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sign out</a>
         </div>
       </div>
@@ -188,29 +156,29 @@
           </li>
           <li class="secondaryBackgroundColor col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200">
               <div class="flex-1 flex flex-col p-8">
-                  <img id="dashline-logo" class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" src="images/dashline.png" alt="Dashline">
-                  <h3 class="tertiaryColor mt-6 text-lg font-medium">Dashline</h3>
+                  <img id="dashlane-logo" class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" src="images/dashlane.png" alt="Dashlane">
+                  <h3 class="tertiaryColor mt-6 text-lg font-medium">Dashlane</h3>
               </div>
               <div>
                   <div class="-mt-px flex divide-x divide-gray-200">
                   <div class="w-0 flex-1 flex">
-                      <a id="dashline-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="dashlane-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span id="dashline-import-btn-text" class="ml-3">Import</span>
+                          <span id="dashlane-import-btn-text" class="ml-3">Import</span>
                       </a>
                   </div>
                   <div class="w-0 flex-1 flex">
-                      <a id="dashline-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
+                      <a id="dashlane-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                               <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                               <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
                           </svg>
-                          <span id="dashline-export-btn-text" class="ml-3">Export</span>
+                          <span id="dashlane-export-btn-text" class="ml-3">Export</span>
                       </a>
                   </div>
                   </div>

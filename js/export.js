@@ -2,43 +2,27 @@ if(!isSessionValid()) window.location.href = 'index.html';
 
 document.getElementById("passwords-link").innerText = lang[localStorage.lang]["passwords"];
 document.getElementById("import-export-link").innerText = lang[localStorage.lang]["import_export"];
+document.getElementById("settings-link").innerText = lang[localStorage.lang]["settings"];
 document.getElementById("signout-link").innerText = lang[localStorage.lang]["signout"];
 
 document.getElementById("passwords-link-mobile").innerText = lang[localStorage.lang]["passwords"];
 document.getElementById("import-export-link-mobile").innerText = lang[localStorage.lang]["import_export"];
+document.getElementById("settings-link-mobile").innerText = lang[localStorage.lang]["settings"];
 document.getElementById("signout-link-mobile").innerText = lang[localStorage.lang]["signout"];
-
-switch(localStorage.theme){
-    case "light":
-        document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Light)";
-        document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Light)";
-    break;
-    case "blue":
-        document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
-        document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Blue)";
-    break;
-    default:
-        document.getElementById("theme-link").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
-        document.getElementById("theme-link-mobile").innerText = lang[localStorage.lang]["theme"] + " (Dark)";
-    break;
-}
-
-document.getElementById("lang-link").value = localStorage.lang;
-document.getElementById("lang-link-mobile").value = localStorage.lang;
 
 document.getElementById("passky-backup-btn-text").innerText = lang[localStorage.lang]["backup"];
 
 document.getElementById("passky-import-btn-text").innerText = lang[localStorage.lang]["import"];
 document.getElementById("lastpass-import-btn-text").innerText = lang[localStorage.lang]["import"];
 document.getElementById("bitwarden-import-btn-text").innerText = lang[localStorage.lang]["import"];
-document.getElementById("dashline-import-btn-text").innerText = lang[localStorage.lang]["import"];
+document.getElementById("dashlane-import-btn-text").innerText = lang[localStorage.lang]["import"];
 document.getElementById("onepassword-import-btn-text").innerText = lang[localStorage.lang]["import"];
 document.getElementById("keeper-import-btn-text").innerText = lang[localStorage.lang]["import"];
 document.getElementById("nordpass-import-btn-text").innerText = lang[localStorage.lang]["import"];
 
 document.getElementById("passky-export-btn-text").innerText = lang[localStorage.lang]["export"];
 document.getElementById("lastpass-export-btn-text").innerText = lang[localStorage.lang]["export"];
-document.getElementById("dashline-export-btn-text").innerText = lang[localStorage.lang]["export"];
+document.getElementById("dashlane-export-btn-text").innerText = lang[localStorage.lang]["export"];
 document.getElementById("onepassword-export-btn-text").innerText = lang[localStorage.lang]["export"];
 document.getElementById("keeper-export-btn-text").innerText = lang[localStorage.lang]["export"];
 document.getElementById("nordpass-export-btn-text").innerText = lang[localStorage.lang]["export"];
@@ -71,10 +55,13 @@ function import_passky(){
         let website = ido["passwords"][i]["website"];
         let username = ido["passwords"][i]["username"];
         let password = (encrypted) ? CryptoJS.AES.decrypt(ido["passwords"][i]["password"], localStorage.password).toString(CryptoJS.enc.Utf8) : ido["passwords"][i]["password"];
+        let message = (encrypted) ? CryptoJS.AES.decrypt(ido["passwords"][i]["message"], localStorage.password).toString(CryptoJS.enc.Utf8) : ido["passwords"][i]["message"];
+        if(message == null) message = "";
 
         if(!isPasswordWebsiteValid(website)) continue;
         if(!isPasswordUsernameValid(username)) continue;
         if(!isPasswordPasswordValid(password)) continue;
+        if(!isPasswordMessageValid(message)) continue;
 
         let duplicated = false;
         const current_passwords = JSON.parse(localStorage.passwords);
@@ -90,6 +77,7 @@ function import_passky(){
         passwords[j]["website"] = website;
         passwords[j]["username"] = username;
         passwords[j]["password"] = CryptoJS.AES.encrypt(password, localStorage.password).toString();
+        passwords[j]["message"] = CryptoJS.AES.encrypt(message, localStorage.password).toString();
         j++;
     }
 
@@ -104,6 +92,7 @@ function backup_passky(){
     for(let i = 0; i < passwords.length; i++){
         delete passwords[i]['id'];
         passwords[i]['password'] = CryptoJS.AES.encrypt(passwords[i]['password'], localStorage.password).toString();
+        passwords[i]['message'] = CryptoJS.AES.encrypt(passwords[i]['message'], localStorage.password).toString();
     }
 
     let backup_passky = { encrypted : true, passwords : passwords };
@@ -133,7 +122,7 @@ function import_lastpass(){
     for(let i = 1, j = 0; i < ido.length; i++){
         let data_line = ido[i].split(',');
         
-        let website = data_line[0].replace("http://", "").replace("https://", "").replace("www.", "");
+        let website = data_line[0].replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
         if(website.slice(-1) == '/') website = website.slice(0, -1);
         let username = data_line[1];
         let password = data_line[2];
@@ -201,14 +190,22 @@ function import_bitwarden(){
     for(let i = 0, j = 0; i < ido["items"].length; i++){
         if(ido["items"][i]["type"] != 1) continue;
 
-        let website = ido["items"][i]["login"]["uris"][0]["uri"].replace("http://", "").replace("https://", "").replace("www.", "");
+        let website = ido["items"][i]["name"];
+        if(typeof(ido["items"][i]["login"]["uris"]) != 'undefined' && typeof(ido["items"][i]["login"]["uris"][0]) != 'undefined' && typeof(ido["items"][i]["login"]["uris"][0]["uri"]) != 'undefined'){
+            website = ido["items"][i]["login"]["uris"][0]["uri"];
+        }
+        
+        website = website.replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
         if(website.slice(-1) == '/') website = website.slice(0, -1);
         let username = ido["items"][i]["login"]["username"];
         let password = ido["items"][i]["login"]["password"];
+        let message = ido["items"][i]["login"]["notes"];
+        if(message == null) message = "";
 
         if(!isPasswordWebsiteValid(website)) continue;
         if(!isPasswordUsernameValid(username)) continue;
         if(!isPasswordPasswordValid(password)) continue;
+        if(!isPasswordMessageValid(message)) continue;
 
         let duplicated = false;
         const current_passwords = JSON.parse(localStorage.passwords);
@@ -224,6 +221,7 @@ function import_bitwarden(){
         passwords[j]["website"] = website;
         passwords[j]["username"] = username;
         passwords[j]["password"] = CryptoJS.AES.encrypt(password, localStorage.password).toString();
+        passwords[j]["message"] = CryptoJS.AES.encrypt(message, localStorage.password).toString();
         j++;
     }
     import_data(passwords);
@@ -347,22 +345,6 @@ document.getElementById("signout-link").addEventListener("click", () => {
 
 document.getElementById("signout-link-mobile").addEventListener("click", () => {
     logout();
-});
-
-document.getElementById("theme-link").addEventListener("click", () => {
-    changeTheme();
-});
-
-document.getElementById("theme-link-mobile").addEventListener("click", () => {
-    changeTheme();
-});
-
-document.getElementById("lang-link").addEventListener("change", () => {
-    changeLanguage();
-});
-
-document.getElementById("lang-link-mobile").addEventListener("change", () => {
-    changeLanguage();
 });
 
 document.getElementById("main-menu-toggle-btn").addEventListener("click", () => {
