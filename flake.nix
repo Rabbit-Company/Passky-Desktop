@@ -20,48 +20,71 @@
         {
           passky =
             let
-              electron = final.electron_13;
+              electron = final.electron_14;
               packageJSON = final.lib.importJSON ./package.json;
             in
             final.stdenv.mkDerivation rec {
               pname = packageJSON.name;
               version = packageJSON.version;
 
+              # Build from .deb because it's the only thing that works
               src = builtins.fetchurl {
-                url = "https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v${version}/${pname}-${version}.AppImage";
-                name = "${pname}-${version}.AppImage";
+                url = "https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v${version}/${pname}_${version}_amd64.deb";
               };
 
-              appimageContents = final.appimageTools.extractType2 {
-                name = "${pname}-${version}";
-                inherit src;
-              };
+              nativeBuildInputs = with final; [
+                # Use Nix libraries (buildInputs) instead of the ones in $out/lib
+                # Crashes the app and I cannot find out why
+                # autoPatchelfHook
 
-              dontUnpack = true;
-              dontConfigure = true;
-              dontBuild = true;
+                dpkg
+                wrapGAppsHook
+              ];
 
-              nativeBuildInputs = [ final.makeWrapper ];
+              # buildInputs = with final; [
+                # alsa-lib
+                # cups
+                # libdrm
+                # mesa
+                # nspr
+                # nss
+                # xorg.libXdamage
+                # xorg.libxshmfence
+ 
+                # add if not using wrapGAppsHook
+                # at-spi2-atk
+                # at-spi2-core
+                # atk
+                # cairo
+                # gdk-pixbuf
+                # glib
+                # gtk3
+                # libxkbcommon
+                # pango
+                # xorg.libXcomposite
+                # xorg.libXrandr
+              # ];
+
+              unpackPhase = ''
+                runHook preUnpack
+
+                # The deb contains setuid permission on 'chrome-sandbox'
+                dpkg-deb --fsys-tarfile $src | tar -x --no-same-permissions --no-same-owner
+
+                runHook postUnpack
+              '';
 
               installPhase = ''
                 runHook preInstall
-                mkdir -p $out/bin $out/share/${pname} $out/share/applications
-                cp -a ${appimageContents}/{locales,resources} $out/share/${pname}
-                cp -a ${appimageContents}/${pname}.desktop $out/share/applications/${pname}.desktop
-                cp -a ${appimageContents}/usr/share/icons $out/share
-                substituteInPlace $out/share/applications/${pname}.desktop \
-                  --replace 'Exec=AppRun' 'Exec=${pname}'
+
+                mkdir $out
+                cp -r ./usr/* $out/
+
                 runHook postInstall
               '';
 
-              postFixup = ''
-                makeWrapper ${electron}/bin/electron $out/bin/${pname} \
-                  --add-flags $out/share/${pname}/resources/app.asar \
-                  --prefix LD_LIBRARY_PATH : "${final.lib.makeLibraryPath [ final.stdenv.cc.cc ]}"
-              '';
-
               meta = with final.lib; {
-                description = "Simple and secure password manager.";
+                description = "The ultimate open-source password manager";
                 homepage = "https://passky.org";
                 platforms = supportedSystems;
                 license = licenses.gpl3;
