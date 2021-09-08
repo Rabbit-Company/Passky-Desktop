@@ -16,7 +16,7 @@ module.exports = {
           "name": "Passky",
           "title": "Passky",
           "exe": "Passky.exe",
-          "description": "Simple and secure password manager",
+          "description": "Simple, modern, open source and secure password manager",
           "iconUrl": "https://raw.githubusercontent.com/Rabbit-Company/Passky-Desktop/main/images/logo.ico",
           "setupIcon": "images/logo.ico"
         }
@@ -35,8 +35,8 @@ module.exports = {
             "productName": "Passky",
             "maintainer": "Rabbit Company",
             "homepage": "https://rabbit-company.com",
-            "description": "Simple and secure password manager",
-            "productDescription": "Simple and secure password manager",
+            "description": "Simple, modern, open source and secure password manager",
+            "productDescription": "Simple, modern, open source and secure password manager",
             "genericName": "Password Manager",
             "icon": "images/logo.png"
           }
@@ -50,8 +50,8 @@ module.exports = {
             "productName": "Passky",
             "maintainer": "Rabbit Company",
             "homepage": "https://rabbit-company.com",
-            "description": "Simple and secure password manager",
-            "productDescription": "Simple and secure password manager",
+            "description": "Simple, modern, open source and secure password manager",
+            "productDescription": "Simple, modern, open source and secure password manager",
             "genericName": "Password Manager",
             "icon": "images/logo.png"
           }

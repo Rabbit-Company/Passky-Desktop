@@ -1,8 +1,8 @@
 {
   "name": "passky",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "Rabbit Company LLC",
-  "description": "Simple and secure password manager",
+  "description": "Simple, modern, open source and secure password manager",
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",

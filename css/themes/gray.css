@@ -25,15 +25,15 @@
 */
 
 .primaryBackgroundColor{
-    background-color: #F9FAFB !important;
+    background-color: #c2ccd6 !important;
 }
 
 .secondaryBackgroundColor{
-    background-color: #FFFFFF !important;
+    background-color: #e0e6eb !important;
 }
 
 .tertiaryBackgroundColor{
-    background-color: #FFFFFF !important;
+    background-color: #f9fafb !important;
 }
 
 .quaternaryBackgroundColor{
@@ -72,7 +72,7 @@
 }
 
 .cancelButton{
-    background-color: #FFFFFF !important;
+    background-color: #f9fafb !important;
     border-color: #D1D5DB !important;
     color: #374151 !important;
 }
@@ -86,13 +86,13 @@
 */
 
 input{
-    background-color: #FFFFFF !important;
+    background-color: #f9fafb !important;
     color: #111827 !important;
     border-color: #D1D5DB !important;
 }
 
 textarea{
-    background-color: #F3F4F6 !important;
+    background-color: #f9fafb !important;
     color: #111827 !important;
     border-color: #D1D5DB !important;
 }
@@ -102,7 +102,7 @@ textarea{
 */
 
 .mainMenuLink{
-    background-color: #FFFFFF;
+    background-color: #e0e6eb;
     color: #4B5563 !important;
 }
 
@@ -117,18 +117,18 @@ textarea{
 }
 
 .mainMenuMobileLink{
-    background-color: #FFFFFF;
+    background-color: #e0e6eb;
     color: #4B5563 !important;
 }
 
 .mainMenuMobileLink:hover{
     color: #1F2937 !important;
-    background-color: #F9FAFB !important;
+    background-color: #f9fafb !important;
     border-color: #D1D5DB !important;
 }
 
 .mainMenuMobileLinkSelected{
-    background-color: #EEF2FF !important;
+    background-color: #f9fafb !important;
     border-color: #6366F1 !important;
     color: #4338CA !important;
 }
@@ -139,7 +139,7 @@ textarea{
 
 #main-menu-toggle-btn:hover{
     color: #6B7280 !important;
-    background-color: #F3F4F6 !important;
+    background-color: #f9fafb !important;
 }
 
 /*
@@ -177,11 +177,11 @@ textarea{
 */
 
 .passwordsBackgroundColor{
-    background-color: #FFFFFF !important;
+    background-color: #c2ccd6 !important;
 }
 
 .passwordsBorderColor{
-    border-color: #e5e7eb !important;
+    border-color: #D1D1DB !important;
 }
 
 /*
@@ -190,7 +190,7 @@ textarea{
 
 .importExportButtons{
     color: #374151 !important;
-    border-color: #f0f2f5 !important;
+    border-color: #c2ccd6 !important;
 }
 
 .importExportButtons:hover{
@@ -202,7 +202,7 @@ textarea{
 */
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #e0e6eb;
 }
 
 ::-webkit-scrollbar-thumb {
