@@ -1,6 +1,6 @@
 {
   "name": "passky",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "author": "Rabbit Company LLC",
   "description": "Simple, modern, open source and secure password manager",
   "main": "main.js",
@@ -25,14 +25,14 @@
     }
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.60",
-    "@electron-forge/maker-appx": "^6.0.0-beta.60",
-    "@electron-forge/maker-deb": "^6.0.0-beta.60",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.60",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.60",
-    "@electron-forge/maker-zip": "^6.0.0-beta.60",
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-appx": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "electron": "^14.0.0",
-    "electron-builder": "^22.11.11"
+    "electron-builder": "^22.14.2"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"

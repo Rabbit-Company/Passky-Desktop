@@ -13,6 +13,9 @@ document.getElementById("signout-link-mobile").innerText = lang[localStorage.lan
 document.getElementById("label-theme").innerText = lang[localStorage.lang]["theme"];
 document.getElementById("label-session-duration").innerText = lang[localStorage.lang]["session_duration"];
 
+document.getElementById("add-yubico-btn").innerText = lang[localStorage.lang]["add"];
+document.getElementById("remove-yubico-btn").innerText = lang[localStorage.lang]["remove"];
+
 document.getElementById("delete-account-title").innerText = lang[localStorage.lang]["delete_account"];
 document.getElementById("delete-account-text").innerText = lang[localStorage.lang]["delete_account_info"];
 document.getElementById("delete-account-btn").innerText = lang[localStorage.lang]["delete_account"];
@@ -23,13 +26,29 @@ document.getElementById("settings-lang").value = localStorage.lang;
 document.getElementById("settings-theme").value = localStorage.theme;
 document.getElementById("settings-session").value = localStorage.sessionDuration;
 
-if(localStorage.secret.length > 10){
+if(localStorage.auth == "true"){
     document.getElementById("toggle-2fa-btn").innerText = lang[localStorage.lang]["disable"];
     document.getElementById("toggle-2fa-btn").className = "dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
 }else{
     document.getElementById("toggle-2fa-btn").innerText = lang[localStorage.lang]["enable"];
     document.getElementById("toggle-2fa-btn").className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
 }
+
+if(typeof(localStorage.yubico) == 'undefined' || localStorage.yubico == null || localStorage.yubico == ""){
+    hide("remove-yubico-btn");
+}else{
+    let yubico = localStorage.yubico.split(";");
+    if(yubico.length >= 5) hide("add-yubico-btn");
+
+    if(localStorage.yubico != "null"){
+        let html = "";
+        for(let i = 0; i < yubico.length; i++){
+            html += "<li class='passwordsBorderColor py-4 flex'><img class='h-10 w-10 rounded-full' src='images/yubikey.png' alt='Yubico Key'><div class='ml-3'><p class='secondaryColor text-sm font-medium'>" + yubico[i] + "</p></div></li>";
+        }
+        document.getElementById('yubico-list').innerHTML = html;
+    }
+}
+
 
 let minutes = document.getElementsByClassName("addMinutes");
 for(let i = 0; i < minutes.length; i++) minutes[i].innerText = minutes[i].innerText + " " + lang[localStorage.lang]["minutes"];
@@ -68,7 +87,7 @@ function enable2fa(){
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Authorization", "Basic " + btoa(localStorage.username + ":" + sha512(localStorage.password)));
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
 
@@ -85,11 +104,10 @@ function enable2fa(){
 
             let codes = json['codes'].split(';');
             let backupCodes = "<ul>";
-            for(let i = 0; i < codes.length; i += 2){
-                backupCodes += "<li>" + codes[i] + " " + codes[i+1] + "</li>";
-            }
+            for(let i = 0; i < codes.length; i += 2) backupCodes += "<li>" + codes[i] + " " + codes[i+1] + "</li>";
             backupCodes += "</ul>";
 
+            localStorage.auth = "true";
             let html = lang[localStorage.lang]["scan_qr_code"] + "<div style='padding: 20px; background-color: white;'><div id='qrcode'></div></div> " + lang[localStorage.lang]["or_enter_key_manually"] + " <b>" + json['secret'] + "</b></br></br>" + lang[localStorage.lang]["backup_codes"] + " <b>" + backupCodes + "</b>";
 
             changeDialog(3, html);
@@ -98,7 +116,7 @@ function enable2fa(){
         }
 
     };
-    xhr.send();
+    xhr.send("otp=" + encodeURIComponent(localStorage.secret));
 }
 
 function disable2fa(){
@@ -122,12 +140,106 @@ function disable2fa(){
                 return;
             }
 
-            localStorage.secret = false;
+            localStorage.auth = "false";
             location.reload();
         }
 
     };
     xhr.send("otp=" + encodeURIComponent(localStorage.secret));
+}
+
+function addYubiKey(id){
+
+    if(id.length != 44){
+        changeDialog(2, errors[localStorage.lang]['23']);
+        show('dialog');
+        return;
+    }
+
+    if(localStorage.yubico.includes(id.substring(0,12))){
+        changeDialog(2, errors[localStorage.lang]['21']);
+        show('dialog');
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", localStorage.url + "/?action=addYubiKey");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(localStorage.username + ":" + sha512(localStorage.password)));
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+
+        if(xhr.readyState === 4){
+            if(xhr.status != 200) return;
+            
+            const json = JSON.parse(xhr.responseText);
+            
+            if(json['error'] != 0){
+                changeDialog(2, errors[localStorage.lang][json['error']]);
+                show('dialog');
+                return;
+            }
+
+            let codes = json['codes'].split(';');
+            let backupCodes = "<ul>";
+            for(let i = 0; i < codes.length; i += 2) backupCodes += "<li>" + codes[i] + " " + codes[i+1] + "</li>";
+            backupCodes += "</ul>";
+
+            localStorage.yubico = json['yubico'];
+            let html = lang[localStorage.lang]["yubikey_added_successfully"] + "</br></br>" + lang[localStorage.lang]["backup_codes"] + " <b>" + backupCodes + "</b>";
+
+            changeDialog(7, html);
+            show('dialog');
+        }
+
+    };
+    xhr.send("id=" + encodeURIComponent(id) + "&otp=" + encodeURIComponent(localStorage.secret));
+}
+
+function removeYubiKey(id){
+
+    if(id.length != 44){
+        changeDialog(2, errors[localStorage.lang]['23']);
+        show('dialog');
+        return;
+    }
+
+    if(!localStorage.yubico.includes(id.substring(0,12))){
+        changeDialog(2, errors[localStorage.lang]['24']);
+        show('dialog');
+        return;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", localStorage.url + "/?action=removeYubiKey");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(localStorage.username + ":" + sha512(localStorage.password)));
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+
+        if(xhr.readyState === 4){
+            if(xhr.status != 200) return;
+            
+            const json = JSON.parse(xhr.responseText);
+            
+            if(json['error'] != 0){
+                changeDialog(2, errors[localStorage.lang][json['error']]);
+                show('dialog');
+                return;
+            }
+
+            localStorage.yubico = json['yubico'];
+
+            changeDialog(7, lang[localStorage.lang]["yubikey_removed_successfully"]);
+            show('dialog');
+        }
+
+    };
+    xhr.send("id=" + encodeURIComponent(id) + "&otp=" + encodeURIComponent(localStorage.secret));
 }
 
 function changeDialog(style, text){
@@ -170,9 +282,9 @@ function changeDialog(style, text){
 
             document.getElementById('dialog-button-cancel').style.display = 'none';
 
-            document.getElementById('dialog-button').className = "dangerButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm";
-            document.getElementById('dialog-button').innerText = lang[localStorage.lang]["signout"];
-            document.getElementById('dialog-button').onclick = () => logout();
+            document.getElementById('dialog-button').className = "successButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm";
+            document.getElementById('dialog-button').innerText = lang[localStorage.lang]["okay"];
+            document.getElementById('dialog-button').onclick = () => location.reload();
         break;
         case 4:
             //Enable 2fa confirmation dialog
@@ -201,6 +313,48 @@ function changeDialog(style, text){
             document.getElementById('dialog-button').className = "dangerButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm";
             document.getElementById('dialog-button').innerText = lang[localStorage.lang]["disable"];
             document.getElementById('dialog-button').onclick = () => disable2fa();
+        break;
+        case 6:
+            //Add Yubico OTP confirmation dialog
+            document.getElementById('dialog-icon').className = "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10";
+            document.getElementById('dialog-icon').innerHTML = "<svg class='h-6 w-6 text-blue-600' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' aria-hidden='true'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='8' cy='15' r='4' /><line x1='10.85' y1='12.15' x2='19' y2='4' /><line x1='18' y1='5' x2='20' y2='7' /><line x1='15' y1='8' x2='17' y2='10' /></svg>";
+
+            document.getElementById('dialog-title').innerText = "Yubico One-Time Password (Yubico OTP)";
+            document.getElementById('dialog-text').innerHTML = lang[localStorage.lang]["yubikey_insert_device"] + "<br/>" + lang[localStorage.lang]["yubikey_focus_input"] + "<br/>" + lang[localStorage.lang]["yubikey_press_button"] + "<br/><br/><label for='yubico-otp' class='sr-only'>OTP </label><input id='yubico-otp' name='yubico-otp' type='text' autocomplete='off' required class='appearance-none rounded-none relative block w-full px-3 py-2 border rounded-md focus:outline-none focus:z-10 sm:text-sm' placeholder='OTP'></div>";
+
+            document.getElementById('dialog-button-cancel').style.display = 'initial';
+
+            document.getElementById('dialog-button').className = "successButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm";
+            document.getElementById('dialog-button').innerText = lang[localStorage.lang]["add"];
+            document.getElementById('dialog-button').onclick = () => addYubiKey(document.getElementById('yubico-otp').value);
+        break;
+        case 7:
+            //Success dialog
+            document.getElementById('dialog-icon').className = "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10";
+            document.getElementById('dialog-icon').innerHTML = "<svg class='h-6 w-6 text-blue-600' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' aria-hidden='true'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='8' cy='15' r='4' /><line x1='10.85' y1='12.15' x2='19' y2='4' /><line x1='18' y1='5' x2='20' y2='7' /><line x1='15' y1='8' x2='17' y2='10' /></svg>";
+
+            document.getElementById('dialog-title').innerText = lang[localStorage.lang]["success"];
+            document.getElementById('dialog-text').innerHTML = text;
+
+            document.getElementById('dialog-button-cancel').style.display = 'none';
+
+            document.getElementById('dialog-button').className = "successButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm";
+            document.getElementById('dialog-button').innerText = lang[localStorage.lang]["okay"];
+            document.getElementById('dialog-button').onclick = () => location.reload();
+        break;
+        case 8:
+            //Remove Yubico OTP confirmation dialog
+            document.getElementById('dialog-icon').className = "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10";
+            document.getElementById('dialog-icon').innerHTML = "<svg class='h-6 w-6 text-blue-600' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' aria-hidden='true'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='8' cy='15' r='4' /><line x1='10.85' y1='12.15' x2='19' y2='4' /><line x1='18' y1='5' x2='20' y2='7' /><line x1='15' y1='8' x2='17' y2='10' /></svg>";
+
+            document.getElementById('dialog-title').innerText = "Yubico One-Time Password (Yubico OTP)";
+            document.getElementById('dialog-text').innerHTML = lang[localStorage.lang]["yubikey_insert_device"] + "<br/>" + lang[localStorage.lang]["yubikey_focus_input"] + "<br/>" + lang[localStorage.lang]["yubikey_press_button"] + "<br/><br/><label for='yubico-otp' class='sr-only'>OTP </label><input id='yubico-otp' name='yubico-otp' type='text' autocomplete='off' required class='appearance-none rounded-none relative block w-full px-3 py-2 border rounded-md focus:outline-none focus:z-10 sm:text-sm' placeholder='OTP'></div>";
+
+            document.getElementById('dialog-button-cancel').style.display = 'initial';
+
+            document.getElementById('dialog-button').className = "dangerButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm";
+            document.getElementById('dialog-button').innerText = lang[localStorage.lang]["remove"];
+            document.getElementById('dialog-button').onclick = () => removeYubiKey(document.getElementById('yubico-otp').value);
         break;
     }
 }
@@ -242,11 +396,21 @@ document.getElementById("dialog-button-cancel").addEventListener("click", () => 
 });
 
 document.getElementById("toggle-2fa-btn").addEventListener("click", () => {
-    if(localStorage.secret.length > 10){
+    if(localStorage.auth == "true"){
         changeDialog(5);
         show('dialog');
     }else{
         changeDialog(4);
         show('dialog');
     }
+});
+
+document.getElementById("add-yubico-btn").addEventListener("click", () => {
+    changeDialog(6);
+    show('dialog');
+});
+
+document.getElementById("remove-yubico-btn").addEventListener("click", () => {
+    changeDialog(8);
+    show('dialog');
 });

@@ -107,7 +107,7 @@ function login_check(){
         return;
     }
 
-    if(otp.length != 0 && otp.length != 6){
+    if(otp.length != 0 && otp.length != 6 && otp.length != 44){
         changeDialog(1, lang[localStorage.lang]["otp_contains"] + "\n" + lang[localStorage.lang]["otp_not_setup"]);
         show('dialog');
         return;
@@ -161,6 +161,8 @@ function login_check(){
             localStorage.username = username;
             localStorage.password = password;
             localStorage.secret = json['secret'];
+            localStorage.auth = json['auth'];
+            localStorage.yubico = json['yubico'];
             localStorage.loginTime = new Date().getTime();
 
             window.location.href = 'passwords.html';

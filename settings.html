@@ -140,24 +140,41 @@
                     </button>
                   </div>
               </div>
-          </li>
+            </li>
+            <!-- Yubico OTP -->
+            <li class="secondaryBackgroundColor shadow overflow-hidden rounded-md px-6 py-4">
+              <div>
+                  <label id="label-2fa" class="secondaryColor block text-sm font-medium sm:mt-px sm:pt-2">
+                    Yubico One-Time Password (Yubico OTP)
+                  </label>
+                  <div class="mt-5">
+                    <ul id="yubico-list" role="list" class="divide-y"></ul>
+                    <button id="add-yubico-btn" type="button" class="successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm">
+                      Add
+                    </button>
+                    <button id="remove-yubico-btn" type="button" class="dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm">
+                      Remove
+                    </button>
+                  </div>
+              </div>
+            </li>
             <!-- Delete account -->
             <li class="secondaryBackgroundColor shadow overflow-hidden rounded-md px-6 py-4">
-                <div>
-                    <h3 id="delete-account-title" class="tertiaryColor text-lg leading-6 font-medium">
-                      Delete your account
-                    </h3>
-                    <div class="secondaryColor mt-2 max-w-xl text-sm">
-                      <p id="delete-account-text">
-                        Once you delete your account, you will lose all data associated with it.
-                      </p>
-                    </div>
-                    <div class="mt-5">
-                      <button id="delete-account-btn" type="button" class="dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm">
-                        Delete account
-                      </button>
-                    </div>
-                  </div>
+              <div>
+                <h3 id="delete-account-title" class="tertiaryColor text-lg leading-6 font-medium">
+                  Delete your account
+                </h3>
+                <div class="secondaryColor mt-2 max-w-xl text-sm">
+                  <p id="delete-account-text">
+                    Once you delete your account, you will lose all data associated with it.
+                  </p>
+                </div>
+                <div class="mt-5">
+                  <button id="delete-account-btn" type="button" class="dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm">
+                    Delete account
+                  </button>
+                </div>
+              </div>
             </li>
         </ul>
     </div>

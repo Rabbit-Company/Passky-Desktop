@@ -187,6 +187,8 @@ function clearStorage(){
     delete localStorage.password;
     delete localStorage.passwords;
     delete localStorage.secret;
+    delete localStorage.auth;
+    delete localStorage.yubico
     delete localStorage.loginTime;
 }
 
