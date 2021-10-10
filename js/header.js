@@ -1,9 +1,61 @@
-if(localStorage.theme == null || typeof(localStorage.theme) == 'undefined') localStorage.theme = "dark";
-if(localStorage.lang == null || typeof(localStorage.lang) == 'undefined') localStorage.lang = "en";
-if(localStorage.sessionDuration == null || typeof(localStorage.sessionDuration) == 'undefined') localStorage.sessionDuration = 20;
+var storageData = {};
 
-if(!(["dark", "light", "blue", "dracula", "gray"].includes(localStorage.theme))) localStorage.theme = "dark";
-document.getElementById("css-theme").href = "css/themes/" + localStorage.theme + ".css";
+function writeData(key, data){
+    data = String(data);
+    try{
+        chrome.storage.local.set({[key]: data});
+    }catch{
+        localStorage.setItem(key, data);
+    }
+    storageData[key] = data;
+}
+
+function readData(key){
+    try{
+        chrome.storage.local.get([key], function(result) {
+            storageData[key] = result[key];
+        });
+    }catch{
+        storageData[key] = localStorage.getItem(key);
+    }
+    return storageData[key];
+}
+
+function deleteData(key){
+    try{
+        chrome.storage.local.remove(key);
+    }catch{
+        localStorage.removeItem(key);
+    }
+    delete storageData[key];
+}
+
+const initStorageCache = getAllStorageData().then(items => {
+    Object.assign(storageData, items);
+    setTheme();
+});
+
+function getAllStorageData() {
+    return new Promise((resolve, reject) => {
+        try{
+            chrome.storage.local.get(null, (items) => {
+                if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+                resolve(items);
+            });
+        }catch{
+            resolve({ ...localStorage });
+        }
+    });
+}
+
+function setTheme(){
+    if(readData('theme') == null || typeof(readData('theme')) == 'undefined') writeData('theme', 'dark');
+    if(readData('lang') == null || typeof(readData('lang')) == 'undefined') writeData('lang', 'en');
+    if(readData('sessionDuration') == null || typeof(readData('sessionDuration')) == 'undefined') writeData('sessionDuration', '20');
+
+    if(!(["dark", "light", "blue", "dracula", "gray"].includes(readData('theme')))) readData('theme') = "dark";
+    document.getElementById("css-theme").href = "css/themes/" + readData('theme') + ".css";
+}
 
 document.onkeydown = function(e) {
     if(e.key == "F12") return false;

@@ -12,6 +12,7 @@
     <script src="js/lang.js"></script>
     <script src="js/header.js"></script>
     <script src="js/aes.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
   </head>
   <body class="primaryBackgroundColor">
     <nav class="secondaryBackgroundColor shadow">
@@ -154,126 +155,6 @@
                   </div>
               </div>
           </li>
-          <li class="secondaryBackgroundColor col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200">
-              <div class="flex-1 flex flex-col p-8">
-                  <img id="dashlane-logo" class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" src="images/dashlane.png" alt="Dashlane">
-                  <h3 class="tertiaryColor mt-6 text-lg font-medium">Dashlane</h3>
-              </div>
-              <div>
-                  <div class="-mt-px flex">
-                  <div class="w-0 flex-1 flex">
-                      <a id="dashlane-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                          </svg>
-                          <span id="dashlane-import-btn-text" class="ml-3">Import</span>
-                      </a>
-                  </div>
-                  <div class="w-0 flex-1 flex">
-                      <a id="dashlane-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                          </svg>
-                          <span id="dashlane-export-btn-text" class="ml-3">Export</span>
-                      </a>
-                  </div>
-                  </div>
-              </div>
-          </li>
-          <li class="secondaryBackgroundColor col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200">
-              <div class="flex-1 flex flex-col p-8">
-                  <img id="onepassword-logo" class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" src="images/1password.svg" alt="1Password">
-                  <h3 class="tertiaryColor mt-6 text-lg font-medium">1Password</h3>
-              </div>
-              <div>
-                  <div class="-mt-px flex">
-                  <div class="w-0 flex-1 flex">
-                      <a id="onepassword-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                          </svg>
-                          <span id="onepassword-import-btn-text" class="ml-3">Import</span>
-                      </a>
-                  </div>
-                  <div class="w-0 flex-1 flex">
-                      <a id="onepassword-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                          </svg>
-                          <span id="onepassword-export-btn-text" class="ml-3">Export</span>
-                      </a>
-                  </div>
-                  </div>
-              </div>
-          </li>
-          <li class="secondaryBackgroundColor col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200">
-              <div class="flex-1 flex flex-col p-8">
-                  <img id="keeper-logo" class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" src="images/keeper.png" alt="Keeper">
-                  <h3 class="tertiaryColor mt-6 text-lg font-medium">Keeper</h3>
-              </div>
-              <div>
-                  <div class="-mt-px flex">
-                  <div class="w-0 flex-1 flex">
-                      <a id="keeper-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                              <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                          </svg>
-                          <span id="keeper-import-btn-text" class="ml-3">Import</span>
-                      </a>
-                  </div>
-                  <div class="w-0 flex-1 flex">
-                      <a id="keeper-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                              <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                          </svg>
-                          <span id="keeper-export-btn-text" class="ml-3">Export</span>
-                      </a>
-                  </div>
-                  </div>
-              </div>
-          </li>
-          <li class="secondaryBackgroundColor col-span-1 flex flex-col text-center rounded-lg shadow divide-y divide-gray-200">
-            <div class="flex-1 flex flex-col p-8">
-                <img id="nordpass-logo" class="w-24 h-24 flex-shrink-0 mx-auto rounded-full" src="images/nordpass.png" alt="Nordpass">
-                <h3 class="tertiaryColor mt-6 text-lg font-medium">Nordpass</h3>
-            </div>
-            <div>
-                <div class="-mt-px flex">
-                <div class="w-0 flex-1 flex">
-                    <a id="nordpass-import-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span id="nordpass-import-btn-text" class="ml-3">Import</span>
-                    </a>
-                </div>
-                <div class="w-0 flex-1 flex">
-                    <a id="nordpass-export-btn" href="#" class="importExportButtons relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm font-medium border border-transparent">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                            <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" />
-                        </svg>
-                        <span id="nordpass-export-btn-text" class="ml-3">Export</span>
-                    </a>
-                </div>
-                </div>
-            </div>
-        </li>
         </ul>
     </div>
 
@@ -306,6 +187,7 @@
     </div>
     <script src="js/default-functions.js"></script>
     <script src="js/sha512.js"></script>
+    <script src="js/jquery.csv.min.js"></script>
     <script src="js/export.js"></script>
   </body>
 </html>

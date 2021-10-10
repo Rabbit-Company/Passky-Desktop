@@ -69,16 +69,6 @@ function downloadTxt(exportTxt, exportName){
     downloadAnchorNode.remove();
 }
 
-function downloadJson(exportJson, exportName){
-    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(exportJson);
-    let downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", exportName + ".json");
-    document.body.appendChild(downloadAnchorNode); // required for firefox
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
-}
-
 function downloadObjectAsJson(exportObj, exportName){
     let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
     let downloadAnchorNode = document.createElement('a');
@@ -145,10 +135,10 @@ function randRange(min, max) {
 
 function refreshPasswords(){
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", localStorage.url + "/?action=getPasswords");
+    xhr.open("POST", readData('url') + "/?action=getPasswords");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(localStorage.username + ":" + sha512(localStorage.password)));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -162,38 +152,37 @@ function refreshPasswords(){
             if(json['error'] != 0 && json['error'] != 8) return;
 
             if(json['error'] == 0){
-                let passwords = json['passwords'];
-                for(let i = 0; i < passwords.length; i++){
-                    passwords[i].password = CryptoJS.AES.decrypt(passwords[i].password, localStorage.password).toString(CryptoJS.enc.Utf8);
-                    if(passwords[i].message == null || typeof(passwords[i].message) == 'undefined'){
-                        passwords[i].message = "";
-                    }else{
-                        passwords[i].message = CryptoJS.AES.decrypt(passwords[i].message, localStorage.password).toString(CryptoJS.enc.Utf8);
-                    }
-                }
-                localStorage.passwords = JSON.stringify(passwords);
+                writeData('passwords', JSON.stringify(json['passwords']));
             }else{
-                localStorage.passwords = "{}";
+                writeData('passwords', '{}');
             }
 
             window.location.href = 'passwords.html';
         }
 
     };
-    xhr.send("otp=" + encodeURIComponent(localStorage.secret));
+    xhr.send("otp=" + encodeURIComponent(readData('secret')));
+}
+
+function encryptPassword(password){
+    return CryptoJS.AES.encrypt(password, readData('secret') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString();
+}
+
+function decryptPassword(password){
+    return CryptoJS.AES.decrypt(password, readData('secret') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString(CryptoJS.enc.Utf8);
 }
 
 function clearStorage(){
-    delete localStorage.password;
-    delete localStorage.passwords;
-    delete localStorage.secret;
-    delete localStorage.auth;
-    delete localStorage.yubico
-    delete localStorage.loginTime;
+    deleteData('password');
+    deleteData('passwords');
+    deleteData('secret');
+    deleteData('auth');
+    deleteData('yubico');
+    deleteData('loginTime');
 }
 
 function isSessionValid(){
-    if(localStorage.url == null || typeof(localStorage.url) == 'undefined' || localStorage.username == null || typeof(localStorage.username) == 'undefined' || localStorage.password == null || typeof(localStorage.password) == 'undefined' || localStorage.passwords == null || typeof(localStorage.passwords) == 'undefined' || localStorage.loginTime == null || typeof(localStorage.loginTime) == 'undefined' || localStorage.sessionDuration == null || typeof(localStorage.sessionDuration) == 'undefined' || ((parseFloat(localStorage.loginTime) + (localStorage.sessionDuration * 60000))) < new Date().getTime()){
+    if(readData('url') == null || typeof(readData('url')) == 'undefined' || readData('username') == null || typeof(readData('username')) == 'undefined' || readData('password') == null || typeof(readData('password')) == 'undefined' || readData('passwords') == null || typeof(readData('passwords')) == 'undefined' || readData('loginTime') == null || typeof(readData('loginTime')) == 'undefined' || readData('sessionDuration') == null || typeof(readData('sessionDuration')) == 'undefined' || ((parseFloat(readData('loginTime')) + (readData('sessionDuration') * 60000))) < new Date().getTime()){
         clearStorage();
         return false;
     }
