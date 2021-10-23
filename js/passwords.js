@@ -1,5 +1,4 @@
 initStorageCache.then(() => {
-    if(!isSessionValid()) window.location.href = 'index.html';
 
     document.getElementById("passwords-link").innerText = lang[readData('lang')]["passwords"];
     document.getElementById("import-export-link").innerText = lang[readData('lang')]["import_export"];
@@ -91,6 +90,10 @@ initStorageCache.then(() => {
             }
         });
     }catch{}
+
+    window.setInterval(function(){
+        if(!isSessionValid()) logout();
+    }, 5000);
 });
 
 document.getElementById("search").addEventListener("keyup", () => {

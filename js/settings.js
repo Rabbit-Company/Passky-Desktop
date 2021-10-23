@@ -1,7 +1,5 @@
 initStorageCache.then(() => {
 
-    if(!isSessionValid()) window.location.href = 'index.html';
-
     document.getElementById("passwords-link").innerText = lang[readData('lang')]["passwords"];
     document.getElementById("import-export-link").innerText = lang[readData('lang')]["import_export"];
     document.getElementById("settings-link").innerText = lang[readData('lang')]["settings"];
@@ -54,6 +52,9 @@ initStorageCache.then(() => {
     let minutes = document.getElementsByClassName("addMinutes");
     for(let i = 0; i < minutes.length; i++) minutes[i].innerText = minutes[i].innerText + " " + lang[readData('lang')]["minutes"];
     
+    window.setInterval(function(){
+        if(!isSessionValid()) logout();
+    }, 5000);
 });
 
 function deleteAccount(){

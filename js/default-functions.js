@@ -63,7 +63,7 @@ function downloadTxt(exportTxt, exportName){
     let dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(exportTxt);
     let downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", exportName + ".txt");
+    downloadAnchorNode.setAttribute("download", exportName);
     document.body.appendChild(downloadAnchorNode); // required for firefox
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
