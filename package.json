@@ -1,14 +1,15 @@
 {
   "name": "passky",
-  "version": "4.2.0",
-  "author": "Rabbit Company LLC",
+  "version": "4.3.0",
+  "license": "GPL-3.0",
+  "author": "Rabbit Company LLC <info@rabbit-company.com>",
+  "icon": "images/logo.png",
+  "repository": "https://github.com/Rabbit-Company/Passky-Desktop",
   "description": "Simple, modern, open source and secure password manager.",
   "main": "main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "dist": "electron-builder"
+    "start": "electron .",
+    "build": "electron-builder"
   },
   "keywords": [
     "Passky",
@@ -16,28 +17,46 @@
     "Password",
     "Manager"
   ],
-  "license": "GPL-3.0",
   "build": {
     "appId": "com.rabbit-company.passky",
+    "productName": "passky",
     "copyright": "Copyright 2021 Rabbit Company LLC",
     "mac": {
-      "category": "public.app-category.productivity"
+      "category": "public.app-category.productivity",
+      "icon": "images/logo.icns"
+    },
+    "win": {
+      "icon": "images/logo.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "appx",
+          "publisher": "CN=52198C2F-725A-42E5-855A-FB2F0CA67875",
+          "publisherDisplayName": "Rabbit Company LLC",
+          "identityName": "57225RabbitCompanyLLC.Passky"
+        }
+      ]
+    },
+    "linux": {
+      "category": "Utility",
+      "icon": "images/logo.png",
+      "target": [
+        "AppImage",
+        "snap",
+        "deb",
+        "rpm",
+        "freebsd"
+      ]
     }
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.61",
-    "@electron-forge/maker-appx": "^6.0.0-beta.61",
-    "@electron-forge/maker-deb": "^6.0.0-beta.61",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
-    "@electron-forge/maker-dmg": "^6.0.0-beta.61",
     "electron": "^15.2.0",
     "electron-builder": "^22.14.5"
-  },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
-  },
-  "config": {
-    "forge": "js/forge.config.js"
   }
 }

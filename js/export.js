@@ -117,160 +117,6 @@ function export_passky(){
     downloadObjectAsJson(export_passky, "passky_export_" + getDate(new Date()));
 }
 
-function import_nordpass(){
-
-    if(!isSessionValid()) window.location.href = 'index.html';
-
-    let ido = "";
-    try{
-        ido = $.csv.toArrays(document.getElementById("import-data").value);
-    }catch{
-        changeDialog(2, 1, 4);
-        return;
-    }
-
-    let passwords = [];
-    for(let i = 1, j = 0; i < ido.length; i++){
-        let website = ido[i][1].replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
-        if(website.slice(-1) == '/') website = website.slice(0, -1);
-        let username = ido[i][2];
-        let password = ido[i][3];
-        let message = ido[i][4];
-
-        if(!isPasswordWebsiteValid(website)) continue;
-        if(!isPasswordUsernameValid(username)) continue;
-        if(!isPasswordPasswordValid(password)) continue;
-        if(!isPasswordMessageValid(message)) continue;
-
-        let duplicated = false;
-        const current_passwords = JSON.parse(readData('passwords'));
-        for(let k = 0; k < current_passwords.length; k++){
-            if(current_passwords[k]["website"] == website && current_passwords[k]["username"] == username && CryptoJS.AES.decrypt(current_passwords[k]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) == password){
-                duplicated = true;
-                break;
-            }
-        }
-        if(duplicated) continue;
-
-        passwords[j] = {};
-        passwords[j]["website"] = website;
-        passwords[j]["username"] = username;
-        passwords[j]["password"] = CryptoJS.AES.encrypt(password, decryptPassword(readData('password'))).toString();
-        passwords[j]["message"] = CryptoJS.AES.encrypt(message, decryptPassword(readData('password'))).toString();
-        j++;
-    }
-
-    if(passwords.length == 0){
-        changeDialog(3, lang[readData('lang')]["import_success"].replace("{success_number}", "0"));
-        show('dialog');
-        return;
-    }
-
-    import_data(passwords);
-}
-
-function export_nordpass(){
-    if(!isSessionValid()) window.location.href = 'index.html';
-
-    let exportedPasswords = [];
-    let passwords = JSON.parse(readData('passwords'));
-    for(let i = 0; i < passwords.length; i++){
-        exportedPasswords[i] = {};
-        exportedPasswords[i].name = passwords[i]["website"];
-        exportedPasswords[i].url = passwords[i]["website"];
-        exportedPasswords[i].username = passwords[i]["username"];
-        exportedPasswords[i].password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
-        exportedPasswords[i].note = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : "";
-        exportedPasswords[i].cardholdername = null;
-        exportedPasswords[i].cardnumber = null;
-        exportedPasswords[i].cvc = null;
-        exportedPasswords[i].expirydate = null;
-        exportedPasswords[i].zipcode = null;
-        exportedPasswords[i].folder = null;
-        exportedPasswords[i].full_name = null;
-        exportedPasswords[i].phone_number = null;
-        exportedPasswords[i].email = null;
-        exportedPasswords[i].address1 = null;
-        exportedPasswords[i].address2 = null;
-        exportedPasswords[i].city = null;
-        exportedPasswords[i].country = null;
-        exportedPasswords[i].state = null;
-    }
-    downloadTxt($.csv.fromObjects(exportedPasswords), "nordpass_" + getDate(new Date()) + ".csv");
-}
-
-function import_lastpass(){
-
-    if(!isSessionValid()) window.location.href = 'index.html';
-
-    let ido = "";
-    try{
-        ido = $.csv.toArrays(document.getElementById("import-data").value);
-    }catch{
-        changeDialog(2, 1, 1);
-        return;
-    }
-
-    let passwords = [];
-    for(let i = 1, j = 0; i < ido.length; i++){
-        let website = ido[i][0].replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
-        if(website.slice(-1) == '/') website = website.slice(0, -1);
-        let username = ido[i][1];
-        let password = ido[i][2];
-        let message = ido[i][4];
-
-        if(!isPasswordWebsiteValid(website)) continue;
-        if(!isPasswordUsernameValid(username)) continue;
-        if(!isPasswordPasswordValid(password)) continue;
-        if(!isPasswordMessageValid(message)) continue;
-
-        let duplicated = false;
-        const current_passwords = JSON.parse(readData('passwords'));
-        for(let k = 0; k < current_passwords.length; k++){
-            if(current_passwords[k]["website"] == website && current_passwords[k]["username"] == username && CryptoJS.AES.decrypt(current_passwords[k]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) == password){
-                duplicated = true;
-                break;
-            }
-        }
-        if(duplicated) continue;
-
-        passwords[j] = {};
-        passwords[j]["website"] = website;
-        passwords[j]["username"] = username;
-        passwords[j]["password"] = CryptoJS.AES.encrypt(password, decryptPassword(readData('password'))).toString();
-        passwords[j]["message"] = CryptoJS.AES.encrypt(message, decryptPassword(readData('password'))).toString();
-        j++;
-    }
-
-    if(passwords.length == 0){
-        changeDialog(3, lang[readData('lang')]["import_success"].replace("{success_number}", "0"));
-        show('dialog');
-        return;
-    }
-
-    import_data(passwords);
-}
-
-function export_lastpass(){
-
-    if(!isSessionValid()) window.location.href = 'index.html';
-
-    let exportedPasswords = [];
-    let passwords = JSON.parse(readData('passwords'));
-    for(let i = 0; i < passwords.length; i++){
-        exportedPasswords[i] = {};
-        exportedPasswords[i].url = passwords[i]["website"];
-        exportedPasswords[i].username = passwords[i]["username"];
-        exportedPasswords[i].password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
-        exportedPasswords[i].totp = null;
-        exportedPasswords[i].extra = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : "";
-        exportedPasswords[i].name = passwords[i]["website"];
-        exportedPasswords[i].grouping = null;
-        exportedPasswords[i].fav = 0;
-    }
-    downloadTxt($.csv.fromObjects(exportedPasswords), "lastpass_" + getDate(new Date()) + ".csv");
-}
-
 function import_bitwarden(){
 
     if(!isSessionValid()) window.location.href = 'index.html';
@@ -341,24 +187,198 @@ function import_bitwarden(){
     import_data(passwords);
 }
 
-function import_dashlane(){
+function export_keepassxc(){
+    if(!isSessionValid()) window.location.href = 'index.html';
+
+    let exportedPasswords = [];
+    let passwords = JSON.parse(readData('passwords'));
+    for(let i = 0; i < passwords.length; i++){
+        exportedPasswords[i] = {};
+        exportedPasswords[i].Group = "Root";
+        exportedPasswords[i].Title = passwords[i]["website"];
+        exportedPasswords[i].Username = passwords[i]["username"];
+        exportedPasswords[i].Password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
+        exportedPasswords[i].URL = passwords[i]["website"];
+        exportedPasswords[i].Notes = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : "";
+        exportedPasswords[i].TOTP = null;
+        exportedPasswords[i].Icon = 0;
+        exportedPasswords[i]["Last Modified"] = new Date().toISOString();
+        exportedPasswords[i]["Created"] = new Date().toISOString();
+    }
+  
+    downloadTxt($.csv.fromObjects(exportedPasswords), "keepassxc_" + getDate(new Date()) + ".csv");   
+}
+
+function export_nordpass(){
+    if(!isSessionValid()) window.location.href = 'index.html';
+
+    let exportedPasswords = [];
+    let passwords = JSON.parse(readData('passwords'));
+    for(let i = 0; i < passwords.length; i++){
+        exportedPasswords[i] = {};
+        exportedPasswords[i].name = passwords[i]["website"];
+        exportedPasswords[i].url = passwords[i]["website"];
+        exportedPasswords[i].username = passwords[i]["username"];
+        exportedPasswords[i].password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
+        exportedPasswords[i].note = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : "";
+        exportedPasswords[i].cardholdername = null;
+        exportedPasswords[i].cardnumber = null;
+        exportedPasswords[i].cvc = null;
+        exportedPasswords[i].expirydate = null;
+        exportedPasswords[i].zipcode = null;
+        exportedPasswords[i].folder = null;
+        exportedPasswords[i].full_name = null;
+        exportedPasswords[i].phone_number = null;
+        exportedPasswords[i].email = null;
+        exportedPasswords[i].address1 = null;
+        exportedPasswords[i].address2 = null;
+        exportedPasswords[i].city = null;
+        exportedPasswords[i].country = null;
+        exportedPasswords[i].state = null;
+    }
+    downloadTxt($.csv.fromObjects(exportedPasswords), "nordpass_" + getDate(new Date()) + ".csv");
+}
+
+function export_keeper(){
+    if(!isSessionValid()) window.location.href = 'index.html';
+
+    let exportedPasswords = [];
+    let passwords = JSON.parse(readData('passwords'));
+    for(let i = 0; i < passwords.length; i++){
+        exportedPasswords[i] = {};
+        exportedPasswords[i].Folder = null;
+        exportedPasswords[i].Title = passwords[i]["website"];
+        exportedPasswords[i].Login = passwords[i]["username"];
+        exportedPasswords[i].Password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
+        exportedPasswords[i].URL = passwords[i]["website"];
+        exportedPasswords[i].Notes = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : "";
+    }
+
+    downloadTxt($.csv.fromObjects(exportedPasswords), "keeper_" + getDate(new Date()) + ".csv");
+}
+
+function export_lastpass(){
+
+    if(!isSessionValid()) window.location.href = 'index.html';
+
+    let exportedPasswords = [];
+    let passwords = JSON.parse(readData('passwords'));
+    for(let i = 0; i < passwords.length; i++){
+        exportedPasswords[i] = {};
+        exportedPasswords[i].url = passwords[i]["website"];
+        exportedPasswords[i].username = passwords[i]["username"];
+        exportedPasswords[i].password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
+        exportedPasswords[i].totp = null;
+        exportedPasswords[i].extra = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : "";
+        exportedPasswords[i].name = passwords[i]["website"];
+        exportedPasswords[i].grouping = null;
+        exportedPasswords[i].fav = 0;
+    }
+    downloadTxt($.csv.fromObjects(exportedPasswords), "lastpass_" + getDate(new Date()) + ".csv");
+}
+
+function export_dashlane(){
+
+    if(!isSessionValid()) window.location.href = 'index.html';
+
+    let exportedPasswords = [];
+    let passwords = JSON.parse(readData('passwords'));
+    for(let i = 0; i < passwords.length; i++){
+        exportedPasswords[i] = {};
+        exportedPasswords[i].username = passwords[i]["username"];
+        exportedPasswords[i].username2 = null;
+        exportedPasswords[i].username3 = null;
+        exportedPasswords[i].title = passwords[i]["website"];
+        exportedPasswords[i].password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
+        exportedPasswords[i].note = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : null;
+        exportedPasswords[i].url = passwords[i]["website"];
+        exportedPasswords[i].category = null;
+        exportedPasswords[i].otpSecret = null;
+    }
+    downloadTxt($.csv.fromObjects(exportedPasswords), "dashlane_" + getDate(new Date()) + ".csv");
+}
+
+function import_csv(id){
     if(!isSessionValid()) window.location.href = 'index.html';
 
     let ido = "";
     try{
         ido = $.csv.toArrays(document.getElementById("import-data").value);
     }catch{
-        changeDialog(2, 1, 3);
+        changeDialog(2, 1, id);
         return;
+    }
+
+    let websiteID = 0;
+    let usernameID = 0;
+    let passwordID = 0;
+    let messageID = 0;
+    let titleID = 0;
+
+    switch(id){
+        case 1:
+            //LastPass
+            websiteID = 0;
+            usernameID = 1;
+            passwordID = 2;
+            messageID = 4;
+            titleID = 5;
+        break;
+        case 3:
+            //Dashlane
+            websiteID = 6;
+            usernameID = 0;
+            passwordID = 4;
+            messageID = 5;
+            titleID = 3;
+        break;
+        case 4:
+            //NordPass
+            websiteID = 1;
+            usernameID = 2;
+            passwordID = 3;
+            messageID = 4;
+            titleID = 0;
+        break;
+        case 5:
+            //KeePassXC
+            websiteID = 4;
+            usernameID = 2;
+            passwordID = 3;
+            messageID = 5;
+            titleID = 1;
+        break;
+        case 6:
+            //Keeper
+            websiteID = 4;
+            usernameID = 2;
+            passwordID = 3;
+            messageID = 5;
+            titleID = 1;
+        break;
+        case 7:
+            //1Password
+            websiteID = 4;
+            usernameID = 2;
+            passwordID = 3;
+            messageID = 8;
+            titleID = 1;
+        break;
     }
 
     let passwords = [];
     for(let i = 1, j = 0; i < ido.length; i++){
-        let website = ido[i][6].replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
+        let website = ido[i][websiteID].replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
         if(website.slice(-1) == '/') website = website.slice(0, -1);
-        let username = ido[i][0];
-        let password = ido[i][4];
-        let message = ido[i][5];
+
+        if(!isPasswordWebsiteValid(website)){
+            website = ido[i][titleID].replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
+            if(website.slice(-1) == '/') website = website.slice(0, -1);
+        }
+
+        let username = ido[i][usernameID];
+        let password = ido[i][passwordID];
+        let message = ido[i][messageID];
 
         if(!isPasswordWebsiteValid(website)) continue;
         if(!isPasswordUsernameValid(username)) continue;
@@ -390,27 +410,6 @@ function import_dashlane(){
     }
 
     import_data(passwords);
-}
-
-function export_dashlane(){
-
-    if(!isSessionValid()) window.location.href = 'index.html';
-
-    let exportedPasswords = [];
-    let passwords = JSON.parse(readData('passwords'));
-    for(let i = 0; i < passwords.length; i++){
-        exportedPasswords[i] = {};
-        exportedPasswords[i].username = passwords[i]["username"];
-        exportedPasswords[i].username2 = null;
-        exportedPasswords[i].username3 = null;
-        exportedPasswords[i].title = passwords[i]["website"];
-        exportedPasswords[i].password = CryptoJS.AES.decrypt(passwords[i]["password"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);
-        exportedPasswords[i].note = (passwords[i]["message"] != null) ? CryptoJS.AES.decrypt(passwords[i]["message"], decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8) : null;
-        exportedPasswords[i].url = passwords[i]["website"];
-        exportedPasswords[i].category = null;
-        exportedPasswords[i].otpSecret = null;
-    }
-    downloadTxt($.csv.fromObjects(exportedPasswords), "dashlane_" + getDate(new Date()) + ".csv");
 }
 
 function import_data(passwords){
@@ -480,7 +479,7 @@ function changeDialog(style, text, text2){
                 case 1:
                     document.getElementById('dialog-title').innerText = lang[readData('lang')]["import_from"].replace("{name}","Lastpass");
                     document.getElementById('import-data').placeholder = "Paste data from Lastpass's exported csv file.";
-                    document.getElementById('dialog-button').onclick = () => import_lastpass();
+                    document.getElementById('dialog-button').onclick = () => import_csv(1);
                 break;
                 case 2:
                     document.getElementById('dialog-title').innerText = lang[readData('lang')]["import_from"].replace("{name}","Bitwarden");
@@ -490,12 +489,27 @@ function changeDialog(style, text, text2){
                 case 3:
                     document.getElementById('dialog-title').innerText = lang[readData('lang')]["import_from"].replace("{name}","Dashlane");
                     document.getElementById('import-data').placeholder = "Paste data from Dashlane's exported csv file.";
-                    document.getElementById('dialog-button').onclick = () => import_dashlane();
+                    document.getElementById('dialog-button').onclick = () => import_csv(3);
                 break;
                 case 4:
                     document.getElementById('dialog-title').innerText = lang[readData('lang')]["import_from"].replace("{name}","NordPass");
                     document.getElementById('import-data').placeholder = "Paste data from NordPass's exported csv file.";
-                    document.getElementById('dialog-button').onclick = () => import_nordpass();
+                    document.getElementById('dialog-button').onclick = () => import_csv(4);
+                break;
+                case 5:
+                    document.getElementById('dialog-title').innerText = lang[readData('lang')]["import_from"].replace("{name}","KeePassXC");
+                    document.getElementById('import-data').placeholder = "Paste data from KeePassXC's exported csv file.";
+                    document.getElementById('dialog-button').onclick = () => import_csv(5);
+                break;
+                case 6:
+                    document.getElementById('dialog-title').innerText = lang[readData('lang')]["import_from"].replace("{name}","Keeper");
+                    document.getElementById('import-data').placeholder = "Paste data from Keeper's exported csv file.";
+                    document.getElementById('dialog-button').onclick = () => import_csv(6);
+                break;
+                case 7:
+                    document.getElementById('dialog-title').innerText = lang[readData('lang')]["import_from"].replace("{name}","1Password");
+                    document.getElementById('import-data').placeholder = "Paste data from 1Password's exported csv file.";
+                    document.getElementById('dialog-button').onclick = () => import_csv(7);
                 break;
             }
         break;
@@ -572,6 +586,15 @@ document.getElementById("bitwarden-import-btn").addEventListener("click", () => 
     show('dialog');
 });
 
+document.getElementById("keepassxc-import-btn").addEventListener("click", () => {
+    changeDialog(1, 5);
+    show('dialog');
+});
+
+document.getElementById("keepassxc-export-btn").addEventListener("click", () => {
+    export_keepassxc();
+});
+
 document.getElementById("nordpass-import-btn").addEventListener("click", () => {
     changeDialog(1, 4);
     show('dialog');
@@ -579,6 +602,20 @@ document.getElementById("nordpass-import-btn").addEventListener("click", () => {
 
 document.getElementById("nordpass-export-btn").addEventListener("click", () => {
     export_nordpass();
+});
+
+document.getElementById("onepassword-import-btn").addEventListener("click", () => {
+    changeDialog(1, 7);
+    show('dialog');
+});
+
+document.getElementById("keeper-import-btn").addEventListener("click", () => {
+    changeDialog(1, 6);
+    show('dialog');
+});
+
+document.getElementById("keeper-export-btn").addEventListener("click", () => {
+    export_keeper();
 });
 
 document.getElementById("lastpass-import-btn").addEventListener("click", () => {
