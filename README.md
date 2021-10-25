@@ -71,18 +71,19 @@ If you’re ready to try Passky out at no cost, you can get started by visiting 
 2. Search for Passky (https://www.microsoft.com/store/apps/9NRCP6HPPB82)
 3. Click on install
 #### Manually
-1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.2.0/passky-4.2.0.Setup.exe)
-2. Run installer
-3. Passky desktop application is now installed
+1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.3.0/Passky.Setup.4.3.0.exe)
+2. or Download Passky portable (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.3.0/Passky.4.3.0.exe)
+3. Run downloaded .exe file
+4. Passky desktop application is now installed
 ### Debian based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.2.0/passky_4.2.0_amd64.deb
-sudo dpkg -i passky_4.2.0_amd64.deb
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.3.0/passky_4.3.0_amd64.deb
+sudo dpkg -i passky_4.3.0_amd64.deb
 ```
 ### Red Hat based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.2.0/Passky-4.2.0-1.x86_64.rpm
-sudo rpm -i Passky-4.2.0-1.x86_64.rpm
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.3.0/passky-4.3.0.x86_64.rpm
+sudo rpm -i passky-4.3.0.x86_64.rpm
 ```
 ### Snap
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/passky)
@@ -90,63 +91,10 @@ sudo rpm -i Passky-4.2.0-1.x86_64.rpm
 sudo snap install passky
 ```
 ### AppImage
-1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.2.0/passky-4.2.0.AppImage)
-2. Start passky-4.2.0.AppImage
+1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v4.3.0/Passky-4.3.0.AppImage)
+2. Start Passky-4.3.0.AppImage
 3. Passky desktop application is now installed
 
-### Nix / NixOS
-Add the overlay to home.nix (Home Manager) or configuration.nix (NixOS):
-```nix
-{
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/Rabbit-Company/Passky-Desktop/archive/main.tar.gz;
-    }))
-  ];
-
-  # Home Manager
-  home.packages = with pkgs; [
-    passky
-  ];
-
-  # NixOS
-  environment.systemPackages = with pkgs; [
-    passky
-  ];
-}
-```
-With flakes:
-```nix
-{
-  inputs.passky-dekstop.url = "github:Rabbit-Company/Passky-Desktop";
-  outputs = { self, inputs, ... }:
-    let
-      passky-overlay = inputs.passky-desktop.overlay;
-    in
-    {
-
-      # Home Manager
-      homeConfigurations = {
-        someHostname = inputs.home-manager.lib.homeManagerConfiguration {
-          configuration = { pkgs, ... }: {
-            imports = [
-              passky-dekstop.homeManagerModule
-            ];
-          };
-        };
-      };
-
-      # NixOS
-      nixosConfigurations = {
-        someOtherHostname = nixpkgs.lib.nixosSystem {
-          modules = [
-            passky-desktop.nixosModule
-          ];
-        };
-      };
-   };
-}
-```
 ## Uninstall
 ### Windows
 1. In the search box on the taskbar, type **Control Panel** and select it from the results.
@@ -165,5 +113,5 @@ sudo rpm -e Passky
 sudo snap remove passky
 ```
 ### AppImage
-1. Move passky-4.2.0.AppImage to the trash
+1. Move Passky-4.3.0.AppImage to the trash
 2. Empty your trash
