@@ -3,6 +3,7 @@
   "version": "4.3.0",
   "license": "GPL-3.0",
   "author": "Rabbit Company LLC <info@rabbit-company.com>",
+  "homepage": "https://passky.org",
   "icon": "images/logo.png",
   "repository": "https://github.com/Rabbit-Company/Passky-Desktop",
   "description": "Simple, modern, open source and secure password manager.",
@@ -19,7 +20,7 @@
   ],
   "build": {
     "appId": "com.rabbit-company.passky",
-    "productName": "passky",
+    "productName": "Passky",
     "copyright": "Copyright 2021 Rabbit Company LLC",
     "mac": {
       "category": "public.app-category.productivity",
@@ -28,16 +29,9 @@
     "win": {
       "icon": "images/logo.ico",
       "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        },
-        {
-          "target": "appx"
-        }
+        "nsis",
+        "portable",
+        "appx"
       ]
     },
     "linux": {
@@ -50,6 +44,13 @@
         "rpm",
         "freebsd"
       ]
+    },
+    "appx": {
+      "applicationId": "Passky",
+      "displayName": "Passky",
+      "publisher": "CN=52198C2F-725A-42E5-855A-FB2F0CA67875",
+      "publisherDisplayName": "Rabbit Company LLC",
+      "identityName": "57225RabbitCompanyLLC.Passky"
     }
   },
   "devDependencies": {
