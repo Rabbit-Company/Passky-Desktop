@@ -36,10 +36,7 @@
           ]
         },
         {
-          "target": "appx",
-          "publisher": "CN=52198C2F-725A-42E5-855A-FB2F0CA67875",
-          "publisherDisplayName": "Rabbit Company LLC",
-          "identityName": "57225RabbitCompanyLLC.Passky"
+          "target": "appx"
         }
       ]
     },
@@ -56,7 +53,7 @@
     }
   },
   "devDependencies": {
-    "electron": "^15.2.0",
+    "electron": "^15.3.0",
     "electron-builder": "^22.14.5"
   }
 }
