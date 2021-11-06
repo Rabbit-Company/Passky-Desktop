@@ -35,15 +35,18 @@
       ]
     },
     "linux": {
-      "category": "Utility",
-      "icon": "images/logo.png",
       "target": [
         "AppImage",
+        "flatpak",
         "snap",
         "deb",
         "rpm",
         "freebsd"
-      ]
+      ],
+      "maintainer": "com.rabbit-company.passky",
+      "category": "Utility",
+      "vendor": "Rabbit Company LLC",
+      "description": "Simple, modern, open source and secure password manager."
     },
     "appx": {
       "applicationId": "Passky",
