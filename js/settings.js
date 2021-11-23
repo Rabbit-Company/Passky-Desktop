@@ -13,6 +13,8 @@ initStorageCache.then(() => {
     document.getElementById("label-theme").innerText = lang[readData('lang')]["theme"];
     document.getElementById("label-session-duration").innerText = lang[readData('lang')]["session_duration"];
     
+    document.getElementById("label-auto-search").innerText = lang[readData('lang')]["auto_search"];
+
     document.getElementById("add-yubico-btn").innerText = lang[readData('lang')]["add"];
     document.getElementById("remove-yubico-btn").innerText = lang[readData('lang')]["remove"];
     
@@ -32,6 +34,14 @@ initStorageCache.then(() => {
     }else{
         document.getElementById("toggle-2fa-btn").innerText = lang[readData('lang')]["enable"];
         document.getElementById("toggle-2fa-btn").className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
+    }
+
+    if(readData('autoSearch') == "false"){
+        document.getElementById("toggle-auto-search").innerText = lang[readData('lang')]["enable"];
+        document.getElementById("toggle-auto-search").className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
+    }else{
+        document.getElementById("toggle-auto-search").innerText = lang[readData('lang')]["disable"];
+        document.getElementById("toggle-auto-search").className = "dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
     }
     
     if(readData('yubico') == "null" || readData('yubico') == ''){
@@ -62,7 +72,7 @@ function deleteAccount(){
     xhr.open("POST", readData('url') + "/?action=deleteAccount");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + readData('token')));
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -82,7 +92,7 @@ function deleteAccount(){
         }
 
     };
-    xhr.send("otp=" + encodeURIComponent(readData('secret')));
+    xhr.send();
 }
 
 function enable2fa(){
@@ -90,7 +100,7 @@ function enable2fa(){
     xhr.open("POST", readData('url') + "/?action=enable2fa");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + readData('token')));
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -120,7 +130,7 @@ function enable2fa(){
         }
 
     };
-    xhr.send("otp=" + encodeURIComponent(readData('secret')));
+    xhr.send();
 }
 
 function disable2fa(){
@@ -128,7 +138,7 @@ function disable2fa(){
     xhr.open("POST", readData('url') + "/?action=disable2fa");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + readData('token')));
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -149,7 +159,7 @@ function disable2fa(){
         }
 
     };
-    xhr.send("otp=" + encodeURIComponent(readData('secret')));
+    xhr.send();
 }
 
 function addYubiKey(id){
@@ -170,7 +180,7 @@ function addYubiKey(id){
     xhr.open("POST", readData('url') + "/?action=addYubiKey");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + readData('token')));
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -199,7 +209,7 @@ function addYubiKey(id){
         }
 
     };
-    xhr.send("id=" + encodeURIComponent(id) + "&otp=" + encodeURIComponent(readData('secret')));
+    xhr.send("id=" + encodeURIComponent(id));
 }
 
 function removeYubiKey(id){
@@ -220,7 +230,7 @@ function removeYubiKey(id){
     xhr.open("POST", readData('url') + "/?action=removeYubiKey");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + readData('token')));
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -243,7 +253,7 @@ function removeYubiKey(id){
         }
 
     };
-    xhr.send("id=" + encodeURIComponent(id) + "&otp=" + encodeURIComponent(readData('secret')));
+    xhr.send("id=" + encodeURIComponent(id));
 }
 
 function changeDialog(style, text){
@@ -397,6 +407,15 @@ document.getElementById("main-menu-toggle-btn").addEventListener("click", () => 
 
 document.getElementById("dialog-button-cancel").addEventListener("click", () => {
     hide('dialog');
+});
+
+document.getElementById("toggle-auto-search").addEventListener("click", () => {
+    if(readData('autoSearch') == "false"){
+        writeData('autoSearch', "true");
+    }else{
+        writeData('autoSearch', "false");
+    }
+    location.reload();
 });
 
 document.getElementById("toggle-2fa-btn").addEventListener("click", () => {

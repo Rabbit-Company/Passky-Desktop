@@ -138,7 +138,7 @@ function refreshPasswords(){
     xhr.open("POST", readData('url') + "/?action=getPasswords");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + readData('token')));
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {
@@ -161,28 +161,28 @@ function refreshPasswords(){
         }
 
     };
-    xhr.send("otp=" + encodeURIComponent(readData('secret')));
+    xhr.send();
 }
 
 function encryptPassword(password){
-    return CryptoJS.AES.encrypt(password, readData('secret') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString();
+    return CryptoJS.AES.encrypt(password, readData('token') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString();
 }
 
 function decryptPassword(password){
-    return CryptoJS.AES.decrypt(password, readData('secret') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString(CryptoJS.enc.Utf8);
+    return CryptoJS.AES.decrypt(password, readData('token') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString(CryptoJS.enc.Utf8);
 }
 
 function clearStorage(){
     deleteData('password');
     deleteData('passwords');
-    deleteData('secret');
+    deleteData('token');
     deleteData('auth');
     deleteData('yubico');
     deleteData('loginTime');
 }
 
 function isSessionValid(){
-    if(readData('url') == null || typeof(readData('url')) == 'undefined' || readData('username') == null || typeof(readData('username')) == 'undefined' || readData('password') == null || typeof(readData('password')) == 'undefined' || readData('passwords') == null || typeof(readData('passwords')) == 'undefined' || readData('loginTime') == null || typeof(readData('loginTime')) == 'undefined' || readData('sessionDuration') == null || typeof(readData('sessionDuration')) == 'undefined' || ((parseFloat(readData('loginTime')) + (readData('sessionDuration') * 60000))) < new Date().getTime()){
+    if(readData('url') == null || typeof(readData('url')) == 'undefined' || readData('username') == null || typeof(readData('username')) == 'undefined' || readData('password') == null || typeof(readData('password')) == 'undefined' || readData('token') == null || typeof(readData('token')) == 'undefined' || readData('passwords') == null || typeof(readData('passwords')) == 'undefined' || readData('loginTime') == null || typeof(readData('loginTime')) == 'undefined' || readData('sessionDuration') == null || typeof(readData('sessionDuration')) == 'undefined' || ((parseFloat(readData('loginTime')) + (readData('sessionDuration') * 60000))) < new Date().getTime()){
         clearStorage();
         return false;
     }

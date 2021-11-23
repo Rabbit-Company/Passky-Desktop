@@ -417,7 +417,7 @@ function import_data(passwords){
     xhr.open("POST", readData('url') + "/?action=importPasswords");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + sha512(decryptPassword(readData('password')))));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(readData('username') + ":" + readData('token')));
     xhr.setRequestHeader("Content-Type", "application/json");
 
     xhr.onreadystatechange = function () {

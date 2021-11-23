@@ -30,7 +30,7 @@ document.getElementById("btn_signin").addEventListener("click", () => {
 function onBtnClick(){
 
     const url = document.getElementById("passky-server").value;
-    const username = document.getElementById("username").value;
+    const username = document.getElementById("username").value.toLowerCase();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
@@ -64,7 +64,7 @@ function onBtnClick(){
     xhr.open("POST", url + "/?action=createAccount");
 
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + sha512(password)));
+    xhr.setRequestHeader("Authorization", "Basic " + btoa(username + ":" + sha512(password + username + "passky2020")));
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () {

@@ -74,7 +74,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "zh-CN": {
         "server": "服务器",
@@ -151,7 +152,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "hi": {
         "server": "सर्वर",
@@ -228,7 +230,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "tr": {
         "server": "Sunucu",
@@ -305,7 +308,8 @@ const lang = {
         "yubikey_removed_successfully": "Yubikey anahtarınız başarıyla kaldırıldı",
         "yubikey_insert_device": "1. Yubikey anahtarınızı cihazınıza takın.",
         "yubikey_focus_input": "2. OTP kutucuğuna tıklayın",
-        "yubikey_press_button": "3. Yubikey anahtarınızdaki altın renkli düğmeye basın"
+        "yubikey_press_button": "3. Yubikey anahtarınızdaki altın renkli düğmeye basın",
+        "auto_search": "Auto Search"
     },
     "fr": {
         "server": "Serveur",
@@ -382,7 +386,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "ru": {
         "server": "Сервер",
@@ -459,7 +464,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "de": {
         "server": "Server",
@@ -536,7 +542,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Automatisch zoeken"
     },
     "it": {
         "server": "Server",
@@ -613,7 +620,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "pl": {
         "server": "Serwer",
@@ -690,7 +698,8 @@ const lang = {
         "yubikey_removed_successfully": "Twój Yubikey został pomyślnie usunięty",
         "yubikey_insert_device": "1. Włóż swój Yubikey do urządzenia.",
         "yubikey_focus_input": "2. Naciśnij na pole z jednorazowym hasłem",
-        "yubikey_press_button": "3. Naciśnij na złoty przycisk na swoim Yubikey"
+        "yubikey_press_button": "3. Naciśnij na złoty przycisk na swoim Yubikey",
+        "auto_search": "Auto Search"
     },
     "el": {
         "server": "Διακομιστής",
@@ -767,7 +776,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "cs": {
         "server": "Server",
@@ -844,7 +854,8 @@ const lang = {
         "yubikey_removed_successfully": "Váš Yubikey byl úspěšně odebrán",
         "yubikey_insert_device": "1. Vložte váš Yubikey do vašeho zařízení.",
         "yubikey_focus_input": "2. Klikněte na OTP vstup",
-        "yubikey_press_button": "3. Stiskněte zlaté tlačítko umístěné na vašem Yubikey"
+        "yubikey_press_button": "3. Stiskněte zlaté tlačítko umístěné na vašem Yubikey",
+        "auto_search": "Auto Search"
     },
     "sv-SE": {
         "server": "Server",
@@ -921,7 +932,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "no": {
         "server": "Server",
@@ -998,7 +1010,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "nl": {
         "server": "Server",
@@ -1075,7 +1088,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "sl": {
         "server": "Strežnik",
@@ -1152,7 +1166,8 @@ const lang = {
         "yubikey_removed_successfully": "Vaš Yubikey je bil uspešno odstranjen",
         "yubikey_insert_device": "1. Vstavite svoj Yubikey v napravo.",
         "yubikey_focus_input": "2. Kliknite na OTP polje za vnos podatkov",
-        "yubikey_press_button": "3. Pritisnite zlati gumb na Yubikeyju"
+        "yubikey_press_button": "3. Pritisnite zlati gumb na Yubikeyju",
+        "auto_search": "Samodejno iskanje"
     },
     "bs": {
         "server": "Server",
@@ -1229,7 +1244,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     },
     "ro": {
         "server": "Server",
@@ -1306,7 +1322,8 @@ const lang = {
         "yubikey_removed_successfully": "Your Yubikey has been removed successfully",
         "yubikey_insert_device": "1. Insert your Yubikey to your device.",
         "yubikey_focus_input": "2. Click on OTP input",
-        "yubikey_press_button": "3. Press on gold button located on your Yubikey"
+        "yubikey_press_button": "3. Press on gold button located on your Yubikey",
+        "auto_search": "Auto Search"
     }
 }
 
@@ -1317,7 +1334,7 @@ const errors = {
         "2": "Password is incorrect!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Username is already registered!",
-        "5": "Password must be 8 to 255 characters long, have at least one letter, one number and one special character!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Email is invalid!",
         "7": "Username does not exist!",
         "8": "You don't have any saved password.",
@@ -1336,6 +1353,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Action is invalid!",
         "403": "You didn't provide all required values in POST.",
@@ -1351,7 +1369,7 @@ const errors = {
         "2": "密码不正确！",
         "3": "Something went wrong while inserting data to the database!",
         "4": "该用户名已经被注册!",
-        "5": "密码长度需要至少8位，至少需要一个字母，一个数字，和一个特殊符号！",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "邮箱不合法！",
         "7": "用户名不存在！",
         "8": "你没有任何保存的密码！",
@@ -1370,6 +1388,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "操作不合法！",
         "403": "你在POST中没有提供所有所需的值",
@@ -1385,7 +1404,7 @@ const errors = {
         "2": "पासवर्ड गलत है",
         "3": "Something went wrong while inserting data to the database!",
         "4": "प्रयोक्ता का नाम पहले से पंजीकृत है!",
-        "5": "पासवर्ड 8 से 255 वर्णों का होना चाहिए, कम से कम एक अक्षर, एक संख्या और एक विशेष वर्ण होना चाहिए!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "ईमेल अमान्य है!",
         "7": "उपयोगकर्ता नाम मौजूद नहीं है!",
         "8": "आपके पास कोई सहेजा हुआ पासवर्ड नहीं है।",
@@ -1404,6 +1423,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "कार्रवाई GET में प्रदान नहीं की गई थी!",
         "401": "कार्रवाई अमान्य है!",
         "403": "आपने POST में सभी आवश्यक मान प्रदान नहीं किए हैं।",
@@ -1419,7 +1439,7 @@ const errors = {
         "2": "Hatalı Parola!",
         "3": "Veritabanına veri eklenirken bir şeyler ters gitti!",
         "4": "Kullanıcı adı zaten kayıtlı!",
-        "5": "Parola 8 ila 255 karakter uzunluğunda olmalı, en az bir harf, bir sayı ve bir özel karakter içermelidir!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "E-posta geçersiz!",
         "7": "Kullanıcı adı Bulunamadı!",
         "8": "Hiç Kayıtlı şifreniz yok.",
@@ -1438,6 +1458,7 @@ const errors = {
         "21": "Bu Yubikey anahtarı zaten hesabınızla ilişkilendirildi.",
         "23": "Yubikey OTP kodu geçersiz!",
         "24": "Kimliği verilen Yubikey anahtarı hesabınıza bağlı değil.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "GET işlemi yapılamadı!",
         "401": "Eylem geçersiz!",
         "403": "Zorunlu tüm alanları doldurmalısınız.",
@@ -1453,7 +1474,7 @@ const errors = {
         "2": "Mot de passe incorrect !",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Votre nom d'utilisateur est déjà enregistré!",
-        "5": "Le mot de passe doit faire de 8 à 255 caractères, et contenir au moins une lettre, un nombre et un caractère spécial !",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Email invalide !",
         "7": "Ce pseudo n'existe pas !",
         "8": "Vous n'avez pas de mots de passe enregistrés.",
@@ -1472,6 +1493,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Action invalide !",
         "403": "Vous n'avez pas fourni toutes les valeurs requises en POST.",
@@ -1487,7 +1509,7 @@ const errors = {
         "2": "Неверный пароль!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Имя пользователя уже зарегистрировано!",
-        "5": "Пароль должен содержать от 8 до 255 символов, и содержать как минимум одну букву, цифру и символ!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Электронная почта недействительна!",
         "7": "Имя пользователя не существует!",
         "8": "У вас нет сохраненного пароля.",
@@ -1506,6 +1528,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Действие недействительно!",
         "403": "Вы не предоставили все необходимые значения в пост.",
@@ -1519,9 +1542,9 @@ const errors = {
         "0": "Erfolgreich",
         "1": "Benutzername ist ungültig!",
         "2": "Passwort ist falsch!",
-        "3": "Something went wrong while inserting data to the database!",
+        "3": "Er is iets fout gegaan bij het schrijven van data naar de database!",
         "4": "Benutzername ist bereits registriert!",
-        "5": "Passwort muss zwischen 8 und 255 Zeichen lang sein und mindestens einen Buchstaben, eine Zahl und ein Sonderzeichen enthalten!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "E-Mail ist ungültig!",
         "7": "Benutzername existiert nicht!",
         "8": "Sie haben kein gespeichertes Passwort.",
@@ -1540,6 +1563,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Aktion ist ungültig!",
         "403": "Sie haben nicht alle erforderlichen Werte im POST angegeben.",
@@ -1555,7 +1579,7 @@ const errors = {
         "2": "Password errata!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Nome utente già in uso!",
-        "5": "La password deve essere compresa tra gli 8 e i 255 caratteri e deve contenere almeno una lettera, un numero e un carattere speciale!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Email non valida!",
         "7": "Il nome utente non esiste!",
         "8": "Non hai password salvate.",
@@ -1574,6 +1598,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Azione non valida!",
         "403": "Non hai fornito tutti i valori richiesti in POST.",
@@ -1589,7 +1614,7 @@ const errors = {
         "2": "Nieprawidłowe hasło!",
         "3": "Coś poszło nie tak podczas wstawiania danych do bazy danych!",
         "4": "Ta nazwa użytkownika jest już zajęta!",
-        "5": "Hasło musi mieć od 8 do 255 znaków, posiadać co najmniej jedną literę, jedną cyfrę oraz jeden znak specjalny!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Nieprawidłowy adres e-mail!",
         "7": "Ta nazwa użytkownika nie istnieje!",
         "8": "Nie posiadasz żadnych zapisanych haseł.",
@@ -1608,6 +1633,7 @@ const errors = {
         "21": "Dany klucz Yubikey już jest połączony z twoim kontem.",
         "23": "Podane jednorazowe hasło Yubikey jest nieprawidłowe!",
         "24": "Yubikey z danym ID nie jest połączony z Twoim kontem.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Akcja nie została zawarta w GET!",
         "401": "Nieprawidłowa akcja!",
         "403": "Nie podano wszystkich wymaganych wartości w POST.",
@@ -1623,7 +1649,7 @@ const errors = {
         "2": "Ο κωδικός πρόσβασης είναι λάθος!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Το όνομα χρήστη είναι ήδη καταχωρημένο!",
-        "5": "Ο κωδικός πρέπει να αποτελείται από 8 έως 255 χαρακτήρες, να έχει τουλάχιστον ένα γράμμα, έναν αριθμό και έναν ειδικό χαρακτήρα!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Το Email δεν είναι έγκυρο!",
         "7": "Το όνομα χρήστη δεν υπάρχει!",
         "8": "Δεν έχετε αποθηκευμένο κωδικό πρόσβασης.",
@@ -1642,6 +1668,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Η ενέργεια δεν παρέχεται στο GET!",
         "401": "Η ενέργεια δεν είναι έγκυρη!",
         "403": "Δεν δώσατε όλες τις απαιτούμενες τιμές στο POST.",
@@ -1657,7 +1684,7 @@ const errors = {
         "2": "Heslo je neplatné!",
         "3": "Při přidávání dat do databáze se vyskytla chyba!",
         "4": "Uživatelské jméno je již zaregistrováno!",
-        "5": "Heslo musí být dlouhé 8 až 255 znaků, obsahovat alespoň jedno písmeno, jedno číslo a jeden speciální znak!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "E-mail je neplatný!",
         "7": "Uživatelské jméno je neplatné!",
         "8": "Nemáte žádná uložená hesla.",
@@ -1676,6 +1703,7 @@ const errors = {
         "21": "Tento Yubikey je již propojen s vaším účtem.",
         "23": "Zadané OTP Yubikey je neplatné!",
         "24": "Yubikey se zadaným ID není připojen k vašemu účtu.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Akce nebyla poskytnuta v GET!",
         "401": "Akce je neplatná!",
         "403": "Neposkytli jste všechna vyžadovaná data v POST.",
@@ -1691,7 +1719,7 @@ const errors = {
         "2": "Lösenordet är korrekt!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Användarnamnet är redan regristerat!",
-        "5": "Lösenordet måste vara mellan 8 och 255 karaktärer långt, använd åtminstånde en bokstav, ett nummer och en special karaktär!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "E-postaddressen är felaktig!",
         "7": "Användarnamnet finns inte!",
         "8": "Du har inget sparat lösenord.",
@@ -1710,6 +1738,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Åtgärden är ogiltig!",
         "403": "Du angav inte alla nödvändiga värden i POST.",
@@ -1725,7 +1754,7 @@ const errors = {
         "2": "Passordet er feil!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Brukernavnet er allerede registrert!",
-        "5": "Passordet må være 8 til 255 tegn langt, ha minst én bokstav, ett tall og ett spesialtegn!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Eposten er ugyldig!",
         "7": "Brukernavnet eksisterer ikke!",
         "8": "Du har ikke noe lagret passord.",
@@ -1744,6 +1773,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Handlingen er ugyldig!",
         "403": "Du oppga ikke alle nødvendige verdier i POST.",
@@ -1759,7 +1789,7 @@ const errors = {
         "2": "Wachtwoord is ongeldig!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Gebruikersnaam is al in gebruik!",
-        "5": "Gebruikersnaam moet minimaal 8 en maximaal 255 karakters zijn, minimaal één letter, één cijfer en één speciaal karakter bevatten!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Email is ongeldig!",
         "7": "Gebruikersnaam bestaat niet!",
         "8": "Er is geen wachtwoord opgeslagen.",
@@ -1778,6 +1808,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Actie was niet aangegeven in GET!",
         "401": "Actie is ongeldig!",
         "403": "Je hebt niet alle verplicte velden ingevuld in POST.",
@@ -1793,7 +1824,7 @@ const errors = {
         "2": "Geslo je napačno!",
         "3": "Med vstavljanjem podatkov v bazo podatkov je prišlo do napake!",
         "4": "Uporabniško ime je že registrirano!",
-        "5": "Geslo mora biti dolgo med 8 in 255 znaki in mora vsebovati vsaj eno črko, eno številko in en poseben znak!",
+        "5": "Geslo mora biti dolgo najmanj 8 znakov in mora vsebovati vsaj eno črko, eno številko in en poseben znak: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "E-pošta je neveljavna!",
         "7": "Uporabniško ime ne obstaja!",
         "8": "Nimate shranjenega gesla.",
@@ -1812,6 +1843,7 @@ const errors = {
         "21": "Ta Yubikey je že povezan z vašim računom.",
         "23": "Vnešen Yubikey OTP je neveljaven!",
         "24": "Yubikey z navedenim ID-jem ni povezan z vašim računom.",
+        "25": "Žeton ni pravilen ali pa je potekel. Prosimo, prijavite se znova.",
         "400": "Akcija ni bila zagotovljena v GET-u!",
         "401": "Dejanje je neveljavno!",
         "403": "V POST niste navedli vseh zahtevanih vrednosti. ",
@@ -1827,7 +1859,7 @@ const errors = {
         "2": "Lozinka je netačna!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Korisničko ime je već registrovano!",
-        "5": "Lozinka mora imati između 8 i 255 znakova i mora sadržavati najmanje jedno slovo, jedan broj i jedan specijalni znak!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Email adresa je nevažeća!",
         "7": "Korisničko ime ne postoji!",
         "8": "You don't have any saved password.",
@@ -1846,6 +1878,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Akcija je nevažeća!",
         "403": "Niste naveli sve potrebne vrijednosti u POST-u.",
@@ -1861,7 +1894,7 @@ const errors = {
         "2": "Parola este incorectă!",
         "3": "Something went wrong while inserting data to the database!",
         "4": "Numele de utilizator este deja înregistrat!",
-        "5": "Parola trebuie să aibă între 8 și 255 de caractere, să conțină cel puțin o literă, un număr și un caracter special!",
+        "5": "Password must be at least 8 characters long, contains at least one uppercase, one number and one special character: @ $ ! % * # ? & , _ ( ) = - .",
         "6": "Adresa de e-mail este invalida!",
         "7": "Numele de utilizator nu există!",
         "8": "Nu aveți nicio parolă salvată.",
@@ -1880,6 +1913,7 @@ const errors = {
         "21": "This Yubikey is already linked with your account.",
         "23": "Provided Yubikey OTP is invalid!",
         "24": "Yubikey with provided ID isn't linked to your account.",
+        "25": "The token is incorrect or it has expired. Please Sign in again.",
         "400": "Action was not provided in GET!",
         "401": "Acțiunea nu este validă!",
         "403": "Nu ați furnizat toate valorile necesare în POST.",
