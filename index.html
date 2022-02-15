@@ -2,13 +2,27 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Passky is a simple, modern, lightweight, open-source and secure password manager." />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#0D1117" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <title>Passky</title>
     <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+    <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="images/icons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="images/icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="images/icons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="images/icons/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon-180x180.png" />
     <link rel="stylesheet" href="css/tailwind.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link id="css-theme" type="text/css" rel="stylesheet" href="css/themes/dark.css">
+    <link rel="manifest" href="manifest.json">
     <script src="js/lang.js"></script>
     <script src="js/header.js"></script>
   </head>
@@ -28,6 +42,8 @@
               <datalist id="servers">
                 <option>https://eu1.passky.org</option>
                 <option>https://eu2.passky.org</option>
+                <option>https://us1.passky.org</option>
+                <option>https://us2.passky.org</option>
               </datalist>
             </div>
             <div>
@@ -43,18 +59,6 @@
               <input id="otp" name="otp" type="text" autocomplete="off" class="tertiaryBackgroundColor tertiaryColor primaryBorderColor appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md focus:outline-none focus:z-10 sm:text-sm" placeholder="OTP">
             </div>
           </div>
-
-          <fieldset>
-            <legend class="sr-only">New login system</legend>
-            <div class="relative flex items-start">
-              <div class="flex items-center h-5">
-                <input id="new-login-system" type="checkbox" class="tertiaryBackgroundColor primaryColor h-4 w-4 primaryBorderColor rounded" checked>
-              </div>
-              <div class="ml-3 text-sm">
-                <a class="primaryColor">New login system</a>
-              </div>
-            </div>
-          </fieldset>
 
           <div id="dialog" class="fixed z-10 inset-0 overflow-y-auto invisible" aria-labelledby="dialog-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -100,9 +104,17 @@
        </form>
       </div>
     </div>
+    <script>
+      if('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js');
+        });
+      }
+    </script>
     <script src="js/aes.js"></script>
     <script src="js/default-functions.js"></script>
     <script src="js/sha512.js"></script>
+    <script src="js/PasskyAPI.js"></script>
     <script src="js/login.js"></script>
   </body>
 </html>
