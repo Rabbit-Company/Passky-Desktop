@@ -71,8 +71,8 @@ If you’re ready to try Passky out at no cost, you can get started by visiting 
 2. Search for Passky (https://www.microsoft.com/store/apps/9NRCP6HPPB82)
 3. Click on install
 #### Manually
-1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v5.0.0/Passky.Setup.5.0.0.exe)
-2. or Download Passky portable (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v5.0.0/Passky.5.0.0.exe)
+1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.0.1/Passky.Setup.6.0.1.exe)
+2. or Download Passky portable (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.0.1/Passky.6.0.1.exe)
 3. Run downloaded .exe file
 4. Passky desktop application is now installed
 ### Debian based distros
