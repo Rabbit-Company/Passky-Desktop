@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.0.22 | MIT License | https://tailwindcss.com
+! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -733,6 +733,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 32rem;
 }
 
+.max-w-xs {
+  max-width: 20rem;
+}
+
+.max-w-\[16rem\] {
+  max-width: 16rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -870,6 +878,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
 }
 
 .whitespace-nowrap {
@@ -1342,6 +1354,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     max-width: 24rem;
   }
 
+  .sm\:max-w-\[21rem\] {
+    max-width: 21rem;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1408,6 +1424,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: block;
   }
 
+  .md\:max-w-\[27rem\] {
+    max-width: 27rem;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1428,6 +1448,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:hidden {
     display: none;
+  }
+
+  .lg\:max-w-\[35rem\] {
+    max-width: 35rem;
   }
 
   .lg\:grid-cols-4 {
@@ -1452,5 +1476,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   .lg\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:max-w-\[45rem\] {
+    max-width: 45rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:max-w-\[45rem\] {
+    max-width: 45rem;
   }
 }
