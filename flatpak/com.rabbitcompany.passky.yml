@@ -62,7 +62,7 @@ modules:
       - type: git
         url: https://github.com/Rabbit-Company/Passky-Desktop
         # Use the Electron 4 / Node 16 version.
-        commit: 835f271439cd0ade593c6ef332a671aee63893fe
+        commit: ee4005451d0d8e124ee756c00d3b6fd2017e5864
         # Checkout into a subdirectory so we can copy the whole thing to /app.
         dest: passky
       # Add the flatpak-node-generator generated sources.
