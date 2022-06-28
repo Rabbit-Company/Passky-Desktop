@@ -36,6 +36,14 @@ initStorageCache.then(() => {
 		document.getElementById("toggle-2fa-btn").className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
 	}
 
+	if(readData('websiteIcons') == "true"){
+		document.getElementById("toggle-website-icons").innerText = lang[readData('lang')]["disable"];
+		document.getElementById("toggle-website-icons").className = "dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
+	}else{
+		document.getElementById("toggle-website-icons").innerText = lang[readData('lang')]["enable"];
+		document.getElementById("toggle-website-icons").className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
+	}
+
 	if (readData('autoSearch') == "false") {
 		document.getElementById("toggle-auto-search").innerText = lang[readData('lang')]["enable"];
 		document.getElementById("toggle-auto-search").className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
@@ -421,13 +429,22 @@ document.getElementById("dialog-button-cancel").addEventListener("click", () => 
 	hide('dialog');
 });
 
+document.getElementById("toggle-website-icons").addEventListener("click", () => {
+	if(readData('websiteIcons') == "true") {
+		writeData('websiteIcons', "false");
+	}else{
+		writeData('websiteIcons', "true");
+	}
+	toggleButton('toggle-website-icons');
+});
+
 document.getElementById("toggle-auto-search").addEventListener("click", () => {
 	if (readData('autoSearch') == "false") {
 		writeData('autoSearch', "true");
 	} else {
 		writeData('autoSearch', "false");
 	}
-	location.reload();
+	toggleButton('toggle-auto-search');
 });
 
 document.getElementById("toggle-2fa-btn").addEventListener("click", () => {

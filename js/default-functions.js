@@ -34,6 +34,17 @@ function toggleMenu(){
 	}
 }
 
+function toggleButton(id){
+	let button = document.getElementById(id);
+	if(button.className.includes('successButton')){
+		button.innerText = lang[readData('lang')]["disable"];
+		button.className = "dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
+	}else{
+		button.innerText = lang[readData('lang')]["enable"];
+		button.className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
+	}
+}
+
 function copyToClipboard(text){
 	let textArea = document.createElement("textarea");
 	textArea.value = text;

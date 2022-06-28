@@ -33,7 +33,7 @@
 }
 
 .tertiaryBackgroundColor{
-    background-color: #25395D !important;
+    background-color: #2c436d !important;
 }
 
 .quaternaryBackgroundColor{
@@ -72,7 +72,7 @@
 }
 
 .cancelButton{
-    background-color: #25395D !important;
+    background-color: #2c436d !important;
     border-color: #24375c !important;
     color: #DFE5EB !important;
 }
@@ -86,13 +86,13 @@
 */
 
 input{
-    background-color: #25395D !important;
+    background-color: #2c436d !important;
     color: #DFE5EB !important;
     border-color: #152137 !important;
 }
 
 textarea{
-    background-color: #25395D !important;
+    background-color: #2c436d !important;
     color: #DFE5EB !important;
     border-color: #152137 !important;
 }
@@ -126,12 +126,12 @@ svg{
 }
 
 .mainMenuMobileLink:hover{
-    background-color: #25395D !important;
+    background-color: #2c436d !important;
     border-color: #6B7280 !important;
 }
 
 .mainMenuMobileLinkSelected{
-    background-color: #25395D !important;
+    background-color: #2c436d !important;
     border-color: #6366F1 !important;
     color: #6366F1 !important;
 }
@@ -142,7 +142,7 @@ svg{
 
 #main-menu-toggle-btn:hover{
     color: #6B7280 !important;
-    background-color: #25395D !important;
+    background-color: #2c436d !important;
 }
 
 /*
@@ -209,9 +209,9 @@ svg{
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #8580e5;
+    background: #395793;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #4E47E0;
+    background: #4062a5;
 }

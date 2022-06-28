@@ -209,9 +209,9 @@ svg{
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bd93f9;
+    background: #585c74;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #b687f8;
+    background: #636783;
 }

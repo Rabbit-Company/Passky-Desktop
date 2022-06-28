@@ -7,3 +7,7 @@ body{
     min-height: 500px;
     overflow-x: hidden;
 }
+
+select{
+    -webkit-appearance: none;
+}

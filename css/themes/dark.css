@@ -205,9 +205,9 @@ textarea{
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #8580e5;
+    background: #28313e;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #4E47E0;
+    background: #323e4d;
 }

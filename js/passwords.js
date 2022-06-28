@@ -20,6 +20,7 @@ initStorageCache.then(() => {
 		let start = new Date().getTime();
 		if (readData('passwords') !== null && typeof(readData('passwords')) !== 'undefined') {
 			const passwords = JSON.parse(readData('passwords'));
+			const websiteIcons = readData('websiteIcons');
 			document.getElementById("stats-passwords").innerText = (passwords.length > 0) ? passwords.length : 0;
 			let html_passwords = "";
 			for (let i = 0; i < passwords.length; i++) {
@@ -28,7 +29,11 @@ initStorageCache.then(() => {
 
 				html_passwords += "<tr class='passwordsBorderColor'><td class='px-8 py-4 max-w-xs whitespace-nowrap overflow-hidden'><div class='flex items-center'><div class='flex-shrink-0 h-10 w-10'>";
 				//Icon
-				html_passwords += "<img class='h-10 w-10 rounded-full' loading='lazy' src='https://www.google.com/s2/favicons?domain=" + website + "' alt=''>";
+				if(websiteIcons == "true"){
+					html_passwords += "<img class='h-10 w-10 rounded-full' loading='lazy' src='https://www.google.com/s2/favicons?domain=" + website + "' alt=''>";
+				}else{
+					html_passwords += "<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24' stroke-width='1.5' stroke='#2c3e50' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='12' cy='12' r='9' /><line x1='3.6' y1='9' x2='20.4' y2='9' /><line x1='3.6' y1='15' x2='20.4' y2='15' /><path d='M11.5 3a17 17 0 0 0 0 18' /><path d='M12.5 3a17 17 0 0 1 0 18' /></svg>";
+				}
 				html_passwords += "</div><div class='ml-4'><div class='tertiaryColor text-sm font-medium max-w-[16rem] sm:max-w-[21rem] md:max-w-[27rem] lg:max-w-[35rem] xl:max-w-[45rem] 2xl:max-w-[45rem] overflow-hidden text-ellipsis'>";
 				//Url
 				html_passwords += website;
