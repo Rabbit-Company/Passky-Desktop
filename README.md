@@ -84,6 +84,11 @@ sudo dpkg -i passky_6.3.0_amd64.deb
 wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.3.0/passky-6.3.0.x86_64.rpm
 sudo rpm -i passky-6.3.0.x86_64.rpm
 ```
+### Flathub
+<a href='https://flathub.org/apps/details/com.rabbit_company.passky'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+```yaml
+flatpak install flathub com.rabbit_company.passky
+```
 ### Snap
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/passky)
 ```yaml
