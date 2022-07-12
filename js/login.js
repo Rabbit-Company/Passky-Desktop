@@ -116,6 +116,7 @@ function login_check(){
 		writeData('token', response['token']);
 		writeData('auth', response['auth']);
 		writeData('yubico', response['yubico']);
+		writeData('maxPasswords', response['max_passwords']);
 		writeData('loginTime', new Date().getTime());
 		writeData('password', encryptPassword(password));
 

@@ -21,7 +21,8 @@ initStorageCache.then(() => {
 		if (readData('passwords') !== null && typeof(readData('passwords')) !== 'undefined') {
 			const passwords = JSON.parse(readData('passwords'));
 			const websiteIcons = readData('websiteIcons');
-			document.getElementById("stats-passwords").innerText = (passwords.length > 0) ? passwords.length : 0;
+			const maxPasswords = readData('maxPasswords');
+			document.getElementById("stats-passwords").innerText = ((passwords.length > 0) ? passwords.length : 0) + " / " + maxPasswords;
 			let html_passwords = "";
 			for (let i = 0; i < passwords.length; i++) {
 				const website = CryptoJS.AES.decrypt(passwords[i].website, decryptPassword(readData('password'))).toString(CryptoJS.enc.Utf8);

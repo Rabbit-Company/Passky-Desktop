@@ -70,19 +70,24 @@ If you’re ready to try Passky out at no cost, you can get started by visiting 
 2. Search for Passky (https://www.microsoft.com/store/apps/9NRCP6HPPB82)
 3. Click on install
 #### Manually
-1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.3.0/Passky.Setup.6.3.0.exe)
-2. or Download Passky portable (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.3.0/Passky.6.3.0.exe)
+1. Download Passky installer (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v7.0.0/Passky.Setup.7.0.0.exe)
+2. or Download Passky portable (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v7.0.0/Passky.7.0.0.exe)
 3. Run downloaded .exe file
 4. Passky desktop application is now installed
 ### Debian based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.3.0/passky_6.3.0_amd64.deb
-sudo dpkg -i passky_6.3.0_amd64.deb
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v7.0.0/passky_7.0.0_amd64.deb
+sudo dpkg -i passky_7.0.0_amd64.deb
 ```
 ### Red Hat based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.3.0/passky-6.3.0.x86_64.rpm
-sudo rpm -i passky-6.3.0.x86_64.rpm
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v7.0.0/passky-7.0.0.x86_64.rpm
+sudo rpm -i passky-7.0.0.x86_64.rpm
+```
+### Flathub
+<a href='https://flathub.org/apps/details/com.rabbit_company.passky'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
+```yaml
+flatpak install flathub com.rabbit_company.passky
 ```
 ### Snap
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/passky)
@@ -90,8 +95,8 @@ sudo rpm -i passky-6.3.0.x86_64.rpm
 sudo snap install passky
 ```
 ### AppImage
-1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v6.3.0/Passky-6.3.0.AppImage)
-2. Start Passky-6.3.0.AppImage
+1. Download Passky (https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v7.0.0/Passky-7.0.0.AppImage)
+2. Start Passky-7.0.0.AppImage
 3. Passky desktop application is now installed
 
 ## Uninstall
@@ -112,5 +117,5 @@ sudo rpm -e Passky
 sudo snap remove passky
 ```
 ### AppImage
-1. Move Passky-6.3.0.AppImage to the trash
+1. Move Passky-7.0.0.AppImage to the trash
 2. Empty your trash

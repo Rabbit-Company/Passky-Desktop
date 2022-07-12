@@ -53,7 +53,7 @@ function setTheme(){
 	if(readData('lang') == null || typeof(readData('lang')) == 'undefined') writeData('lang', 'en');
 	if(readData('sessionDuration') == null || typeof(readData('sessionDuration')) == 'undefined') writeData('sessionDuration', '20');
 
-	if(!(["dark", "tokyoNight", "monokai", "solarizedDark", "light", "blue", "dracula", "gray"].includes(readData('theme')))) writeData('theme', 'dark');
+	if(!(["dark", "tokyoNight", "monokai", "solarizedDark", "light", "blue", "nord", "dracula", "gray"].includes(readData('theme')))) writeData('theme', 'dark');
 	document.getElementById("css-theme").href = "css/themes/" + readData('theme') + ".css";
 }
 

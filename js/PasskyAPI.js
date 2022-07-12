@@ -4,7 +4,7 @@
 
 		static username(username){
 			if(typeof(username) == 'undefined' || username == null) return false;
-			return /^[a-z0-9.]{6,30}$/i.test(username);
+			return /^[a-z0-9._]{6,30}$/i.test(username);
 		}
 
 		static password(password){
