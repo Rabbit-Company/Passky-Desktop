@@ -48,9 +48,19 @@ function getAllStorageData() {
 	});
 }
 
+function detectLanguage(){
+	for(const language of navigator.languages){
+		if(Object.keys(lang).includes(language)){
+			writeData('lang', language);
+			break;
+		}
+	}
+	if(readData('lang') == null || typeof(readData('lang')) == 'undefined') writeData('lang', 'en');
+}
+
 function setTheme(){
 	if(readData('theme') == null || typeof(readData('theme')) == 'undefined') writeData('theme', 'dark');
-	if(readData('lang') == null || typeof(readData('lang')) == 'undefined') writeData('lang', 'en');
+	if(readData('lang') == null || typeof(readData('lang')) == 'undefined') detectLanguage();
 	if(readData('sessionDuration') == null || typeof(readData('sessionDuration')) == 'undefined') writeData('sessionDuration', '20');
 
 	if(!(["dark", "tokyoNight", "monokai", "solarizedDark", "light", "blue", "nord", "dracula", "gray"].includes(readData('theme')))) writeData('theme', 'dark');

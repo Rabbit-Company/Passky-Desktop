@@ -1,4 +1,5 @@
 initStorageCache.then(() => {
+	startAuthenticator();
 
 	document.getElementById("passwords-link").innerText = lang[readData('lang')]["passwords"];
 	document.getElementById("import-export-link").innerText = lang[readData('lang')]["import_export"];
@@ -16,7 +17,7 @@ initStorageCache.then(() => {
 	document.getElementById("dialog-button-cancel").innerText = lang[readData('lang')]["cancel"];
 
 	function displayPasswords() {
-		
+
 		let start = new Date().getTime();
 		if (readData('passwords') !== null && typeof(readData('passwords')) !== 'undefined') {
 			const passwords = JSON.parse(readData('passwords'));
@@ -77,14 +78,14 @@ initStorageCache.then(() => {
 			});
 		} catch {}
 	}
-
-	window.setInterval(function() {
-		if (!isSessionValid()) logout();
-	}, 2000);
 });
 
 document.getElementById("search").addEventListener("keyup", () => {
 	filterPasswords();
+});
+
+document.getElementById("logo").addEventListener("click", () => {
+	refreshPasswords();
 });
 
 document.getElementById("dialog-button-cancel").addEventListener("click", () => {
