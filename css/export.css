@@ -1,37 +1,37 @@
 ::-webkit-scrollbar {
-    width: 8px;
+	width: 8px;
 }
 
 body{
-    min-width: 500px;
-    min-height: 500px;
-    overflow-x: hidden;
+	min-width: 500px;
+	min-height: 500px;
+	overflow-x: hidden;
 }
 
 #passky-logo{
-    background-color: #e6f5ff;
+	background-color: #e6f5ff;
 }
 
 #bitwarden-logo{
-    background-color: #3c8dbc;
+	background-color: #3c8dbc;
 }
 
 #lastpass-logo{
-    background-color: #d12f2e;
+	background-color: #d12f2e;
 }
 
 #dashline-logo{
-    background-color: #0e353d;
+	background-color: #0e353d;
 }
 
 #onepassword-logo{
-    background-color: #fff;
+	background-color: #fff;
 }
 
 #keeper-logo{
-    background-color: #fff;
+	background-color: #fff;
 }
 
 #nordpass-logo{
-    background-color: #d3f8f7;
+	background-color: #d3f8f7;
 }

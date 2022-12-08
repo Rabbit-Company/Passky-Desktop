@@ -1,3 +1,14 @@
+var parms = new URLSearchParams(window.location.search);
+const IsNumeric = (num) => /^-{0,1}\d*\.{0,1}\d+$/.test(num);
+
+function fhide(element){
+	document.getElementById(element).style.display = 'none';
+}
+
+function fshow(element, method){
+	document.getElementById(element).style.display = method;
+}
+
 function hide(element){
 	document.getElementById(element).style.visibility = 'hidden';
 }
@@ -8,6 +19,10 @@ function show(element){
 
 function isHidden(element){
 	return (document.getElementById(element).style.visibility == 'hidden');
+}
+
+function isfHidden(element){
+	return (document.getElementById(element).style.display == 'none');
 }
 
 function setText(element, text){
@@ -37,10 +52,10 @@ function toggleMenu(){
 function toggleButton(id){
 	let button = document.getElementById(id);
 	if(button.className.includes('successButton')){
-		button.innerText = lang[readData('lang')]["disable"];
+		button.innerText = lang["disable"];
 		button.className = "dangerButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
 	}else{
-		button.innerText = lang[readData('lang')]["enable"];
+		button.innerText = lang["enable"];
 		button.className = "successButton font-bold inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md focus:outline-none sm:text-sm";
 	}
 }
@@ -87,20 +102,14 @@ function getDate(date){
 	return local.toJSON().slice(0, 10);
 }
 
-function randRange(min, max) {
-	var range = max - min;
-	var requestBytes = Math.ceil(Math.log2(range) / 8);
-	if (!requestBytes) return min;
+function showDialogButtons(){
+	document.getElementById('dialog-button').style.display = "";
+	document.getElementById('dialog-button-cancel').style.display = "";
+}
 
-	var maxNum = Math.pow(256, requestBytes);
-	var ar = new Uint8Array(requestBytes);
-
-	while (true) {
-		window.crypto.getRandomValues(ar);
-		var val = 0;
-		for (var i = 0;i < requestBytes;i++) val = (val << 8) + ar[i];
-		if (val < maxNum - maxNum % range) return min + (val % range);
-	}
+function hideDialogButtons(){
+	document.getElementById('dialog-button').style.display = "none";
+	document.getElementById('dialog-button-cancel').style.display = "none";
 }
 
 function refreshPasswords(){
@@ -115,17 +124,17 @@ function refreshPasswords(){
 			writeData('passwords', '{}');
 		}
 
-		window.location.href = 'passwords.html';
+		location.assign('passwords.html');
 	}).catch();
 
 }
 
 function encryptPassword(password){
-	return CryptoJS.AES.encrypt(password, readData('token') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString();
+	return XChaCha20.encrypt(password, readData('token') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username'));
 }
 
 function decryptPassword(password){
-	return CryptoJS.AES.decrypt(password, readData('token') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username')).toString(CryptoJS.enc.Utf8);
+	return XChaCha20.decrypt(password, readData('token') + navigator.geolocation + readData('loginTime') + readData('url') + readData('username'));
 }
 
 function clearStorage(){
@@ -135,6 +144,8 @@ function clearStorage(){
 	deleteData('auth');
 	deleteData('yubico');
 	deleteData('loginTime');
+	deleteData('premiumExpires');
+	deleteData('maxPasswords');
 }
 
 function isSessionValid(){
@@ -147,7 +158,7 @@ function isSessionValid(){
 
 function logout(){
 	clearStorage();
-	window.location.href = 'index.html';
+	location.assign('index.html');
 }
 
 function startAuthenticator(){

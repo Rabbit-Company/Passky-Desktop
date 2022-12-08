@@ -30,11 +30,6 @@ function deleteData(key){
 	delete storageData[key];
 }
 
-const initStorageCache = getAllStorageData().then(items => {
-	Object.assign(storageData, items);
-	setTheme();
-});
-
 function getAllStorageData() {
 	return new Promise((resolve, reject) => {
 		try{
@@ -65,6 +60,29 @@ function setTheme(){
 
 	if(!(["dark", "tokyoNight", "monokai", "solarizedDark", "light", "blue", "nord", "dracula", "gray"].includes(readData('theme')))) writeData('theme', 'dark');
 	document.getElementById("css-theme").href = "css/themes/" + readData('theme') + ".css";
+}
+
+function loadData(){
+	return new Promise((resolve, reject) => {
+		getAllStorageData().then(items => {
+			Object.assign(storageData, items);
+			setTheme();
+
+			let url = "lang/" + readData('lang') + "/lang.json";
+			try{
+				url = chrome.runtime.getURL(url);
+			}catch{}
+			fetch(url).then(response => {
+				if (response.ok) return response.json();
+				reject("error");
+			}).then(json => {
+				lang = json;
+				resolve("Working");
+			}).catch(error => {
+				reject(error);
+			})
+		});
+	});
 }
 
 document.onkeydown = function(e) {

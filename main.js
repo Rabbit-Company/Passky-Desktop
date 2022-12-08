@@ -14,7 +14,6 @@ function createWindow () {
   win.setIcon(path.join(__dirname, 'images/logo.png'));
 
   win.loadFile(path.join(__dirname, 'index.html'));
-  //win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
