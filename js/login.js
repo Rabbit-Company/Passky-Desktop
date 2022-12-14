@@ -25,6 +25,8 @@ loadData().then(() => {
 
 });
 
+let debugMode = 0;
+
 document.getElementById("login_form").addEventListener("submit", e => {
 	e.preventDefault();
 	login_check();
@@ -41,6 +43,15 @@ document.getElementById("forgot_username").addEventListener("click", () => {
 
 document.getElementById("server-picker").addEventListener("click", () => {
 	toggleServerPicker('passky-server', 'passky-server2', 'server-picker');
+});
+
+document.getElementById('passky-logo').addEventListener('click', () => {
+	debugMode++;
+	if(debugMode >= 5){
+		debugMode = 0;
+		changeDialog(5);
+		show("dialog");
+	}
 });
 
 function toggleServerPicker(id, id2, buttonID){
@@ -129,6 +140,25 @@ function changeDialog(style, text){
 			document.getElementById('dialog-text').innerHTML = lang[text];
 
 			hideDialogButtons();
+		break;
+		case 5:
+			//Debug dialog
+			document.getElementById('dialog-icon').className = "mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10";
+			document.getElementById('dialog-icon').innerHTML = "<svg class='h-6 w-6 text-green-600' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden='true'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7' /></svg>";
+
+			document.getElementById('dialog-title').innerText = "Debug";
+
+			document.getElementById('dialog-text').innerText = getDebugInfo();
+
+			document.getElementById('dialog-button-cancel').style.display = 'initial';
+			document.getElementById("dialog-button-cancel").onclick = () => hide("dialog");
+
+			document.getElementById('dialog-button').className = "primaryButton inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none sm:w-auto sm:text-sm";
+			document.getElementById('dialog-button').innerText = lang["copy"];
+			document.getElementById('dialog-button').onclick = () => {
+				copyToClipboard(getDebugInfo());
+				hide('dialog');
+			}
 		break;
 	}
 }
@@ -267,4 +297,16 @@ function forget_username(){
 			break;
 		}
 	});
+}
+
+function getDebugInfo(){
+	let info = "Client Version: 8.0.1";
+	if(readData('url') != null) info += "\nServer: " + readData('url');
+	if(readData('username') != null) info += "\nUsername: " + readData('username');
+	info += "\nTheme: " + readData('theme');
+	info += "\nLanguage: " + readData('lang');
+	info += "\nSession Duration: " + readData('sessionDuration');
+	info += "\nWorkers Supported: " + !!window.Worker;
+	info += "\nUser Agent: " + navigator.userAgent;
+	return info;
 }

@@ -100,12 +100,12 @@ function import_bitwarden(){
 
 	let ido = JSON.parse(imported_data);
 
-	if(ido["encrypted"] == null || typeof(ido["encrypted"]) == 'undefined' || ido["encrypted"] == true){
+	if(typeof(ido["encrypted"]) == 'undefined' || ido["encrypted"] == null || ido["encrypted"] == true){
 		changeDialog(2, 1, 2);
 		return;
 	}
 
-	if(ido["items"] == null || typeof(ido["items"]) == 'undefined'){
+	if(typeof(ido["items"]) == 'undefined' || ido["items"] == null){
 		changeDialog(2, 1, 2);
 		return;
 	}
@@ -118,18 +118,22 @@ function import_bitwarden(){
 		if(typeof(ido["items"][i]["login"]["uris"]) != 'undefined' && typeof(ido["items"][i]["login"]["uris"][0]) != 'undefined' && typeof(ido["items"][i]["login"]["uris"][0]["uri"]) != 'undefined'){
 			website = ido["items"][i]["login"]["uris"][0]["uri"];
 		}
-
+		if(typeof(website) == 'undefined' || website == null) continue;
 		website = website.replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
 		if(website.slice(-1) == '/') website = website.slice(0, -1);
 		let username = ido["items"][i]["login"]["username"];
 		let password = ido["items"][i]["login"]["password"];
 		let message = ido["items"][i]["login"]["notes"];
 
+		if(typeof(username) == 'undefined' || username == null) continue;
+		if(typeof(password) == 'undefined' || password == null) continue;
+		if(typeof(message) == 'undefined' || message == null) message = "";
+
 		passwords[j] = {};
-		passwords[j]["website"] = website;
-		passwords[j]["username"] = username;
-		passwords[j]["password"] = password;
-		passwords[j]["message"] = message;
+		passwords[j]["website"] = website.toString();
+		passwords[j]["username"] = username.toString();
+		passwords[j]["password"] = password.toString();
+		passwords[j]["message"] = message.toString();
 		j++;
 	}
 
@@ -341,7 +345,9 @@ function import_csv(id){
 
 	let passwords = [];
 	for(let i = 1, j = 0; i < ido.length; i++){
-		let website = ido[i][websiteID].replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
+		let website = ido[i][websiteID];
+		if(typeof(website) == 'undefined' || website == null) website = ido[i][titleID];
+		website = website.replace("http://", "").replace("https://", "").replace("www.", "").replace(" ", "-");
 		if(website.slice(-1) == '/') website = website.slice(0, -1);
 
 		if(!Validate.pWebsite(website)){
@@ -353,11 +359,15 @@ function import_csv(id){
 		let password = ido[i][passwordID];
 		let message = ido[i][messageID];
 
+		if(typeof(username) == 'undefined' || username == null) continue;
+		if(typeof(password) == 'undefined' || password == null) continue;
+		if(typeof(message) == 'undefined' || message == null) message = "";
+
 		passwords[j] = {};
-		passwords[j]["website"] = website;
-		passwords[j]["username"] = username;
-		passwords[j]["password"] = password;
-		passwords[j]["message"] = message;
+		passwords[j]["website"] = website.toString();
+		passwords[j]["username"] = username.toString();
+		passwords[j]["password"] = password.toString();
+		passwords[j]["message"] = message.toString();
 		j++;
 	}
 
@@ -373,7 +383,7 @@ function import_data(passwords, encrypted = false){
 
 		showDialogButtons();
 
-		if(typeof response['error'] === 'undefined'){
+		if(typeof(response['error']) == 'undefined'){
 			changeDialog(0, lang["server_unreachable"]);
 			return;
 		}
