@@ -90,11 +90,11 @@ loadData().then(() => {
 			html_passwords += "<tr class='passwordsBorderColor'><td class='px-8 py-4 max-w-xs whitespace-nowrap overflow-hidden'><div class='flex items-center'><div class='flex-shrink-0 h-10 w-10'>";
 			//Icon
 			if(websiteIcons == "true"){
-				html_passwords += "<img class='h-10 w-10 rounded-full' loading='lazy' src='https://www.google.com/s2/favicons?domain=" + website + "' alt=''>";
+				html_passwords += "<img id='icon-" + id + "' class='h-10 w-10 rounded-full cursor-pointer' loading='lazy' src='https://www.google.com/s2/favicons?domain=" + website + "' alt=''>";
 			}else{
-				html_passwords += "<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24' stroke-width='1.5' stroke='#2c3e50' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='12' cy='12' r='9' /><line x1='3.6' y1='9' x2='20.4' y2='9' /><line x1='3.6' y1='15' x2='20.4' y2='15' /><path d='M11.5 3a17 17 0 0 0 0 18' /><path d='M12.5 3a17 17 0 0 1 0 18' /></svg>";
+				html_passwords += "<svg id='icon-" + id + "' class='cursor-pointer' xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24' stroke-width='1.5' stroke='#2c3e50' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke='none' d='M0 0h24v24H0z' fill='none'/><circle cx='12' cy='12' r='9' /><line x1='3.6' y1='9' x2='20.4' y2='9' /><line x1='3.6' y1='15' x2='20.4' y2='15' /><path d='M11.5 3a17 17 0 0 0 0 18' /><path d='M12.5 3a17 17 0 0 1 0 18' /></svg>";
 			}
-			html_passwords += "</div><div class='ml-4'><div class='tertiaryColor text-sm font-medium max-w-[14rem] sm:max-w-[16rem] md:max-w-[24rem] lg:max-w-[34rem] xl:max-w-[50rem] 2xl:max-w-[54rem] overflow-hidden text-ellipsis'>";
+			html_passwords += "</div><div id='data-" + id + "' class='ml-4 cursor-pointer'><div class='tertiaryColor text-sm font-medium max-w-[14rem] sm:max-w-[16rem] md:max-w-[24rem] lg:max-w-[34rem] xl:max-w-[50rem] 2xl:max-w-[54rem] overflow-hidden text-ellipsis'>";
 			//Url
 			html_passwords += website;
 			html_passwords += "</div><div class='secondaryColor text-sm max-w-[14rem] sm:max-w-[16rem] md:max-w-[24rem] lg:max-w-[34rem] xl:max-w-[50rem] 2xl:max-w-[54rem] overflow-hidden text-ellipsis'>";
@@ -125,6 +125,14 @@ loadData().then(() => {
 			const message = XChaCha20.decrypt(passwords[i].message, decryptPassword(readData('password')));
 
 			const data = id + ";;;" + website + ";;;" + username + ";;;" + password + ";;;" + message;
+
+			document.getElementById("icon-" + id).addEventListener("click", () => {
+				autoFill(username, password);
+			});
+
+			document.getElementById("data-" + id).addEventListener("click", () => {
+				autoFill(username, password);
+			});
 
 			document.getElementById("copy-username-" + id).addEventListener("click", () => {
 				copyToClipboard(username);
@@ -199,6 +207,16 @@ function updateGeneratedPassword(upper, number, special) {
 	document.getElementById('pass-length').innerText = length;
 	document.getElementById("entropy").style.width = entropy + "%";
 	document.getElementById('generated-password').value = password;
+}
+
+function autoFill(username, password){
+	try{
+		chrome.tabs.query({ active: true, lastFocusedWindow: true, windowType: "normal" }, tabs => {
+			if(typeof(tabs[0]) !== 'undefined' && typeof(tabs[0].id) !== 'undefined' && tabs[0].id !== null){
+				chrome.tabs.sendMessage(tabs[0].id, {username: username, password: password}).catch(err => {});
+			}
+		});
+	}catch{}
 }
 
 function togglePasswordHider(){

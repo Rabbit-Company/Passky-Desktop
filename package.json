@@ -1,6 +1,6 @@
 {
   "name": "passky",
-  "version": "8.0.1",
+  "version": "8.1.1",
   "license": "GPL-3.0",
   "author": "Rabbit Company LLC <info@rabbit-company.com>",
   "homepage": "https://passky.org",
@@ -57,7 +57,7 @@
     }
   },
   "devDependencies": {
-    "electron": "^22.0.0",
+    "electron": "^22.1.0",
     "electron-builder": "^23.3.3"
   }
 }
