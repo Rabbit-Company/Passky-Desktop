@@ -107,3 +107,9 @@ sudo snap install passky
 ### AppImage
 1. Download [Passky-8.1.1.AppImage](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.1/Passky-8.1.1.AppImage)
 2. Open the downloaded file
+
+### AUR
+[![git](https://img.shields.io/aur/version/passky-desktop-git)](https://aur.archlinux.org/packages/passky-desktop-git)
+```yaml
+yay -S passky-desktop-git
+```
