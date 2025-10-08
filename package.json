@@ -1,63 +1,20 @@
 {
-  "name": "passky",
-  "version": "8.1.2",
-  "license": "GPL-3.0",
-  "author": "Rabbit Company LLC <info@rabbit-company.com>",
-  "homepage": "https://passky.org",
-  "icon": "images/logo.png",
-  "repository": "https://github.com/Rabbit-Company/Passky-Desktop",
-  "description": "Simple, modern, open source and secure password manager.",
-  "main": "main.js",
+  "name": "passky-desktop",
+  "private": true,
+  "version": "8.1.3",
+  "type": "module",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-builder"
+    "build": "bun build.ts",
+    "tauri": "tauri"
   },
-  "keywords": [
-    "Passky",
-    "Password Manager",
-    "Password",
-    "Manager"
-  ],
-  "build": {
-    "appId": "com.rabbit-company.passky",
-    "productName": "Passky",
-    "copyright": "Copyright 2021 Rabbit Company LLC",
-    "mac": {
-      "category": "public.app-category.productivity",
-      "icon": "images/logo.icns"
-    },
-    "win": {
-      "icon": "images/logo.ico",
-      "target": [
-        "nsis",
-        "portable",
-        "appx"
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "snap",
-        "deb",
-        "rpm",
-        "freebsd"
-      ],
-      "maintainer": "com.rabbit-company.passky",
-      "category": "Utility",
-      "vendor": "Rabbit Company LLC",
-      "description": "Simple, modern, open source and secure password manager."
-    },
-    "appx": {
-      "applicationId": "Passky",
-      "displayName": "Passky",
-      "backgroundColor": "#44475a",
-      "publisher": "CN=52198C2F-725A-42E5-855A-FB2F0CA67875",
-      "publisherDisplayName": "Rabbit Company LLC",
-      "identityName": "57225RabbitCompanyLLC.Passky"
-    }
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2"
   },
   "devDependencies": {
-    "electron": "^29.1.6",
-    "electron-builder": "^24.13.3"
+    "@tauri-apps/cli": "^2",
+    "typescript": "~5.6.2",
+    "@types/bun": "latest",
+    "@rabbit-company/logger": "^5.6.0"
   }
 }
