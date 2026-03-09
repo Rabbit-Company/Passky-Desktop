@@ -68,13 +68,13 @@ Customization | $${\color{green}Yes}$$ | $${\color{red}No}$$ | $${\color{red}No}
 3. Click on install
 
 ### Manually
-1. Download [Passky installer](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.2/Passky.Setup.8.1.2.exe) or [Passky portable](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.2/Passky.8.1.2.exe)
+1. Download [Passky installer](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.3/Passky.Setup.8.1.3.exe) or [Passky portable](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.3/Passky.8.1.3.exe)
 2. Run downloaded .exe file
 3. Passky desktop application is now installed
 
 ## MacOS
 
-1. Download [Passky-8.1.2.dmg](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.2/Passky-8.1.2.dmg)
+1. Download [Passky-8.1.3.dmg](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.3/Passky-8.1.3.dmg)
 2. Open the downloaded file
 3. Drag the app to the Applications folder to install it
 
@@ -82,14 +82,14 @@ Customization | $${\color{green}Yes}$$ | $${\color{red}No}$$ | $${\color{red}No}
 
 ### Debian based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.2/passky_8.1.2_amd64.deb
-sudo dpkg -i passky_8.1.2_amd64.deb
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.3/passky_8.1.3_amd64.deb
+sudo dpkg -i passky_8.1.3_amd64.deb
 ```
 
 ### Red Hat based distros
 ```yaml
-wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.2/passky-8.1.2.x86_64.rpm
-sudo rpm -i passky-8.1.2.x86_64.rpm
+wget https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.3/passky-8.1.3.x86_64.rpm
+sudo rpm -i passky-8.1.3.x86_64.rpm
 ```
 
 ### Flathub
@@ -105,7 +105,7 @@ sudo snap install passky
 ```
 
 ### AppImage
-1. Download [Passky-8.1.2.AppImage](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.2/Passky-8.1.2.AppImage)
+1. Download [Passky-8.1.3.AppImage](https://github.com/Rabbit-Company/Passky-Desktop/releases/download/v8.1.3/Passky-8.1.3.AppImage)
 2. Open the downloaded file
 
 ### AUR (community maintained)

@@ -300,7 +300,7 @@ function forget_username(){
 }
 
 function getDebugInfo(){
-	let info = "Client Version: 8.1.2";
+	let info = "Client Version: 8.1.3";
 	if(readData('url') != null) info += "\nServer: " + readData('url');
 	if(readData('username') != null) info += "\nUsername: " + readData('username');
 	info += "\nTheme: " + readData('theme');
